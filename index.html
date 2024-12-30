@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Days Counter</title>
+    <title>US Days Counter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,6 +24,14 @@
             height: 150px;
             margin-bottom: 10px;
             padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
@@ -55,11 +63,37 @@
             border: 1px solid #ffeeba;
             border-radius: 4px;
         }
+        .result-box {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f8ff;
+            border: 1px solid #d1e7ff;
+            border-radius: 4px;
+        }
+        .label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .description {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+        .disclaimer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Days Counter</h1>
+        <h1>US Days Counter</h1>
+        <div class="description">
+            This tool helps you determine the number of days you have spent in the U.S. based on your I-94 travel history. It can assist you in calculating your eligibility for permanent residency, citizenship, or tax status in the U.S.
+        </div>
         <div class="instructions">
             <p>This tool calculates the number of days spent in the U.S. based on your I-94 travel history. To use:</p>
             <ol>
@@ -71,22 +105,40 @@
 3    2024-12-02    Arrival    MSE
 4    2024-11-28    Departure    Unavailable
 5    2024-11-09    Arrival    BLA</pre>
+                <li>(Optional) Enter your Permanent Resident Approval Date in the field below.</li>
                 <li>Click "Confirm" to calculate the total days.</li>
             </ol>
         </div>
-        <textarea id="input" placeholder="Paste your travel history here..."></textarea>
+        <textarea id="input" placeholder="Paste your travel history here... Example:
+1    2024-12-11    Arrival    BLA
+2    2024-12-10    Departure    840
+3    2024-12-02    Arrival    MSE
+4    2024-11-28    Departure    Unavailable
+5    2024-11-09    Arrival    BLA"></textarea>
+        <div class="label">Permanent Resident Approval Date (optional):</div>
+        <input type="date" id="approvalDate" placeholder="Permanent Resident Approval Date (optional)">
         <button onclick="calculateDays()">Confirm</button>
+        <div id="beforeApprovalResult" class="result-box" style="display: none;"></div>
+        <div id="afterApprovalResult" class="result-box" style="display: none;"></div>
         <div id="result" class="result" style="display: none;"></div>
+        <div class="disclaimer">
+            Disclaimer: None of the information entered will be stored. This is just a calculator. The information provided on this site is not guaranteed to be accurate. You are encouraged to double-check the data.
+        </div>
     </div>
 
     <script>
         function calculateDays() {
             const input = document.getElementById('input').value.trim();
+            const approvalDateInput = document.getElementById('approvalDate').value;
+            const approvalDate = approvalDateInput ? new Date(approvalDateInput) : null;
+
             const rows = input.split('\n').filter(row => row.trim() !== ''); // Remove empty rows
 
             const today = new Date();
             let totalDays = 0;
             let periods = [];
+            let daysBeforeApproval = 0;
+            let daysAfterApproval = 0;
 
             let parsedRows = [];
 
@@ -115,6 +167,22 @@
                     if (current.date >= lastArrivalDate) {
                         const days = Math.ceil((current.date - lastArrivalDate) / (1000 * 60 * 60 * 24)) + 1;
                         periods.push({ start: lastArrivalDate, end: current.date, days });
+
+                        // Split days based on approval date
+                        if (approvalDate) {
+                            if (current.date < approvalDate) {
+                                daysBeforeApproval += days;
+                            } else if (lastArrivalDate >= approvalDate) {
+                                daysAfterApproval += days;
+                            } else {
+                                // Period spans the approval date
+                                const daysBefore = Math.ceil((approvalDate - lastArrivalDate) / (1000 * 60 * 60 * 24));
+                                const daysAfter = Math.ceil((current.date - approvalDate) / (1000 * 60 * 60 * 24)) + 1;
+                                daysBeforeApproval += daysBefore;
+                                daysAfterApproval += daysAfter;
+                            }
+                        }
+
                         totalDays += days;
                     }
                     lastArrivalDate = null; // Reset after processing a Departure
@@ -125,13 +193,37 @@
             if (lastArrivalDate) {
                 const days = Math.ceil((today - lastArrivalDate) / (1000 * 60 * 60 * 24)) + 1;
                 periods.push({ start: lastArrivalDate, end: today, days });
+
+                // Split days based on approval date
+                if (approvalDate) {
+                    if (lastArrivalDate < approvalDate) {
+                        daysBeforeApproval += days;
+                    } else {
+                        daysAfterApproval += days;
+                    }
+                }
+
                 totalDays += days;
             }
 
-            // Display results
+            // Display before and after approval results if approval date is provided
+            if (approvalDate) {
+                const beforeApprovalDiv = document.getElementById('beforeApprovalResult');
+                beforeApprovalDiv.style.display = 'block';
+                beforeApprovalDiv.textContent = `Days in the U.S. before PR Approval: ${daysBeforeApproval}`;
+
+                const afterApprovalDiv = document.getElementById('afterApprovalResult');
+                afterApprovalDiv.style.display = 'block';
+                afterApprovalDiv.textContent = `Days in the U.S. after PR Approval: ${daysAfterApproval}`;
+            } else {
+                document.getElementById('beforeApprovalResult').style.display = 'none';
+                document.getElementById('afterApprovalResult').style.display = 'none';
+            }
+
+            // Display total days result
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
-            resultDiv.textContent = `Total days: ${totalDays}`;
+            resultDiv.textContent = `Total days in the U.S.: ${totalDays}`;
 
             const details = document.createElement('div');
             details.innerHTML = periods.reverse().map((period, index) =>
