@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>US Days Counter</title>
+    <title>I-94 US Days Counter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -86,11 +86,37 @@
             color: #666;
             text-align: center;
         }
+        .subheading {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px; /* Added margin for spacing */
+        }
+        .subheading a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .subheading a:hover {
+            text-decoration: underline;
+        }
+        .subheading .text {
+            color: #000; /* Black color for "Other tools:" */
+        }
+        .subheading .separator {
+            color: #000; /* Black color for the separator */
+            margin: 0 5px; /* Spacing around the separator */
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>US Days Counter</h1>
+        <h1>I-94 US Days Counter</h1>
+        <div class="subheading">
+            <span class="text">Other tools:</span>
+            <a href="https://www.counttoday.com/CanadaDays" target="_blank">Canada Days Counter Self Input</a>
+            <span class="separator">|</span>
+            <a href="https://www.counttoday.com/CanadaDaysByI94" target="_blank">Canada Days Counter by I-94</a>
+        </div>
         <div class="description">
             This tool helps you determine the number of days you have spent in the U.S. based on your I-94 travel history. It can assist you in calculating your eligibility for permanent residency, citizenship, or tax status in the U.S.
         </div>
