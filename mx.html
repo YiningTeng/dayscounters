@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Días en EE. UU. basado en I-94</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ffe9;
+            border: 1px solid #d4ffd4;
+            border-radius: 4px;
+        }
+        .instructions {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 4px;
+        }
+        .result-box {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f8ff;
+            border: 1px solid #d1e7ff;
+            border-radius: 4px;
+        }
+        .label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .description {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+        .disclaimer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contador de Días en EE. UU. basado en I-94</h1>
+        <div class="description">
+            Esta herramienta te ayuda a determinar el número de días que has pasado en EE. UU. basado en tu historial de viajes del I-94. Puede ayudarte a calcular tu elegibilidad para la residencia permanente, ciudadanía o estado fiscal en EE. UU.
+        </div>
+        <div class="instructions">
+            <p>Esta herramienta calcula el número de días pasados en EE. UU. basado en tu historial de viajes del I-94. Para usarla:</p>
+            <ol>
+                <li>Ve a <a href="https://i94.cbp.dhs.gov/search/history-search" target="_blank">https://i94.cbp.dhs.gov/search/history-search</a>.</li>
+                <li>Ingresa tu información y copia la tabla bajo "Travel History Results".</li>
+                <li>Pega el contenido en el cuadro de texto a continuación. Por ejemplo:</li>
+                <pre>1    2024-12-11    Arrival    BLA
+2    2024-12-10    Departure    840
+3    2024-12-02    Arrival    MSE
+4    2024-11-28    Departure    Unavailable
+5    2024-11-09    Arrival    BLA</pre>
+                <li>(Opcional) Ingresa tu fecha de aprobación de residencia permanente en el campo a continuación.</li>
+                <li>Haz clic en "Confirmar" para calcular el total de días.</li>
+            </ol>
+        </div>
+        <textarea id="input" placeholder="Pega tu historial de viajes aquí... Ejemplo:
+1    2024-12-11    Arrival    BLA
+2    2024-12-10    Departure    840
+3    2024-12-02    Arrival    MSE
+4    2024-11-28    Departure    Unavailable
+5    2024-11-09    Arrival    BLA"></textarea>
+        <div class="label">Fecha de Aprobación de Residencia Permanente (opcional):</div>
+        <input type="date" id="approvalDate" placeholder="Fecha de Aprobación de Residencia Permanente (opcional)">
+        <button onclick="calculateDays()">Confirmar</button>
+        <div id="beforeApprovalResult" class="result-box" style="display: none;"></div>
+        <div id="afterApprovalResult" class="result-box" style="display: none;"></div>
+        <div id="result" class="result" style="display: none;"></div>
+        <div class="disclaimer">
+            Descargo de responsabilidad: Ninguna de la información ingresada será almacenada. Esto es solo una calculadora. La información proporcionada en este sitio no está garantizada para ser precisa. Se te recomienda verificar los datos.
+        </div>
+    </div>
+
+    <script>
+        function calculateDays() {
+            const input = document.getElementById('input').value.trim();
+            const approvalDateInput = document.getElementById('approvalDate').value;
+            const approvalDate = approvalDateInput ? new Date(approvalDateInput) : null;
+
+            const rows = input.split('\n').filter(row => row.trim() !== ''); // Eliminar filas vacías
+
+            const today = new Date();
+            let totalDays = 0;
+            let periods = [];
+            let daysBeforeApproval = 0;
+            let daysAfterApproval = 0;
+
+            let parsedRows = [];
+
+            // Validar y analizar filas
+            for (const row of rows) {
+                const columns = row.split(/\s+/);
+                if (columns.length >= 3 && !isNaN(new Date(columns[1]).getTime())) {
+                    parsedRows.push({
+                        date: new Date(columns[1]),
+                        type: columns[2]
+                    });
+                }
+            }
+
+            // Ordenar filas por fecha en orden cronológico
+            parsedRows.sort((a, b) => a.date - b.date);
+
+            // Procesar filas para calcular períodos
+            let lastArrivalDate = null;
+            for (let i = 0; i < parsedRows.length; i++) {
+                const current = parsedRows[i];
+
+                if (current.type === 'Arrival') {
+                    lastArrivalDate = current.date;
+                } else if (current.type === 'Departure' && lastArrivalDate) {
+                    if (current.date >= lastArrivalDate) {
+                        const days = Math.ceil((current.date - lastArrivalDate) / (1000 * 60 * 60 * 24)) + 1;
+                        periods.push({ start: lastArrivalDate, end: current.date, days });
+
+                        // Dividir días según la fecha de aprobación
+                        if (approvalDate) {
+                            if (current.date < approvalDate) {
+                                daysBeforeApproval += days;
+                            } else if (lastArrivalDate >= approvalDate) {
+                                daysAfterApproval += days;
+                            } else {
+                                // El período abarca la fecha de aprobación
+                                const daysBefore = Math.ceil((approvalDate - lastArrivalDate) / (1000 * 60 * 60 * 24));
+                                const daysAfter = Math.ceil((current.date - approvalDate) / (1000 * 60 * 60 * 24)) + 1;
+                                daysBeforeApproval += daysBefore;
+                                daysAfterApproval += daysAfter;
+                            }
+                        }
+
+                        totalDays += days;
+                    }
+                    lastArrivalDate = null; // Reiniciar después de procesar una salida
+                }
+            }
+
+            // Manejar el caso donde el último evento es una llegada
+            if (lastArrivalDate) {
+                const days = Math.ceil((today - lastArrivalDate) / (1000 * 60 * 60 * 24)) + 1;
+                periods.push({ start: lastArrivalDate, end: today, days });
+
+                // Dividir días según la fecha de aprobación
+                if (approvalDate) {
+                    if (lastArrivalDate < approvalDate) {
+                        daysBeforeApproval += days;
+                    } else {
+                        daysAfterApproval += days;
+                    }
+                }
+
+                totalDays += days;
+            }
+
+            // Mostrar resultados antes y después de la aprobación si se proporciona la fecha
+            if (approvalDate) {
+                const beforeApprovalDiv = document.getElementById('beforeApprovalResult');
+                beforeApprovalDiv.style.display = 'block';
+                beforeApprovalDiv.textContent = `Días en EE. UU. antes de la aprobación de residencia permanente: ${daysBeforeApproval}`;
+
+                const afterApprovalDiv = document.getElementById('afterApprovalResult');
+                afterApprovalDiv.style.display = 'block';
+                afterApprovalDiv.textContent = `Días en EE. UU. después de la aprobación de residencia permanente: ${daysAfterApproval}`;
+            } else {
+                document.getElementById('beforeApprovalResult').style.display = 'none';
+                document.getElementById('afterApprovalResult').style.display = 'none';
+            }
+
+            // Mostrar el resultado total de días
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = `Total de días en EE. UU.: ${totalDays}`;
+
+            const details = document.createElement('div');
+            details.innerHTML = periods.reverse().map((period, index) =>
+                `<p>${index + 1}. Desde ${period.start.toISOString().split('T')[0]} hasta ${period.end.toISOString().split('T')[0]}: ${period.days} días</p>`
+            ).join('');
+            resultDiv.appendChild(details);
+        }
+    </script>
+</body>
+</html>
