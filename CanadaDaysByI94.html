@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7445001367890933"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate the number of days spent in Canada based on your I-94 travel history. Useful for residency, citizenship, and tax status.">
+    <meta name="keywords" content="I-94, Canada days counter, travel history, residency, citizenship, tax status">
+    <meta name="author" content="CountToday">
+    <title>Canada Days Counter based on I-94</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ffe9;
+            border: 1px solid #d4ffd4;
+            border-radius: 4px;
+        }
+        .instructions {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 4px;
+        }
+        .result-box {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f8ff;
+            border: 1px solid #d1e7ff;
+            border-radius: 4px;
+        }
+        .label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .description {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+        .disclaimer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        .subheading {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .subheading a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .subheading a:hover {
+            text-decoration: underline;
+        }
+        .subheading .text {
+            color: #000;
+        }
+        .subheading .separator {
+            color: #000;
+            margin: 0 5px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Canada Days Counter based on I-94</h1>
+        <div class="subheading">
+            <span class="text">Other tools:</span>
+            <a href="https://www.counttoday.com/CanadaDays" target="_blank">Canada Days Counter</a>
+            <span class="separator">|</span>
+            <a href="https://www.counttoday.com" target="_blank">US Days Counter</a>
+        </div>
+        <div class="description">
+            This tool helps you determine the number of days you have spent in Canada based on your I-94 travel history. It can assist you in calculating your eligibility for permanent residency, citizenship, or tax status in Canada.
+        </div>
+        <div class="instructions">
+            <p>This tool calculates the number of days spent in Canada based on your I-94 travel history. To use:</p>
+            <ol>
+                <li>Go to <a href="https://i94.cbp.dhs.gov/search/history-search" target="_blank">https://i94.cbp.dhs.gov/search/history-search</a>.</li>
+                <li>Input your information and copy the table under "Travel History Results".</li>
+                <li>Paste the content into the text box below. For example:</li>
+                <pre>1    2024-12-10    Departure    840
+2    2024-12-02    Arrival    BLA
+3    2024-11-28    Departure    840
+4    2024-11-09    Arrival    BLA</pre>
+                <li>(Optional) Enter your Permanent Resident Approval Date in the field below.</li>
+                <li>(Optional) Enter dates when you were in neither Canada nor the U.S. in the format "date date" (e.g., "2024-11-15 2024-11-20") to exclude those days from the calculation.</li>
+                <li>Click "Confirm" to calculate the total days in Canada.</li>
+            </ol>
+        </div>
+        <div class="label">Travel history from <a href="https://i94.cbp.dhs.gov/search/history-search" target="_blank">https://i94.cbp.dhs.gov/search/history-search</a>:</div>
+        <textarea id="input" placeholder="Paste your travel history here... Example:
+1    2024-12-10    Departure    840
+2    2024-12-02    Arrival    BLA
+3    2024-11-28    Departure    840
+4    2024-11-09    Arrival    BLA"></textarea>
+        <div class="label">Permanent Resident Approval Date (optional):</div>
+        <input type="date" id="approvalDate" placeholder="Permanent Resident Approval Date (optional)">
+        <div class="label">Dates in neither Canada nor the U.S. (optional, format "date date"):</div>
+        <textarea id="excludedDates" placeholder="Enter dates in neither Canada nor the U.S. here... Example:
+2024-11-29 2024-11-30
+2024-12-12 2024-12-15"></textarea>
+        <button onclick="calculateDays()">Confirm</button>
+        <div id="beforeApprovalResult" class="result-box" style="display: none;"></div>
+        <div id="afterApprovalResult" class="result-box" style="display: none;"></div>
+        <div id="result" class="result" style="display: none;"></div>
+        <div class="disclaimer">
+            Disclaimer: None of the information entered will be stored. This is just a calculator. The information provided on this site is not guaranteed to be accurate. You are encouraged to double-check the data.
+        </div>
+        <div class="footer">
+            &copy; 2025 CountToday. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        function calculateDays() {
+            const input = document.getElementById('input').value.trim();
+            const approvalDateInput = document.getElementById('approvalDate').value;
+            const approvalDate = approvalDateInput ? new Date(approvalDateInput) : null;
+            const excludedDatesInput = document.getElementById('excludedDates').value.trim();
+
+            const rows = input.split('\n').filter(row => row.trim() !== ''); // Remove empty rows
+
+            const today = new Date();
+            let totalDays = 0;
+            let periods = [];
+            let daysBeforeApproval = 0;
+            let daysAfterApproval = 0;
+
+            let parsedRows = [];
+
+            // Validate and parse rows
+            for (const row of rows) {
+                const columns = row.split(/\s+/);
+                if (columns.length >= 3 && !isNaN(new Date(columns[1]).getTime())) {
+                    parsedRows.push({
+                        date: new Date(columns[1]),
+                        type: columns[2]
+                    });
+                }
+            }
+
+            // Sort rows by date in chronological order
+            parsedRows.sort((a, b) => a.date - b.date);
+
+            // Parse excluded dates
+            const excludedPeriods = [];
+            if (excludedDatesInput) {
+                const excludedLines = excludedDatesInput.split('\n').filter(line => line.trim() !== '');
+                for (const line of excludedLines) {
+                    const dates = line.split(/\s+/);
+                    if (dates.length === 2 && !isNaN(new Date(dates[0]).getTime()) && !isNaN(new Date(dates[1]).getTime())) {
+                        excludedPeriods.push({
+                            start: new Date(dates[0]),
+                            end: new Date(dates[1])
+                        });
+                    }
+                }
+            }
+
+            // Process rows to compute periods
+            let lastDepartureDate = null;
+            for (let i = 0; i < parsedRows.length; i++) {
+                const current = parsedRows[i];
+
+                if (current.type === 'Departure') {
+                    lastDepartureDate = current.date;
+                } else if (current.type === 'Arrival' && lastDepartureDate) {
+                    if (current.date >= lastDepartureDate) {
+                        let days = Math.ceil((current.date - lastDepartureDate) / (1000 * 60 * 60 * 24)) + 1;
+
+                        // Subtract excluded days
+                        for (const period of excludedPeriods) {
+                            const overlapStart = period.start > lastDepartureDate ? period.start : lastDepartureDate;
+                            const overlapEnd = period.end < current.date ? period.end : current.date;
+                            if (overlapStart <= overlapEnd) {
+                                const excludedDays = Math.ceil((overlapEnd - overlapStart) / (1000 * 60 * 60 * 24)) + 1;
+                                days -= excludedDays;
+                            }
+                        }
+
+                        periods.push({ start: lastDepartureDate, end: current.date, days });
+
+                        // Split days based on approval date
+                        if (approvalDate) {
+                            if (current.date < approvalDate) {
+                                daysBeforeApproval += days;
+                            } else if (lastDepartureDate >= approvalDate) {
+                                daysAfterApproval += days;
+                            } else {
+                                // Period spans the approval date
+                                const daysBefore = Math.ceil((approvalDate - lastDepartureDate) / (1000 * 60 * 60 * 24));
+                                const daysAfter = Math.ceil((current.date - approvalDate) / (1000 * 60 * 60 * 24)) + 1;
+                                daysBeforeApproval += daysBefore;
+                                daysAfterApproval += daysAfter;
+                            }
+                        }
+
+                        totalDays += days;
+                    }
+                    lastDepartureDate = null; // Reset after processing an Arrival
+                }
+            }
+
+            // Handle the case where the last event is a Departure
+            if (lastDepartureDate) {
+                let days = Math.ceil((today - lastDepartureDate) / (1000 * 60 * 60 * 24)) + 1;
+
+                // Subtract excluded days
+                for (const period of excludedPeriods) {
+                    const overlapStart = period.start > lastDepartureDate ? period.start : lastDepartureDate;
+                    const overlapEnd = period.end < today ? period.end : today;
+                    if (overlapStart <= overlapEnd) {
+                        const excludedDays = Math.ceil((overlapEnd - overlapStart) / (1000 * 60 * 60 * 24)) + 1;
+                        days -= excludedDays;
+                    }
+                }
+
+                periods.push({ start: lastDepartureDate, end: today, days });
+
+                // Split days based on approval date
+                if (approvalDate) {
+                    if (lastDepartureDate < approvalDate) {
+                        daysBeforeApproval += days;
+                    } else {
+                        daysAfterApproval += days;
+                    }
+                }
+
+                totalDays += days;
+            }
+
+            // Display before and after approval results if approval date is provided
+            if (approvalDate) {
+                const beforeApprovalDiv = document.getElementById('beforeApprovalResult');
+                beforeApprovalDiv.style.display = 'block';
+                beforeApprovalDiv.textContent = `Days in Canada before PR Approval: ${daysBeforeApproval}`;
+
+                const afterApprovalDiv = document.getElementById('afterApprovalResult');
+                afterApprovalDiv.style.display = 'block';
+                afterApprovalDiv.textContent = `Days in Canada after PR Approval: ${daysAfterApproval}`;
+            } else {
+                document.getElementById('beforeApprovalResult').style.display = 'none';
+                document.getElementById('afterApprovalResult').style.display = 'none';
+            }
+
+            // Display total days result
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = `Total days in Canada: ${totalDays}`;
+
+            const details = document.createElement('div');
+            details.innerHTML = periods.reverse().map((period, index) =>
+                `<p>${index + 1}. From ${period.start.toISOString().split('T')[0]} to ${period.end.toISOString().split('T')[0]}: ${period.days} days</p>`
+            ).join('');
+            resultDiv.appendChild(details);
+        }
+    </script>
+</body>
+</html>

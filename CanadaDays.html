@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7445001367890933"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate the number of days spent in Canada based on your entry and exit dates. Useful for residency, citizenship, and tax status.">
+    <meta name="keywords" content="Canada days calculator, entry and exit dates, residency, citizenship, tax status">
+    <meta name="author" content="CountToday">
+    <title>Canada Days Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ffe9;
+            border: 1px solid #d4ffd4;
+            border-radius: 4px;
+        }
+        .instructions {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 4px;
+        }
+        .result-box {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f8ff;
+            border: 1px solid #d1e7ff;
+            border-radius: 4px;
+        }
+        .label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .description {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+        .disclaimer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        .subheading {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .subheading a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .subheading a:hover {
+            text-decoration: underline;
+        }
+        .subheading .text {
+            color: #000;
+        }
+        .subheading .separator {
+            color: #000;
+            margin: 0 5px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Canada Days Calculator</h1>
+        <div class="subheading">
+            <span class="text">Other tools:</span>
+            <a href="https://www.counttoday.com/CanadaDaysByI94" target="_blank">Canada Days Counter based on I-94</a>
+            <span class="separator">|</span>
+            <a href="https://www.counttoday.com" target="_blank">US Days Counter</a>
+        </div>
+        <div class="description">
+            This tool helps you determine the number of days you have spent in Canada based on your entry and exit dates. It can assist you in calculating your eligibility for permanent residency, citizenship, or tax status in Canada.
+        </div>
+        <div class="instructions">
+            <p>This tool calculates the number of days spent in Canada based on your entry and exit dates. To use:</p>
+            <ol>
+                <li>Enter your entry and exit dates in the text box below in the format "satrtDate endDate" (e.g., "2024-11-29 2024-11-30"). Each line represents a separate period in Canada.</li>
+                <li>(Optional) Enter your Permanent Resident Approval Date in the field below.</li>
+                <li>Click "Confirm" to calculate the total days in Canada.</li>
+            </ol>
+        </div>
+        <div class="label">Entry and Exit Dates (format "startDate endDate"):</div>
+        <textarea id="input" placeholder="Enter your entry and exit dates here... Example:
+2024-11-29 2024-11-30
+2024-12-12 2024-12-15"></textarea>
+        <div class="label">Permanent Resident Approval Date (optional):</div>
+        <input type="date" id="approvalDate" placeholder="Permanent Resident Approval Date (optional)">
+        <button onclick="calculateDays()">Confirm</button>
+        <div id="beforeApprovalResult" class="result-box" style="display: none;"></div>
+        <div id="afterApprovalResult" class="result-box" style="display: none;"></div>
+        <div id="result" class="result" style="display: none;"></div>
+        <div class="disclaimer">
+            Disclaimer: None of the information entered will be stored. This is just a calculator. The information provided on this site is not guaranteed to be accurate. You are encouraged to double-check the data.
+        </div>
+        <div class="footer">
+            &copy; 2025 CountToday. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        function calculateDays() {
+            const input = document.getElementById('input').value.trim();
+            const approvalDateInput = document.getElementById('approvalDate').value;
+            const approvalDate = approvalDateInput ? new Date(approvalDateInput) : null;
+
+            const rows = input.split('\n').filter(row => row.trim() !== ''); // Remove empty rows
+
+            const today = new Date();
+            let totalDays = 0;
+            let periods = [];
+            let daysBeforeApproval = 0;
+            let daysAfterApproval = 0;
+
+            // Parse and process rows
+            for (const row of rows) {
+                const dates = row.split(/\s+/);
+                if (dates.length === 2 && !isNaN(new Date(dates[0]).getTime()) && !isNaN(new Date(dates[1]).getTime())) {
+                    const startDate = new Date(dates[0]);
+                    const endDate = new Date(dates[1]);
+
+                    if (startDate <= endDate) {
+                        const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+                        periods.push({ start: startDate, end: endDate, days });
+
+                        // Split days based on approval date
+                        if (approvalDate) {
+                            if (endDate < approvalDate) {
+                                daysBeforeApproval += days;
+                            } else if (startDate >= approvalDate) {
+                                daysAfterApproval += days;
+                            } else {
+                                // Period spans the approval date
+                                const daysBefore = Math.ceil((approvalDate - startDate) / (1000 * 60 * 60 * 24));
+                                const daysAfter = Math.ceil((endDate - approvalDate) / (1000 * 60 * 60 * 24)) + 1;
+                                daysBeforeApproval += daysBefore;
+                                daysAfterApproval += daysAfter;
+                            }
+                        }
+
+                        totalDays += days;
+                    }
+                }
+            }
+
+            // Display before and after approval results if approval date is provided
+            if (approvalDate) {
+                const beforeApprovalDiv = document.getElementById('beforeApprovalResult');
+                beforeApprovalDiv.style.display = 'block';
+                beforeApprovalDiv.textContent = `Days in Canada before PR Approval: ${daysBeforeApproval}`;
+
+                const afterApprovalDiv = document.getElementById('afterApprovalResult');
+                afterApprovalDiv.style.display = 'block';
+                afterApprovalDiv.textContent = `Days in Canada after PR Approval: ${daysAfterApproval}`;
+            } else {
+                document.getElementById('beforeApprovalResult').style.display = 'none';
+                document.getElementById('afterApprovalResult').style.display = 'none';
+            }
+
+            // Display total days result
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = `Total days in Canada: ${totalDays}`;
+
+            const details = document.createElement('div');
+            details.innerHTML = periods.reverse().map((period, index) =>
+                `<p>${index + 1}. From ${period.start.toISOString().split('T')[0]} to ${period.end.toISOString().split('T')[0]}: ${period.days} days</p>`
+            ).join('');
+            resultDiv.appendChild(details);
+        }
+    </script>
+</body>
+</html>

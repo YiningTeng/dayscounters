@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Canada Days Counter -->
+    <url>
+        <loc>https://www.counttoday.com/CanadaDays</loc>
+        <lastmod>2025-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <!-- Canada Days Counter based on I-94 -->
+    <url>
+        <loc>https://www.counttoday.com/CanadaDaysByI94</loc>
+        <lastmod>2025-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <!-- US Days Counter -->
+    <url>
+        <loc>https://www.counttoday.com</loc>
+        <lastmod>2025-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <!-- US Days Counter in Spanish -->
+    <url>
+        <loc>https://www.counttoday.com/mx</loc>
+        <lastmod>2025-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+</urlset>
