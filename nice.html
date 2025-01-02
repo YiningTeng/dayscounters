@@ -92,7 +92,12 @@
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 5px;
-            white-space: pre-wrap; /* Preserve Markdown formatting */
+        }
+        .result h2, .result h3 {
+            margin-top: 0;
+        }
+        .result ul {
+            padding-left: 20px;
         }
         footer {
             text-align: center;
@@ -163,7 +168,7 @@
 
     <!-- Footer -->
     <footer>
-        &copy; 2025 CountToday All rights reserved.
+        &copy; 2023 Nice? All rights reserved.
     </footer>
 
     <script>
@@ -404,7 +409,7 @@
                 };
 
                 try {
-                    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=AIzaSyAHtMF1T5SFmaY5ZQcTfz-Hqwly0M4XT8U', {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -413,10 +418,10 @@
                     });
                     const result = await response.json();
                     const analysisResult = result.candidates[0].content.parts[0].text;
-                    document.getElementById('result').textContent = analysisResult;
+                    document.getElementById('result').innerHTML = marked.parse(analysisResult); // Render Markdown
                 } catch (error) {
                     console.error("Error analyzing photo:", error);
-                    document.getElementById('result').textContent = "Failed to analyze the photo. Please try again.";
+                    document.getElementById('result').innerHTML = "Failed to analyze the photo. Please try again.";
                 }
             };
         }
@@ -432,5 +437,6 @@
         // Run initialization when the page loads
         window.onload = initializePage;
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> <!-- Markdown rendering library -->
 </body>
 </html>
