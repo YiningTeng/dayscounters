@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main # 触发部署的分支
+      - main
 
 jobs:
   build:
@@ -16,6 +16,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub 自动生成的 token
-          publish_dir: ./ # 发布整个仓库
-          cname: www.counttoday.com # 自定义域名
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          cname: www.counttoday.com
