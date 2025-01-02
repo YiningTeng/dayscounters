@@ -61,52 +61,258 @@
             width: auto;
             padding: 5px;
         }
+        .unit-toggle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .unit-toggle label {
+            margin-right: 10px;
+        }
+        .unit-toggle select {
+            width: auto;
+            padding: 5px;
+        }
+        .photo-section {
+            margin-top: 20px;
+        }
+        .photo-section button {
+            margin-bottom: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Nice?</h1>
+        <h1 id="title">Nice?</h1>
         <div class="language-select">
-            <label for="language">Select Language:</label>
+            <label for="language" id="languageLabel">Select Language:</label>
             <select id="language">
                 <option value="en" data-flag="🇺🇸">English</option>
                 <option value="zh" data-flag="🇨🇳">中文 (Chinese)</option>
+                <option value="ja" data-flag="🇯🇵">日本語 (Japanese)</option>
+                <option value="ko" data-flag="🇰🇷">한국어 (Korean)</option>
                 <option value="es" data-flag="🇪🇸">Español (Spanish)</option>
                 <option value="fr" data-flag="🇫🇷">Français (French)</option>
                 <option value="de" data-flag="🇩🇪">Deutsch (German)</option>
             </select>
         </div>
-        <label for="age">Age (optional):</label>
+        <label for="age" id="ageLabel">Age (optional):</label>
         <input type="number" id="age" min="0">
-        <label for="height">Height (optional):</label>
+        <div class="unit-toggle">
+            <label for="heightUnit" id="heightUnitLabel">Height Unit:</label>
+            <select id="heightUnit">
+                <option value="cm">cm</option>
+                <option value="ft">ft</option>
+            </select>
+        </div>
+        <label for="height" id="heightLabel">Height (optional):</label>
         <input type="number" id="height" min="0" placeholder="in cm">
-        <label for="weight">Weight (optional):</label>
+        <div class="unit-toggle">
+            <label for="weightUnit" id="weightUnitLabel">Weight Unit:</label>
+            <select id="weightUnit">
+                <option value="kg">kg</option>
+                <option value="lb">lb</option>
+            </select>
+        </div>
+        <label for="weight" id="weightLabel">Weight (optional):</label>
         <input type="number" id="weight" min="0" placeholder="in kg">
-        <label for="sex">Sex (optional):</label>
+        <label for="sex" id="sexLabel">Sex (optional):</label>
         <select id="sex">
             <option value="">Select</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
         </select>
-        <label for="ethnicity">Ethnicity (optional):</label>
+        <label for="ethnicity" id="ethnicityLabel">Ethnicity (optional):</label>
         <input type="text" id="ethnicity">
-        <button onclick="updateURL()">Confirm</button>
+        <button onclick="updateURL()" id="confirmButton">Confirm</button>
+
+        <!-- Photo Section -->
+        <div class="photo-section">
+            <label id="photoLabel">Upload or Take a Photo:</label>
+            <input type="file" id="photoInput" accept="image/*" capture="environment" style="display: none;">
+            <button onclick="document.getElementById('photoInput').click()" id="photoButton">Choose Photo</button>
+            <button onclick="analyzePhoto()" id="analyzeButton">Analyze Photo</button>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result" id="result"></div>
     </div>
 
     <script>
+        // Language translations
+        const translations = {
+            en: {
+                title: "Nice?",
+                languageLabel: "Select Language:",
+                ageLabel: "Age (optional):",
+                heightLabel: "Height (optional):",
+                heightUnitLabel: "Height Unit:",
+                weightLabel: "Weight (optional):",
+                weightUnitLabel: "Weight Unit:",
+                sexLabel: "Sex (optional):",
+                ethnicityLabel: "Ethnicity (optional):",
+                confirmButton: "Confirm",
+                photoLabel: "Upload or Take a Photo:",
+                photoButton: "Choose Photo",
+                analyzeButton: "Analyze Photo"
+            },
+            zh: {
+                title: "不错？",
+                languageLabel: "选择语言：",
+                ageLabel: "年龄（可选）：",
+                heightLabel: "身高（可选）：",
+                heightUnitLabel: "身高单位：",
+                weightLabel: "体重（可选）：",
+                weightUnitLabel: "体重单位：",
+                sexLabel: "性别（可选）：",
+                ethnicityLabel: "种族（可选）：",
+                confirmButton: "确认",
+                photoLabel: "上传或拍摄照片：",
+                photoButton: "选择照片",
+                analyzeButton: "分析照片"
+            },
+            ja: {
+                title: "いいですか？",
+                languageLabel: "言語を選択：",
+                ageLabel: "年齢（任意）：",
+                heightLabel: "身長（任意）：",
+                heightUnitLabel: "身長単位：",
+                weightLabel: "体重（任意）：",
+                weightUnitLabel: "体重単位：",
+                sexLabel: "性別（任意）：",
+                ethnicityLabel: "民族（任意）：",
+                confirmButton: "確認",
+                photoLabel: "写真をアップロードまたは撮影：",
+                photoButton: "写真を選択",
+                analyzeButton: "写真を分析"
+            },
+            ko: {
+                title: "좋아요?",
+                languageLabel: "언어 선택:",
+                ageLabel: "나이 (선택 사항):",
+                heightLabel: "키 (선택 사항):",
+                heightUnitLabel: "키 단위:",
+                weightLabel: "체중 (선택 사항):",
+                weightUnitLabel: "체중 단위:",
+                sexLabel: "성별 (선택 사항):",
+                ethnicityLabel: "인종 (선택 사항):",
+                confirmButton: "확인",
+                photoLabel: "사진 업로드 또는 촬영:",
+                photoButton: "사진 선택",
+                analyzeButton: "사진 분석"
+            },
+            es: {
+                title: "¿Bien?",
+                languageLabel: "Seleccionar idioma:",
+                ageLabel: "Edad (opcional):",
+                heightLabel: "Altura (opcional):",
+                heightUnitLabel: "Unidad de altura:",
+                weightLabel: "Peso (opcional):",
+                weightUnitLabel: "Unidad de peso:",
+                sexLabel: "Sexo (opcional):",
+                ethnicityLabel: "Etnia (opcional):",
+                confirmButton: "Confirmar",
+                photoLabel: "Subir o tomar una foto:",
+                photoButton: "Elegir foto",
+                analyzeButton: "Analizar foto"
+            },
+            fr: {
+                title: "Sympa ?",
+                languageLabel: "Choisir la langue :",
+                ageLabel: "Âge (facultatif) :",
+                heightLabel: "Taille (facultatif) :",
+                heightUnitLabel: "Unité de taille :",
+                weightLabel: "Poids (facultatif) :",
+                weightUnitLabel: "Unité de poids :",
+                sexLabel: "Sexe (facultatif) :",
+                ethnicityLabel: "Ethnicité (facultatif) :",
+                confirmButton: "Confirmer",
+                photoLabel: "Télécharger ou prendre une photo :",
+                photoButton: "Choisir une photo",
+                analyzeButton: "Analyser la photo"
+            },
+            de: {
+                title: "Schön?",
+                languageLabel: "Sprache auswählen:",
+                ageLabel: "Alter (optional):",
+                heightLabel: "Größe (optional):",
+                heightUnitLabel: "Größeneinheit:",
+                weightLabel: "Gewicht (optional):",
+                weightUnitLabel: "Gewichtseinheit:",
+                sexLabel: "Geschlecht (optional):",
+                ethnicityLabel: "Ethnizität (optional):",
+                confirmButton: "Bestätigen",
+                photoLabel: "Foto hochladen oder aufnehmen:",
+                photoButton: "Foto auswählen",
+                analyzeButton: "Foto analysieren"
+            }
+        };
+
+        // Function to update the page language
+        function updateLanguage(lang) {
+            const translation = translations[lang];
+            document.getElementById('title').textContent = translation.title;
+            document.getElementById('languageLabel').textContent = translation.languageLabel;
+            document.getElementById('ageLabel').textContent = translation.ageLabel;
+            document.getElementById('heightLabel').textContent = translation.heightLabel;
+            document.getElementById('heightUnitLabel').textContent = translation.heightUnitLabel;
+            document.getElementById('weightLabel').textContent = translation.weightLabel;
+            document.getElementById('weightUnitLabel').textContent = translation.weightUnitLabel;
+            document.getElementById('sexLabel').textContent = translation.sexLabel;
+            document.getElementById('ethnicityLabel').textContent = translation.ethnicityLabel;
+            document.getElementById('confirmButton').textContent = translation.confirmButton;
+            document.getElementById('photoLabel').textContent = translation.photoLabel;
+            document.getElementById('photoButton').textContent = translation.photoButton;
+            document.getElementById('analyzeButton').textContent = translation.analyzeButton;
+
+            // Update placeholders based on selected units
+            const heightUnit = document.getElementById('heightUnit').value;
+            const weightUnit = document.getElementById('weightUnit').value;
+            document.getElementById('height').placeholder = `in ${heightUnit}`;
+            document.getElementById('weight').placeholder = `in ${weightUnit}`;
+        }
+
+        // Function to handle language change
+        document.getElementById('language').addEventListener('change', function () {
+            const lang = this.value;
+            localStorage.setItem('selectedLanguage', lang); // Save language to localStorage
+            updateLanguage(lang);
+        });
+
+        // Function to handle height unit change
+        document.getElementById('heightUnit').addEventListener('change', function () {
+            const heightUnit = this.value;
+            document.getElementById('height').placeholder = `in ${heightUnit}`;
+        });
+
+        // Function to handle weight unit change
+        document.getElementById('weightUnit').addEventListener('change', function () {
+            const weightUnit = this.value;
+            document.getElementById('weight').placeholder = `in ${weightUnit}`;
+        });
+
         // Function to update the URL with user inputs
         function updateURL() {
             const age = document.getElementById('age').value;
             const height = document.getElementById('height').value;
+            const heightUnit = document.getElementById('heightUnit').value;
             const weight = document.getElementById('weight').value;
+            const weightUnit = document.getElementById('weightUnit').value;
             const sex = document.getElementById('sex').value;
             const ethnicity = document.getElementById('ethnicity').value;
 
             const params = new URLSearchParams();
             if (age) params.set('age', age);
-            if (height) params.set('height', height);
-            if (weight) params.set('weight', weight);
+            if (height) params.set('height', `${height}${heightUnit}`);
+            if (weight) params.set('weight', `${weight}${weightUnit}`);
             if (sex) params.set('sex', sex);
             if (ethnicity) params.set('ethnicity', ethnicity);
 
@@ -118,14 +324,75 @@
         function populateFieldsFromURL() {
             const params = new URLSearchParams(window.location.search);
             document.getElementById('age').value = params.get('age') || '';
-            document.getElementById('height').value = params.get('height') || '';
-            document.getElementById('weight').value = params.get('weight') || '';
+            const heightValue = params.get('height') || '';
+            if (heightValue) {
+                const heightUnit = heightValue.includes('ft') ? 'ft' : 'cm';
+                const height = heightValue.replace(/[^0-9.]/g, '');
+                document.getElementById('height').value = height;
+                document.getElementById('heightUnit').value = heightUnit;
+            }
+            const weightValue = params.get('weight') || '';
+            if (weightValue) {
+                const weightUnit = weightValue.includes('lb') ? 'lb' : 'kg';
+                const weight = weightValue.replace(/[^0-9.]/g, '');
+                document.getElementById('weight').value = weight;
+                document.getElementById('weightUnit').value = weightUnit;
+            }
             document.getElementById('sex').value = params.get('sex') || '';
             document.getElementById('ethnicity').value = params.get('ethnicity') || '';
         }
 
-        // Populate fields when the page loads
-        window.onload = populateFieldsFromURL;
+        // Function to analyze the photo
+        async function analyzePhoto() {
+            const photoInput = document.getElementById('photoInput');
+            if (!photoInput.files || photoInput.files.length === 0) {
+                alert("Please select or take a photo first.");
+                return;
+            }
+
+            const file = photoInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const age = document.getElementById('age').value;
+            const height = document.getElementById('height').value;
+            const heightUnit = document.getElementById('heightUnit').value;
+            const weight = document.getElementById('weight').value;
+            const weightUnit = document.getElementById('weightUnit').value;
+            const sex = document.getElementById('sex').value;
+            const ethnicity = document.getElementById('ethnicity').value;
+            const language = document.getElementById('language').value;
+
+            formData.append('age', age);
+            formData.append('height', `${height}${heightUnit}`);
+            formData.append('weight', `${weight}${weightUnit}`);
+            formData.append('sex', sex);
+            formData.append('ethnicity', ethnicity);
+            formData.append('language', language);
+
+            try {
+                const response = await fetch('https://api.deepseek.com/analyze', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                document.getElementById('result').textContent = result.message;
+            } catch (error) {
+                console.error("Error analyzing photo:", error);
+                document.getElementById('result').textContent = "Failed to analyze the photo. Please try again.";
+            }
+        }
+
+        // Initialize the page
+        function initializePage() {
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            document.getElementById('language').value = savedLanguage;
+            updateLanguage(savedLanguage);
+            populateFieldsFromURL();
+        }
+
+        // Run initialization when the page loads
+        window.onload = initializePage;
     </script>
 </body>
 </html>
