@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nice? - A website to analyze products based on user information.">
+    <meta name="keywords" content="Nice, product analysis, AI, Gemini, Google AI">
+    <meta name="author" content="Your Name">
     <title>Nice?</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
@@ -12,6 +15,9 @@
             padding: 20px;
             background-color: #f4f4f9;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         h1 {
             font-family: 'Pacifico', cursive;
@@ -27,6 +33,7 @@
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
         }
         label {
             display: block;
@@ -85,6 +92,14 @@
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 5px;
+            white-space: pre-wrap; /* Preserve Markdown formatting */
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 0.9rem;
+            color: #666;
         }
     </style>
 </head>
@@ -130,8 +145,8 @@
             <option value="female">Female</option>
             <option value="other">Other</option>
         </select>
-        <label for="ethnicity" id="ethnicityLabel">Ethnicity (optional):</label>
-        <input type="text" id="ethnicity">
+        <label for="nationality" id="nationalityLabel">Nationality (optional):</label>
+        <input type="text" id="nationality">
         <button onclick="updateURL()" id="confirmButton">Confirm</button>
 
         <!-- Photo Section -->
@@ -146,6 +161,11 @@
         <div class="result" id="result"></div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 CountToday All rights reserved.
+    </footer>
+
     <script>
         // Language translations
         const translations = {
@@ -158,7 +178,7 @@
                 weightLabel: "Weight (optional):",
                 weightUnitLabel: "Weight Unit:",
                 sexLabel: "Sex (optional):",
-                ethnicityLabel: "Ethnicity (optional):",
+                nationalityLabel: "Nationality (optional):",
                 confirmButton: "Confirm",
                 photoLabel: "Upload or Take a Photo:",
                 photoButton: "Choose Photo",
@@ -173,7 +193,7 @@
                 weightLabel: "体重（可选）：",
                 weightUnitLabel: "体重单位：",
                 sexLabel: "性别（可选）：",
-                ethnicityLabel: "种族（可选）：",
+                nationalityLabel: "民族（可选）：",
                 confirmButton: "确认",
                 photoLabel: "上传或拍摄照片：",
                 photoButton: "选择照片",
@@ -188,7 +208,7 @@
                 weightLabel: "体重（任意）：",
                 weightUnitLabel: "体重単位：",
                 sexLabel: "性別（任意）：",
-                ethnicityLabel: "民族（任意）：",
+                nationalityLabel: "国籍（任意）：",
                 confirmButton: "確認",
                 photoLabel: "写真をアップロードまたは撮影：",
                 photoButton: "写真を選択",
@@ -203,7 +223,7 @@
                 weightLabel: "체중 (선택 사항):",
                 weightUnitLabel: "체중 단위:",
                 sexLabel: "성별 (선택 사항):",
-                ethnicityLabel: "인종 (선택 사항):",
+                nationalityLabel: "국적 (선택 사항):",
                 confirmButton: "확인",
                 photoLabel: "사진 업로드 또는 촬영:",
                 photoButton: "사진 선택",
@@ -218,7 +238,7 @@
                 weightLabel: "Peso (opcional):",
                 weightUnitLabel: "Unidad de peso:",
                 sexLabel: "Sexo (opcional):",
-                ethnicityLabel: "Etnia (opcional):",
+                nationalityLabel: "Nacionalidad (opcional):",
                 confirmButton: "Confirmar",
                 photoLabel: "Subir o tomar una foto:",
                 photoButton: "Elegir foto",
@@ -233,7 +253,7 @@
                 weightLabel: "Poids (facultatif) :",
                 weightUnitLabel: "Unité de poids :",
                 sexLabel: "Sexe (facultatif) :",
-                ethnicityLabel: "Ethnicité (facultatif) :",
+                nationalityLabel: "Nationalité (facultatif) :",
                 confirmButton: "Confirmer",
                 photoLabel: "Télécharger ou prendre une photo :",
                 photoButton: "Choisir une photo",
@@ -248,7 +268,7 @@
                 weightLabel: "Gewicht (optional):",
                 weightUnitLabel: "Gewichtseinheit:",
                 sexLabel: "Geschlecht (optional):",
-                ethnicityLabel: "Ethnizität (optional):",
+                nationalityLabel: "Nationalität (optional):",
                 confirmButton: "Bestätigen",
                 photoLabel: "Foto hochladen oder aufnehmen:",
                 photoButton: "Foto auswählen",
@@ -267,7 +287,7 @@
             document.getElementById('weightLabel').textContent = translation.weightLabel;
             document.getElementById('weightUnitLabel').textContent = translation.weightUnitLabel;
             document.getElementById('sexLabel').textContent = translation.sexLabel;
-            document.getElementById('ethnicityLabel').textContent = translation.ethnicityLabel;
+            document.getElementById('nationalityLabel').textContent = translation.nationalityLabel;
             document.getElementById('confirmButton').textContent = translation.confirmButton;
             document.getElementById('photoLabel').textContent = translation.photoLabel;
             document.getElementById('photoButton').textContent = translation.photoButton;
@@ -307,14 +327,14 @@
             const weight = document.getElementById('weight').value;
             const weightUnit = document.getElementById('weightUnit').value;
             const sex = document.getElementById('sex').value;
-            const ethnicity = document.getElementById('ethnicity').value;
+            const nationality = document.getElementById('nationality').value;
 
             const params = new URLSearchParams();
             if (age) params.set('age', age);
             if (height) params.set('height', `${height}${heightUnit}`);
             if (weight) params.set('weight', `${weight}${weightUnit}`);
             if (sex) params.set('sex', sex);
-            if (ethnicity) params.set('ethnicity', ethnicity);
+            if (nationality) params.set('nationality', nationality);
 
             const newURL = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
             window.history.pushState({}, '', newURL);
@@ -339,7 +359,7 @@
                 document.getElementById('weightUnit').value = weightUnit;
             }
             document.getElementById('sex').value = params.get('sex') || '';
-            document.getElementById('ethnicity').value = params.get('ethnicity') || '';
+            document.getElementById('nationality').value = params.get('nationality') || '';
         }
 
         // Function to analyze the photo using Google Gemini 1.5 Pro
@@ -362,10 +382,10 @@
                 const weight = document.getElementById('weight').value;
                 const weightUnit = document.getElementById('weightUnit').value;
                 const sex = document.getElementById('sex').value;
-                const ethnicity = document.getElementById('ethnicity').value;
+                const nationality = document.getElementById('nationality').value;
                 const language = document.getElementById('language').value;
 
-                const prompt = `Analyze the product in this image. Provide a brief description, market evaluation, whether it is a high-quality product, and recommendations based on the following user information: Age: ${age}, Height: ${height}${heightUnit}, Weight: ${weight}${weightUnit}, Sex: ${sex}, Ethnicity: ${ethnicity}. Respond in ${language}.`;
+                const prompt = `Analyze the product in this image. Provide a brief description, market evaluation, whether it is a high-quality product, and recommendations based on the following user information: Age: ${age}, Height: ${height}${heightUnit}, Weight: ${weight}${weightUnit}, Sex: ${sex}, Nationality: ${nationality}. Respond in ${language}. Use Markdown formatting for the response.`;
 
                 const requestBody = {
                     contents: [
