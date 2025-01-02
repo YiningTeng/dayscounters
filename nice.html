@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nice?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: #ff6f61;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff4a3d;
+        }
+        .language-select {
+            margin-bottom: 20px;
+        }
+        .language-select select {
+            width: auto;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nice?</h1>
+        <div class="language-select">
+            <label for="language">Select Language:</label>
+            <select id="language">
+                <option value="en" data-flag="🇺🇸">English</option>
+                <option value="zh" data-flag="🇨🇳">中文 (Chinese)</option>
+                <option value="es" data-flag="🇪🇸">Español (Spanish)</option>
+                <option value="fr" data-flag="🇫🇷">Français (French)</option>
+                <option value="de" data-flag="🇩🇪">Deutsch (German)</option>
+            </select>
+        </div>
+        <label for="age">Age (optional):</label>
+        <input type="number" id="age" min="0">
+        <label for="height">Height (optional):</label>
+        <input type="number" id="height" min="0" placeholder="in cm">
+        <label for="weight">Weight (optional):</label>
+        <input type="number" id="weight" min="0" placeholder="in kg">
+        <label for="sex">Sex (optional):</label>
+        <select id="sex">
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <label for="ethnicity">Ethnicity (optional):</label>
+        <input type="text" id="ethnicity">
+        <button onclick="updateURL()">Confirm</button>
+    </div>
+
+    <script>
+        // Function to update the URL with user inputs
+        function updateURL() {
+            const age = document.getElementById('age').value;
+            const height = document.getElementById('height').value;
+            const weight = document.getElementById('weight').value;
+            const sex = document.getElementById('sex').value;
+            const ethnicity = document.getElementById('ethnicity').value;
+
+            const params = new URLSearchParams();
+            if (age) params.set('age', age);
+            if (height) params.set('height', height);
+            if (weight) params.set('weight', weight);
+            if (sex) params.set('sex', sex);
+            if (ethnicity) params.set('ethnicity', ethnicity);
+
+            const newURL = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+            window.history.pushState({}, '', newURL);
+        }
+
+        // Function to populate fields from URL parameters
+        function populateFieldsFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            document.getElementById('age').value = params.get('age') || '';
+            document.getElementById('height').value = params.get('height') || '';
+            document.getElementById('weight').value = params.get('weight') || '';
+            document.getElementById('sex').value = params.get('sex') || '';
+            document.getElementById('ethnicity').value = params.get('ethnicity') || '';
+        }
+
+        // Populate fields when the page loads
+        window.onload = populateFieldsFromURL;
+    </script>
+</body>
+</html>
