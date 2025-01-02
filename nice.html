@@ -469,7 +469,7 @@
             populateFieldsFromURL();
 
             // Set API Key from environment variable
-            window.apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'API_KEY_NOT_FOUND';
+            window.apiKey = '{{ secrets.GEMINI_API_KEY }}' || 'API_KEY_NOT_FOUND';
             document.getElementById('apiKey').textContent = window.apiKey; // Display API Key for debugging
         }
 
