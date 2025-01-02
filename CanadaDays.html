@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate the number of days spent in Canada based on your entry and exit dates. Useful for residency, citizenship, and tax status.">
+    <meta name="keywords" content="Canada days calculator, entry and exit dates, residency, citizenship, tax status">
+    <meta name="author" content="CountToday">
     <title>Canada Days Calculator</title>
     <style>
         body {
@@ -86,23 +89,55 @@
             color: #666;
             text-align: center;
         }
+        .subheading {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .subheading a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .subheading a:hover {
+            text-decoration: underline;
+        }
+        .subheading .text {
+            color: #000;
+        }
+        .subheading .separator {
+            color: #000;
+            margin: 0 5px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Canada Days Calculator</h1>
+        <div class="subheading">
+            <span class="text">Other tools:</span>
+            <a href="https://www.counttoday.com/CanadaDaysByI94" target="_blank">Canada Days Counter based on I-94</a>
+            <span class="separator">|</span>
+            <a href="https://www.counttoday.com" target="_blank">US Days Counter</a>
+        </div>
         <div class="description">
             This tool helps you determine the number of days you have spent in Canada based on your entry and exit dates. It can assist you in calculating your eligibility for permanent residency, citizenship, or tax status in Canada.
         </div>
         <div class="instructions">
             <p>This tool calculates the number of days spent in Canada based on your entry and exit dates. To use:</p>
             <ol>
-                <li>Enter your entry and exit dates in the text box below in the format "date date" (e.g., "2024-11-29 2024-11-30"). Each line represents a separate period in Canada.</li>
+                <li>Enter your entry and exit dates in the text box below in the format "satrtDate endDate" (e.g., "2024-11-29 2024-11-30"). Each line represents a separate period in Canada.</li>
                 <li>(Optional) Enter your Permanent Resident Approval Date in the field below.</li>
                 <li>Click "Confirm" to calculate the total days in Canada.</li>
             </ol>
         </div>
-        <div class="label">Entry and Exit Dates (format "date date"):</div>
+        <div class="label">Entry and Exit Dates (format "startDate endDate"):</div>
         <textarea id="input" placeholder="Enter your entry and exit dates here... Example:
 2024-11-29 2024-11-30
 2024-12-12 2024-12-15"></textarea>
@@ -114,6 +149,9 @@
         <div id="result" class="result" style="display: none;"></div>
         <div class="disclaimer">
             Disclaimer: None of the information entered will be stored. This is just a calculator. The information provided on this site is not guaranteed to be accurate. You are encouraged to double-check the data.
+        </div>
+        <div class="footer">
+            &copy; 2024 CountToday. All rights reserved.
         </div>
     </div>
 
