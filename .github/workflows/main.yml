@@ -17,7 +17,8 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # 从 Secrets 中读取 API 密钥
         run: |
-          sed -i "s|API_KEY_PLACEHOLDER|${GEMINI_API_KEY}|g" ./nice.html
+          # 将 API 密钥注入到 HTML 文件中
+          sed -i "s|window.apiKey = '.*';|window.apiKey = '${GEMINI_API_KEY}';|g" ./nice.html
           echo "API Key injected: ${GEMINI_API_KEY}"
           cat ./nice.html # 打印文件内容以验证替换
 
