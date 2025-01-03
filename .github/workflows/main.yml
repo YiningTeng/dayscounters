@@ -17,7 +17,9 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # 从 Secrets 中读取 API 密钥
         run: |
-          sed -i 's/REPLACE_WITH_GEMINI_API_KEY/'"$GEMINI_API_KEY"'/g' nice.html
+          sed -i "s|window.apiKey = '';|window.apiKey = '${GEMINI_API_KEY}';|g" ./nice.html
+          echo "API Key injected: ${GEMINI_API_KEY}"
+          cat ./nice.html # 打印文件内容以验证替换
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
