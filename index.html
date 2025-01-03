@@ -1,14 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Adsense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7445001367890933"
      crossorigin="anonymous"></script>
+    
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Calculate the number of days spent in the U.S. based on your I-94 travel history. Useful for residency, citizenship, and tax status.">
     <meta name="keywords" content="I-94, US days counter, travel history, residency, citizenship, tax status">
     <meta name="author" content="CountToday">
     <title>I-94 US Days Counter</title>
+
+    <!-- Structured Data for FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How do I use the I-94 US Days Counter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To use the I-94 US Days Counter, follow these steps: 1. Go to https://i94.cbp.dhs.gov/search/history-search. 2. Input your information and copy the table under 'Travel History Results'. 3. Paste the content into the text box on this page. 4. (Optional) Enter your Permanent Resident Approval Date. 5. Click 'Confirm' to calculate the total days."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the purpose of this tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This tool helps you determine the number of days you have spent in the U.S. based on your I-94 travel history. It can assist you in calculating your eligibility for permanent residency, citizenship, or tax status in the U.S."
+        }
+      }]
+    }
+    </script>
+
+    <!-- Structured Data for HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Use the I-94 US Days Counter",
+      "description": "A step-by-step guide to using the I-94 US Days Counter tool.",
+      "step": [{
+        "@type": "HowToStep",
+        "text": "Go to https://i94.cbp.dhs.gov/search/history-search."
+      }, {
+        "@type": "HowToStep",
+        "text": "Input your information and copy the table under 'Travel History Results'."
+      }, {
+        "@type": "HowToStep",
+        "text": "Paste the content into the text box on this page."
+      }, {
+        "@type": "HowToStep",
+        "text": "(Optional) Enter your Permanent Resident Approval Date."
+      }, {
+        "@type": "HowToStep",
+        "text": "Click 'Confirm' to calculate the total days."
+      }]
+    }
+    </script>
+
+    <!-- Structured Data for Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "CountToday",
+      "url": "https://www.counttoday.com/",
+      "logo": "https://www.counttoday.com/logo.png",
+      "description": "CountToday provides tools to help users calculate the number of days spent in the U.S. based on I-94 travel history."
+    }
+    </script>
+
+    <!-- CSS Styles -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -168,6 +234,7 @@
         </div>
     </div>
 
+    <!-- JavaScript for Calculation -->
     <script>
         function calculateDays() {
             const input = document.getElementById('input').value.trim();
