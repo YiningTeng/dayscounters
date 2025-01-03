@@ -433,6 +433,7 @@
                 };
 
                 try {
+                    const GEMINI_API_KEY = "REPLACE_WITH_GEMINI_API_KEY";
                     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${GEMINI_API_KEY}`, {
                         method: 'POST',
                         headers: {
@@ -470,8 +471,8 @@
             
 
             // Set API Key from environment variable
-            const GEMINI_API_KEY = "REPLACE_WITH_GEMINI_API_KEY";
-            document.getElementById('apiKey').textContent = "GEMINI_API_KEY"; // Display API Key for debugging
+            //const GEMINI_API_KEY = "REPLACE_WITH_GEMINI_API_KEY";
+            //document.getElementById('apiKey').textContent = "GEMINI_API_KEY"; // Display API Key for debugging
         }
 
         // Run initialization when the page loads
