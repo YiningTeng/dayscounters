@@ -1,0 +1,29 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main # 触发部署的分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Inject API Key into HTML
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # 从 Secrets 中读取 API 密钥
+        run: |
+          sed -i "s|window.apiKey = '';|window.apiKey = '${GEMINI_API_KEY}';|g" ./nice.html
+          echo "API Key injected: ${GEMINI_API_KEY}"
+          cat ./nice.html # 打印文件内容以验证替换
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub 自动生成的 token
+          publish_dir: ./ # 发布整个仓库
+          cname: www.counttoday.com # 自定义域名
