@@ -470,7 +470,7 @@
             
 
             // Set API Key from environment variable
-            window.apiKey = '';
+            window.apiKey = ${process.env.GEMINI_API_KEY};
             document.getElementById('apiKey').textContent = window.apiKey; // Display API Key for debugging
         }
 
