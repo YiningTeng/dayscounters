@@ -1,14 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Adsense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7445001367890933"
      crossorigin="anonymous"></script>
+    
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Calculate the number of days spent in Canada based on your entry and exit dates. Useful for residency, citizenship, and tax status.">
     <meta name="keywords" content="Canada days calculator, entry and exit dates, residency, citizenship, tax status">
     <meta name="author" content="CountToday">
     <title>Canada Days Calculator</title>
+
+    <!-- Structured Data for FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How do I use the Canada Days Calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To use the Canada Days Calculator, follow these steps: 1. Enter your entry and exit dates in the text box in the format 'startDate endDate' (e.g., '2024-11-29 2024-11-30'). Each line represents a separate period in Canada. 2. (Optional) Enter your Permanent Resident Approval Date. 3. Click 'Confirm' to calculate the total days in Canada."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the purpose of this tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This tool helps you determine the number of days you have spent in Canada based on your entry and exit dates. It can assist you in calculating your eligibility for permanent residency, citizenship, or tax status in Canada."
+        }
+      }]
+    }
+    </script>
+
+    <!-- Structured Data for HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Use the Canada Days Calculator",
+      "description": "A step-by-step guide to using the Canada Days Calculator tool.",
+      "step": [{
+        "@type": "HowToStep",
+        "text": "Enter your entry and exit dates in the text box in the format 'startDate endDate' (e.g., '2024-11-29 2024-11-30'). Each line represents a separate period in Canada."
+      }, {
+        "@type": "HowToStep",
+        "text": "(Optional) Enter your Permanent Resident Approval Date."
+      }, {
+        "@type": "HowToStep",
+        "text": "Click 'Confirm' to calculate the total days in Canada."
+      }]
+    }
+    </script>
+
+    <!-- Structured Data for Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "CountToday",
+      "url": "https://www.counttoday.com/",
+      "logo": "https://www.counttoday.com/logo.png",
+      "description": "CountToday provides tools to help users calculate the number of days spent in Canada based on entry and exit dates."
+    }
+    </script>
+
+    <!-- CSS Styles -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -134,7 +194,7 @@
         <div class="instructions">
             <p>This tool calculates the number of days spent in Canada based on your entry and exit dates. To use:</p>
             <ol>
-                <li>Enter your entry and exit dates in the text box below in the format "satrtDate endDate" (e.g., "2024-11-29 2024-11-30"). Each line represents a separate period in Canada.</li>
+                <li>Enter your entry and exit dates in the text box below in the format "startDate endDate" (e.g., "2024-11-29 2024-11-30"). Each line represents a separate period in Canada.</li>
                 <li>(Optional) Enter your Permanent Resident Approval Date in the field below.</li>
                 <li>Click "Confirm" to calculate the total days in Canada.</li>
             </ol>
@@ -157,6 +217,7 @@
         </div>
     </div>
 
+    <!-- JavaScript for Calculation -->
     <script>
         function calculateDays() {
             const input = document.getElementById('input').value.trim();
