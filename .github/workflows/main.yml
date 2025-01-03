@@ -15,7 +15,7 @@ jobs:
 
       - name: Inject API Key into HTML
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # 从 Secrets 中读取 API 密钥
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           # 将 API 密钥注入到 HTML 文件中
           sed -i "s|window.apiKey = '.*';|window.apiKey = '${GEMINI_API_KEY}';|g" ./nice.html
