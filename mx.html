@@ -1,14 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Google Adsense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7445001367890933"
      crossorigin="anonymous"></script>
+    
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Calcula el número de días que has pasado en EE. UU. basado en tu historial de viajes del I-94. Útil para residencia, ciudadanía y estado fiscal.">
     <meta name="keywords" content="I-94, contador de días en EE. UU., historial de viajes, residencia, ciudadanía, estado fiscal">
     <meta name="author" content="CountToday">
     <title>Contador de Días en EE. UU. basado en I-94</title>
+
+    <!-- Structured Data for FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "¿Cómo uso el Contador de Días en EE. UU. basado en I-94?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Para usar el Contador de Días en EE. UU. basado en I-94, sigue estos pasos: 1. Ve a https://i94.cbp.dhs.gov/search/history-search. 2. Ingresa tu información y copia la tabla bajo 'Travel History Results'. 3. Pega el contenido en el cuadro de texto en esta página. 4. (Opcional) Ingresa tu fecha de aprobación de residencia permanente. 5. Haz clic en 'Confirmar' para calcular el total de días."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Cuál es el propósito de esta herramienta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Esta herramienta te ayuda a determinar el número de días que has pasado en EE. UU. basado en tu historial de viajes del I-94. Puede ayudarte a calcular tu elegibilidad para la residencia permanente, ciudadanía o estado fiscal en EE. UU."
+        }
+      }]
+    }
+    </script>
+
+    <!-- Structured Data for HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Cómo usar el Contador de Días en EE. UU. basado en I-94",
+      "description": "Una guía paso a paso para usar la herramienta Contador de Días en EE. UU. basado en I-94.",
+      "step": [{
+        "@type": "HowToStep",
+        "text": "Ve a https://i94.cbp.dhs.gov/search/history-search."
+      }, {
+        "@type": "HowToStep",
+        "text": "Ingresa tu información y copia la tabla bajo 'Travel History Results'."
+      }, {
+        "@type": "HowToStep",
+        "text": "Pega el contenido en el cuadro de texto en esta página."
+      }, {
+        "@type": "HowToStep",
+        "text": "(Opcional) Ingresa tu fecha de aprobación de residencia permanente."
+      }, {
+        "@type": "HowToStep",
+        "text": "Haz clic en 'Confirmar' para calcular el total de días."
+      }]
+    }
+    </script>
+
+    <!-- Structured Data for Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "CountToday",
+      "url": "https://www.counttoday.com/",
+      "logo": "https://www.counttoday.com/logo.png",
+      "description": "CountToday proporciona herramientas para ayudar a los usuarios a calcular el número de días pasados en EE. UU. basado en el historial de viajes del I-94."
+    }
+    </script>
+
+    <!-- CSS Styles -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -140,6 +206,7 @@
         </div>
     </div>
 
+    <!-- JavaScript for Calculation -->
     <script>
         function calculateDays() {
             const input = document.getElementById('input').value.trim();
