@@ -28,4 +28,11 @@
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
+    <!-- Product Evaluation -->
+    <url>
+        <loc>https://www.counttoday.com/nice</loc>
+        <lastmod>2025-01-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.2</priority>
+    </url>
 </urlset>
