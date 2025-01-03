@@ -1,12 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Nice - A website to analyze products based on user information.">
     <meta name="keywords" content="Nice, product analysis, AI, Gemini, Google AI">
     <meta name="author" content="Your Name">
     <title>Nice</title>
+
+    <!-- Structured Data for FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How do I use the Nice tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To use the Nice tool, fill in the form with your personal information (age, height, weight, sex, nationality) and click 'Confirm'. You can also upload or take a photo of a product for analysis. The tool will provide a detailed evaluation of the product based on your inputs."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the purpose of this tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This tool helps you analyze products based on your personal information. It provides a detailed evaluation of the product, including its quality, market value, and recommendations tailored to your profile."
+        }
+      }]
+    }
+    </script>
+
+    <!-- Structured Data for HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Use the Nice Tool",
+      "description": "A step-by-step guide to using the Nice tool for product analysis.",
+      "step": [{
+        "@type": "HowToStep",
+        "text": "Fill in the form with your personal information (age, height, weight, sex, nationality)."
+      }, {
+        "@type": "HowToStep",
+        "text": "Click 'Confirm' to update the URL with your inputs."
+      }, {
+        "@type": "HowToStep",
+        "text": "Upload or take a photo of the product you want to analyze."
+      }, {
+        "@type": "HowToStep",
+        "text": "Wait for the tool to analyze the photo and provide a detailed evaluation."
+      }]
+    }
+    </script>
+
+    <!-- Structured Data for Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Nice",
+      "url": "https://www.nice.com/",
+      "logo": "https://www.nice.com/logo.png",
+      "description": "Nice provides tools to help users analyze products based on their personal information."
+    }
+    </script>
+
+    <!-- Fonts and Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <style>
         body {
