@@ -12,7 +12,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 21px;
+            padding: 20px;
             background-color: #f4f4f9;
             color: #333;
             display: flex;
@@ -118,14 +118,6 @@
             font-size: 0.9rem;
             color: #666;
         }
-        .debug {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f1f1f1;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: monospace;
-        }
     </style>
 </head>
 <body>
@@ -189,12 +181,6 @@
 
         <!-- Result Section -->
         <div class="result" id="result"></div>
-
-        <!-- Debug Section -->
-        <div class="debug">
-            <p>Debug Information!:</p>
-            <p>API Key!: <span id="apiKey"></span></p>
-        </div>
     </div>
 
     <!-- Footer -->
@@ -293,7 +279,7 @@
                 confirmButton: "Confirmer",
                 photoLabel: "Télécharger ou prendre une photo :",
                 photoButton: "Choisir une photo",
-                loadingText: "Analyse de la foto en cours, veuillez patienter..."
+                loadingText: "Analyse de la photo en cours, veuillez patienter..."
             },
             de: {
                 title: "Schön?",
@@ -433,7 +419,7 @@
                 };
 
                 try {
-                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${window.apiKey}`, {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=AIzaSyBV_OgIoOLkpr-i4iEOc4HtMzvDxLKpP-Q`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -467,11 +453,6 @@
             document.getElementById('language').value = savedLanguage;
             updateLanguage(savedLanguage);
             populateFieldsFromURL();
-            
-
-            // Set API Key from environment variable
-            window.apiKey = 'AIzaSyBV_OgIoOLkpr-i4iEOc4HtMzvDxLKpP-Q'; // 初始化为空，GitHub Actions 会注入实际的 API 密钥
-            document.getElementById('apiKey').textContent = window.apiKey; // 显示 API Key 用于调试
         }
 
         // Run initialization when the page loads
