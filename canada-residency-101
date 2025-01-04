@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about Canadian residency, tax status, and the importance of calculating days spent in Canada for residency and citizenship purposes.">
+    <meta name="keywords" content="Canada Residency, Canada Tax Status, Canada Citizenship, Days in Canada">
+    <meta name="author" content="CountToday">
+    <title>Canada Residency 101 - CountToday</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Canada Residency 101</h1>
+        <p>Understanding Canadian residency and tax status is essential for individuals living or working in Canada. This guide explains the different types of residency, tax obligations, and how to calculate days spent in Canada for residency and citizenship purposes.</p>
+
+        <h2>Types of Canadian Residency</h2>
+        <ul>
+            <li><strong>Permanent Resident</strong> - You are considered a Canadian resident for tax purposes and must file a Canadian tax return annually.</li>
+            <li><strong>Temporary Resident</strong> - If you are in Canada on a temporary visa, you may be considered a resident for tax purposes if you have significant ties to Canada.</li>
+            <li><strong>Non-Resident</strong> - If you do not meet the residency requirements, you are considered a non-resident and have different tax obligations.</li>
+        </ul>
+
+        <h2>Permanent Residency Requirements</h2>
+        <p>To maintain your permanent residency status, you must be physically present in Canada for at least <strong>730 days (2 years)</strong> within a 5-year period. Use our <a href="https://www.counttoday.com/CanadaDays">Canada Days Counter</a> to track your days.</p>
+
+        <h3>Example</h3>
+        <div class="example">
+            <h4>Calculating Days for Permanent Residency</h4>
+            <p>If you spent the following days in Canada:</p>
+            <ul>
+                <li>2021: 200 days</li>
+                <li>2022: 150 days</li>
+                <li>2023: 180 days</li>
+                <li>2024: 100 days</li>
+                <li>2025: 100 days</li>
+            </ul>
+            <p>Your total days would be: 200 + 150 + 180 + 100 + 100 = <strong>730 days</strong>. You meet the requirement for permanent residency.</p>
+        </div>
+
+        <h2>Tax Obligations for Canadian Residents</h2>
+        <p>If you are considered a Canadian resident for tax purposes, you must:</p>
+        <ul>
+            <li>File a Canadian federal tax return annually.</li>
+            <li>Report worldwide income, including income earned outside Canada.</li>
+            <li>Pay taxes on your income, including wages, investments, and business income.</li>
+        </ul>
+
+        <h3>Example</h3>
+        <div class="example">
+            <h4>Tax Filing for Permanent Residents</h4>
+            <p>If you are a permanent resident living in Canada, you must file Form T1 (General Income Tax and Benefit Return) and report your worldwide income, even if you earn income abroad.</p>
+        </div>
+
+        <h2>Non-Resident Tax Obligations</h2>
+        <p>If you are a non-resident, you are generally taxed only on income from Canadian sources. Common tax forms for non-residents include:</p>
+        <ul>
+            <li><strong>Form NR74</strong> - Determination of Residency Status (Entering Canada).</li>
+            <li><strong>Form NR73</strong> - Determination of Residency Status (Leaving Canada).</li>
+        </ul>
+
+        <h2>Official Resources</h2>
+        <ul>
+            <li><a href="https://www.canada.ca/en/revenue-agency/services/tax/international-non-residents/individuals-leaving-entering-canada-non-residents.html" target="_blank">CRA: Residency Status</a></li>
+            <li><a href="https://www.ircc.gc.ca" target="_blank">IRCC: Immigration, Refugees and Citizenship Canada</a></li>
+        </ul>
+
+        <h2>How to Use Our Tools</h2>
+        <p>Use our <a href="https://www.counttoday.com/CanadaDays">Canada Days Counter</a> or <a href="https://www.counttoday.com/CanadaDaysByI94">Canada Days Counter (I-94)</a> to calculate the number of days you have spent in Canada. These tools help you determine your residency status and tax obligations.</p>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 CountToday. All rights reserved.
+        <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/contact.html">Contact Us</a> | <a href="/about.html">About Us</a> | <a href="/us-residency-101.html">US Residency 101</a> | <a href="/canada-residency-101.html">Canada Residency 101</a>
+    </div>
+</body>
+</html>
