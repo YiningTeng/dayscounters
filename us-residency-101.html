@@ -1,93 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>US Residency 101 - CountToday</title>
-</head>
-<body>
-    <header>
-        <h1>US Residency 101</h1>
-    </header>
-    <main>
-        <p>Understanding your residency status in the United States is critical for determining your tax obligations, immigration rights, and legal responsibilities. This guide covers all major residency types, tax implications, dual citizenship considerations, and other crucial details.</p>
-        
-        <h2>Types of Residency</h2>
-        <ul>
-            <li><strong>Nonresident Alien:</strong> 
-                <ul>
-                    <li>A non-US citizen who does not meet the substantial presence test or green card criteria.</li>
-                    <li><strong>Tax Status:</strong> Subject to US taxes only on income from US sources, such as wages earned in the US or investments.</li>
-                    <li><strong>Examples:</strong> International students on F-1 visas or tourists.</li>
-                </ul>
-            </li>
-            <li><strong>Resident Alien:</strong> 
-                <ul>
-                    <li>A non-US citizen who either meets the substantial presence test or holds a green card.</li>
-                    <li><strong>Tax Status:</strong> Subject to taxation on worldwide income, similar to US citizens.</li>
-                    <li><strong>Examples:</strong> Green card holders or individuals on H-1B work visas meeting presence requirements.</li>
-                </ul>
-            </li>
-            <li><strong>US Citizen:</strong> 
-                <ul>
-                    <li>An individual born in the US, born abroad to US citizen parents, or naturalized.</li>
-                    <li><strong>Tax Status:</strong> Must report worldwide income, regardless of physical location.</li>
-                    <li><strong>Examples:</strong> Dual citizens living abroad but maintaining US citizenship.</li>
-                </ul>
-            </li>
-        </ul>
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
 
-        <h2>Substantial Presence Test</h2>
-        <p>To qualify as a resident alien under this test, you must meet the following conditions:</p>
-        <ul>
-            <li>Be physically present in the US for at least 31 days in the current year, and</li>
-            <li>Be physically present for at least 183 days over a 3-year period, calculated as:</li>
-            <ul>
-                <li>All days in the current year.</li>
-                <li>1/3 of the days in the previous year.</li>
-                <li>1/6 of the days in the year before that.</li>
-            </ul>
-        </ul>
-        <p>Exceptions exist for students, diplomats, and individuals with closer connections to another country.</p>
+header.main-header {
+    background-color: #0074d9;
+    color: #fff;
+    padding: 1rem 2rem;
+    text-align: center;
+}
 
-        <h2>Permanent Residents (Green Card Holders)</h2>
-        <ul>
-            <li>Green card holders have lawful permanent residency and can live and work in the US indefinitely.</li>
-            <li>Green card status can be lost if the holder resides outside the US for extended periods without obtaining a reentry permit.</li>
-            <li>Must comply with US tax laws, reporting worldwide income annually.</li>
-        </ul>
+header h1 {
+    margin: 0;
+}
 
-        <h2>US Citizenship</h2>
-        <ul>
-            <li>Citizenship provides full legal rights, including voting and obtaining a US passport.</li>
-            <li>Naturalized citizens must meet residency requirements before applying, such as being a permanent resident for at least 5 years (or 3 years for spouses of US citizens).</li>
-            <li>Citizens are not restricted by the substantial presence test or green card validity.</li>
-        </ul>
+main {
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-        <h2>Tax Implications</h2>
-        <ul>
-            <li><strong>Worldwide Taxation:</strong> US residents and citizens must report income earned both domestically and internationally.</li>
-            <li><strong>Filing Forms:</strong> Common forms include the 1040 for residents and the 1040-NR for nonresidents.</li>
-            <li><strong>Tax Treaties:</strong> The US has tax treaties with many countries to prevent double taxation.</li>
-        </ul>
+h2 {
+    color: #0074d9;
+}
 
-        <h2>Examples</h2>
-        <h3>Example 1: Substantial Presence Test</h3>
-        <p>If you spent 120 days in the US in 2025, 120 days in 2024, and 120 days in 2023, the calculation would be:</p>
-        <p>
-            <strong>2025:</strong> 120 days<br>
-            <strong>2024:</strong> 120 × 1/3 = 40 days<br>
-            <strong>2023:</strong> 120 × 1/6 = 20 days<br>
-            <strong>Total:</strong> 180 days (Not a resident).
-        </p>
-        <h3>Example 2: Dual Citizenship</h3>
-        <p>A US citizen with Canadian citizenship must file US taxes on global income but may qualify for the Foreign Earned Income Exclusion (FEIE).</p>
+p {
+    margin: 1rem 0;
+}
 
-        <h2>How to Determine Your Status</h2>
-        <p>Use our <a href="https://www.counttoday.com">US Days Counter</a> to track your presence and determine your residency status.</p>
-    </main>
-    <footer>
-        <p>&copy; 2025 CountToday. All Rights Reserved.</p>
-    </footer>
-</body>
-</html>
+ul.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+ul.info-list li {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fafafa;
+}
+
+a {
+    color: #0074d9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #333;
+    color: #fff;
+    margin-top: 2rem;
+}
