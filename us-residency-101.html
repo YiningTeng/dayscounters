@@ -1,66 +1,146 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Residency 101</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
 
-header.main-header {
-    background-color: #0074d9;
-    color: #fff;
-    padding: 1rem 2rem;
-    text-align: center;
-}
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
 
-header h1 {
-    margin: 0;
-}
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
 
-main {
-    margin: 2rem auto;
-    padding: 1rem 2rem;
-    max-width: 800px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-h2 {
-    color: #0074d9;
-}
+        h2 {
+            color: #495057;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 5px;
+        }
 
-p {
-    margin: 1rem 0;
-}
+        ul {
+            list-style: disc;
+            padding-left: 40px;
+        }
 
-ul.info-list {
-    list-style: none;
-    padding: 0;
-}
+        li {
+            margin: 10px 0;
+        }
 
-ul.info-list li {
-    margin: 1rem 0;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background: #fafafa;
-}
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
 
-a {
-    color: #0074d9;
-    text-decoration: none;
-}
+        a:hover {
+            text-decoration: underline;
+        }
 
-a:hover {
-    text-decoration: underline;
-}
+        footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>US Residency 101</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Navigating the US residency system is crucial for understanding your immigration status, tax obligations, and eligibility for benefits. 
+                This guide will walk you through the key types of US residency, tax implications, and official resources.
+            </p>
+        </section>
+        
+        <section>
+            <h2>Types of Residency</h2>
+            <ul>
+                <li>
+                    <strong>Nonresident Alien:</strong> A non-US citizen who does not meet the substantial presence test or hold a green card. 
+                    <ul>
+                        <li><strong>Tax:</strong> Taxed only on US-sourced income.</li>
+                        <li><strong>Examples:</strong> Visitors or students on short-term visas.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Resident Alien:</strong> A non-US citizen who meets the substantial presence test or holds a green card. 
+                    <ul>
+                        <li><strong>Tax:</strong> Taxed on worldwide income, similar to citizens.</li>
+                        <li><strong>Examples:</strong> Long-term visa holders.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>US Citizen:</strong> Born in the US, or naturalized, with all associated legal rights. 
+                    <ul>
+                        <li><strong>Tax:</strong> Must report income worldwide, even while living abroad.</li>
+                        <li><strong>Examples:</strong> Dual citizens.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
 
-footer {
-    text-align: center;
-    padding: 1rem;
-    background: #333;
-    color: #fff;
-    margin-top: 2rem;
-}
+        <section>
+            <h2>Substantial Presence Test</h2>
+            <p>
+                To qualify as a resident alien under the substantial presence test, you must:
+            </p>
+            <ul>
+                <li>Be in the US for at least 31 days in the current year.</li>
+                <li>Be in the US for 183 days across the past three years (using weighted calculations).</li>
+            </ul>
+            <p>
+                Detailed information can be found on the 
+                <a href="https://www.irs.gov/individuals/international-taxpayers/substantial-presence-test" target="_blank">IRS website</a>.
+            </p>
+        </section>
+
+        <section>
+            <h2>Permanent Residency (Green Card)</h2>
+            <ul>
+                <li>Lawful permanent resident status, allowing indefinite living and working in the US.</li>
+                <li>PR holders must file taxes on worldwide income.</li>
+                <li>Details available on <a href="https://www.uscis.gov" target="_blank">USCIS</a>.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Tax Implications</h2>
+            <ul>
+                <li><strong>Worldwide Taxation:</strong> US residents and citizens report income globally.</li>
+                <li><strong>Forms:</strong> Use Form 1040 (resident) or 1040-NR (nonresident).</li>
+                <li>Learn more on the <a href="https://www.irs.gov" target="_blank">IRS website</a>.</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 CountToday | Resources: <a href="https://www.uscis.gov" target="_blank">USCIS</a>, <a href="https://www.dhs.gov" target="_blank">DHS</a>, <a href="https://www.irs.gov" target="_blank">IRS</a>
+    </footer>
+</body>
+</html>
