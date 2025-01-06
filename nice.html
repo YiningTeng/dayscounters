@@ -106,13 +106,16 @@
             margin-bottom: 8px;
             font-weight: bold;
         }
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
+        }
+        textarea {
+            resize: vertical; /* Allow vertical resizing */
         }
         button {
             width: 100%;
@@ -239,6 +242,8 @@
         </select>
         <label for="nationality" id="nationalityLabel">Nationality (optional):</label>
         <input type="text" id="nationality">
+        <label for="notes" id="notesLabel">Notes (optional):</label>
+        <textarea id="notes" rows="4" placeholder="Enter any additional information..."></textarea>
         <button onclick="updateURL()" id="confirmButton">Confirm</button>
 
         <!-- Photo Section -->
@@ -283,6 +288,8 @@
                     other: "Other"
                 },
                 nationalityLabel: "Nationality (optional):",
+                notesLabel: "Notes (optional):",
+                notesPlaceholder: "Enter any additional information...",
                 confirmButton: "Confirm",
                 photoLabel: "Upload or Take a Photo:",
                 photoButton: "Choose Photo",
@@ -304,6 +311,8 @@
                     other: "其他"
                 },
                 nationalityLabel: "民族（可选）：",
+                notesLabel: "备注（可选）：",
+                notesPlaceholder: "输入任何附加信息...",
                 confirmButton: "确认",
                 photoLabel: "上传或拍摄照片：",
                 photoButton: "选择照片",
@@ -325,6 +334,8 @@
                     other: "その他"
                 },
                 nationalityLabel: "国籍（任意）：",
+                notesLabel: "備考（任意）：",
+                notesPlaceholder: "追加情報を入力してください...",
                 confirmButton: "確認",
                 photoLabel: "写真をアップロードまたは撮影：",
                 photoButton: "写真を選択",
@@ -346,6 +357,8 @@
                     other: "기타"
                 },
                 nationalityLabel: "국적 (선택 사항):",
+                notesLabel: "참고 사항 (선택 사항):",
+                notesPlaceholder: "추가 정보를 입력하세요...",
                 confirmButton: "확인",
                 photoLabel: "사진 업로드 또는 촬영:",
                 photoButton: "사진 선택",
@@ -367,6 +380,8 @@
                     other: "Otro"
                 },
                 nationalityLabel: "Nacionalidad (opcional):",
+                notesLabel: "Notas (opcional):",
+                notesPlaceholder: "Ingrese cualquier información adicional...",
                 confirmButton: "Confirmar",
                 photoLabel: "Subir o tomar una foto:",
                 photoButton: "Elegir foto",
@@ -388,6 +403,8 @@
                     other: "Autre"
                 },
                 nationalityLabel: "Nationalité (facultatif) :",
+                notesLabel: "Remarques (facultatif) :",
+                notesPlaceholder: "Saisissez des informations supplémentaires...",
                 confirmButton: "Confirmer",
                 photoLabel: "Télécharger ou prendre une photo :",
                 photoButton: "Choisir une photo",
@@ -409,6 +426,8 @@
                     other: "Andere"
                 },
                 nationalityLabel: "Nationalität (optional):",
+                notesLabel: "Notizen (optional):",
+                notesPlaceholder: "Geben Sie zusätzliche Informationen ein...",
                 confirmButton: "Bestätigen",
                 photoLabel: "Foto hochladen oder aufnehmen:",
                 photoButton: "Foto auswählen",
@@ -429,6 +448,8 @@
             document.getElementById('weightUnitLabel').textContent = translation.weightUnitLabel;
             document.getElementById('sexLabel').textContent = translation.sexLabel;
             document.getElementById('nationalityLabel').textContent = translation.nationalityLabel;
+            document.getElementById('notesLabel').textContent = translation.notesLabel;
+            document.getElementById('notes').placeholder = translation.notesPlaceholder;
             document.getElementById('confirmButton').textContent = translation.confirmButton;
             document.getElementById('photoLabel').textContent = translation.photoLabel;
             document.getElementById('photoButton').textContent = translation.photoButton;
@@ -481,6 +502,7 @@
             const weightUnit = document.getElementById('weightUnit').value;
             const sex = document.getElementById('sex').value;
             const nationality = document.getElementById('nationality').value;
+            const notes = document.getElementById('notes').value;
 
             const params = new URLSearchParams();
             if (age) params.set('age', age);
@@ -488,6 +510,7 @@
             if (weight) params.set('weight', `${weight}${weightUnit}`);
             if (sex) params.set('sex', sex);
             if (nationality) params.set('nationality', nationality);
+            if (notes) params.set('notes', notes);
 
             const newURL = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
             window.history.pushState({}, '', newURL);
@@ -513,6 +536,7 @@
             }
             document.getElementById('sex').value = params.get('sex') || '';
             document.getElementById('nationality').value = params.get('nationality') || '';
+            document.getElementById('notes').value = params.get('notes') || '';
         }
 
         // Function to analyze the photo using Google Gemini 1.5 Pro
@@ -529,9 +553,10 @@
                 const weightUnit = document.getElementById('weightUnit').value;
                 const sex = document.getElementById('sex').value;
                 const nationality = document.getElementById('nationality').value;
+                const notes = document.getElementById('notes').value;
                 const language = document.getElementById('language').value;
 
-                const prompt = `Analyze the product in this image. Provide a brief description, market evaluation, whether it is a high-quality product, and recommendations based on the following user information: Age: ${age}, Height: ${height}${heightUnit}, Weight: ${weight}${weightUnit}, Sex: ${sex}, Nationality: ${nationality}. Respond in ${language}. Use Markdown formatting for the response.`;
+                const prompt = `Analyze the product in this image. Provide a brief description, market evaluation, whether it is a high-quality product, and recommendations based on the following user information: Age: ${age}, Height: ${height}${heightUnit}, Weight: ${weight}${weightUnit}, Sex: ${sex}, Nationality: ${nationality}, Notes: ${notes}. Respond in ${language}. Use Markdown formatting for the response.`;
 
                 const requestBody = {
                     contents: [
