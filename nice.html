@@ -479,6 +479,7 @@
             const lang = this.value;
             localStorage.setItem('selectedLanguage', lang); // Save language to localStorage
             updateLanguage(lang);
+            updateURL(); // Update URL with the new language
         });
 
         // Function to handle height unit change
@@ -503,6 +504,7 @@
             const sex = document.getElementById('sex').value;
             const nationality = document.getElementById('nationality').value;
             const notes = document.getElementById('notes').value;
+            const language = document.getElementById('language').value;
 
             const params = new URLSearchParams();
             if (age) params.set('age', age);
@@ -511,6 +513,7 @@
             if (sex) params.set('sex', sex);
             if (nationality) params.set('nationality', nationality);
             if (notes) params.set('notes', notes);
+            params.set('lang', language); // Add language to URL parameters
 
             const newURL = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
             window.history.pushState({}, '', newURL);
@@ -537,6 +540,9 @@
             document.getElementById('sex').value = params.get('sex') || '';
             document.getElementById('nationality').value = params.get('nationality') || '';
             document.getElementById('notes').value = params.get('notes') || '';
+            const lang = params.get('lang') || 'en';
+            document.getElementById('language').value = lang;
+            updateLanguage(lang);
         }
 
         // Function to analyze the photo using Google Gemini 1.5 Pro
@@ -605,9 +611,6 @@
 
         // Initialize the page
         function initializePage() {
-            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-            document.getElementById('language').value = savedLanguage;
-            updateLanguage(savedLanguage);
             populateFieldsFromURL();
         }
 
