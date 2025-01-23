@@ -171,7 +171,7 @@
             <label id="photoLabel">Upload or Take a Photo:</label>
             <input type="file" id="photoInput" accept="image/*" capture="environment" style="display: none;">
             <button onclick="document.getElementById('photoInput').click()" id="photoButton">Take Photo</button>
-            <input type="file" id="libraryInput" accept="image/*" style="display: none;">
+            <input type="file" id="libraryInput" accept="image/*" multiple style="display: none;">
             <button onclick="document.getElementById('libraryInput').click()" id="libraryButton">Choose from Library</button>
         </div>
 
@@ -457,12 +457,14 @@
             }
         });
 
-        // Handle library input change
+        // Handle library input change (multiple files)
         document.getElementById('libraryInput').addEventListener('change', function (event) {
-            const file = event.target.files[0];
-            if (file) {
+            const files = event.target.files;
+            if (files.length > 0) {
                 document.getElementById('loading').style.display = 'block'; // Show loading spinner
-                analyzePhoto(file);
+                for (const file of files) {
+                    analyzePhoto(file); // Analyze each file
+                }
             }
         });
 
