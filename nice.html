@@ -169,8 +169,8 @@
         <!-- Photo Section -->
         <div class="photo-section">
             <label id="photoLabel">Upload or Take Photos:</label>
-            <input type="file" id="photoInput" accept="image/*" capture="environment" multiple style="display: none;">
-            <button onclick="document.getElementById('photoInput').click()" id="photoButton">Choose Photos</button>
+            <input type="file" id="photoInput" accept="image/*" multiple style="display: none;">
+            <button onclick="openPhotoLibrary()" id="photoButton">Choose Photos</button>
             <button onclick="takePhoto()" id="takePhotoButton">Take Photo</button>
         </div>
 
@@ -488,12 +488,28 @@
             }
         }
 
+        // Function to open the photo library
+        function openPhotoLibrary() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.multiple = true;
+            input.onchange = (event) => {
+                const files = event.target.files;
+                if (files.length > 0) {
+                    document.getElementById('loading').style.display = 'block'; // Show loading spinner
+                    comparePhotos(Array.from(files));
+                }
+            };
+            input.click();
+        }
+
         // Function to take a photo using the device camera
         function takePhoto() {
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = 'image/*';
-            input.capture = 'environment';
+            input.capture = 'environment'; // Open the camera
             input.onchange = (event) => {
                 const file = event.target.files[0];
                 if (file) {
@@ -503,15 +519,6 @@
             };
             input.click();
         }
-
-        // Handle photo input change
-        document.getElementById('photoInput').addEventListener('change', function (event) {
-            const files = event.target.files;
-            if (files.length > 0) {
-                document.getElementById('loading').style.display = 'block'; // Show loading spinner
-                comparePhotos(Array.from(files));
-            }
-        });
 
         // Initialize the page
         function initializePage() {
