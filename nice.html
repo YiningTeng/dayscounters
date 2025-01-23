@@ -1,74 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nice - A website to analyze products based on user information.">
+    <meta name="description" content="Nice? - A website to analyze products based on user information.">
     <meta name="keywords" content="Nice, product analysis, AI, Gemini, Google AI">
     <meta name="author" content="Your Name">
-    <title>Nice</title>
-
-    <!-- Structured Data for FAQPage -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "How do I use the Nice tool?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "To use the Nice tool, fill in the form with your personal information (age, height, weight, sex, nationality) and click 'Confirm'. You can also upload or take a photo of a product for analysis. The tool will provide a detailed evaluation of the product based on your inputs."
-        }
-      }, {
-        "@type": "Question",
-        "name": "What is the purpose of this tool?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "This tool helps you analyze products based on your personal information. It provides a detailed evaluation of the product, including its quality, market value, and recommendations tailored to your profile."
-        }
-      }]
-    }
-    </script>
-
-    <!-- Structured Data for HowTo -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "How to Use the Nice Tool",
-      "description": "A step-by-step guide to using the Nice tool for product analysis.",
-      "step": [{
-        "@type": "HowToStep",
-        "text": "Fill in the form with your personal information (age, height, weight, sex, nationality)."
-      }, {
-        "@type": "HowToStep",
-        "text": "Click 'Confirm' to update the URL with your inputs."
-      }, {
-        "@type": "HowToStep",
-        "text": "Upload or take a photo of the product you want to analyze."
-      }, {
-        "@type": "HowToStep",
-        "text": "Wait for the tool to analyze the photo and provide a detailed evaluation."
-      }]
-    }
-    </script>
-
-    <!-- Structured Data for Organization -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Nice",
-      "url": "https://www.nice.com/",
-      "logo": "https://www.nice.com/logo.png",
-      "description": "Nice provides tools to help users analyze products based on their personal information."
-    }
-    </script>
-
-    <!-- Fonts and Styles -->
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <title>Nice?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -87,11 +26,6 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        h1.chinese-title {
-            font-family: 'Ma Shan Zheng', cursive;
-            font-size: 4rem;
-            color: #ff6f61;
-        }
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -106,16 +40,13 @@
             margin-bottom: 8px;
             font-weight: bold;
         }
-        input, select, textarea {
+        input, select {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
-        }
-        textarea {
-            resize: vertical; /* Allow vertical resizing */
         }
         button {
             width: 100%;
@@ -187,20 +118,11 @@
             font-size: 0.9rem;
             color: #666;
         }
-        .instructions {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            color: #666;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 id="title">Nice</h1>
-        <div class="instructions" id="instructions">
-            This tool helps you analyze products based on your personal information. Please fill in the form and click "Confirm". After updating the URL, we recommend bookmarking it for future access.
-        </div>
+        <h1 id="title">Nice?</h1>
         <div class="language-select">
             <label for="language" id="languageLabel">Select Language:</label>
             <select id="language">
@@ -236,21 +158,21 @@
         <label for="sex" id="sexLabel">Sex (optional):</label>
         <select id="sex">
             <option value="">Select</option>
-            <option value="male" id="sexMale">Male</option>
-            <option value="female" id="sexFemale">Female</option>
-            <option value="other" id="sexOther">Other</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
         </select>
         <label for="nationality" id="nationalityLabel">Nationality (optional):</label>
         <input type="text" id="nationality">
-        <label for="notes" id="notesLabel">Notes (optional):</label>
-        <textarea id="notes" rows="4" placeholder="Enter any additional information..."></textarea>
         <button onclick="updateURL()" id="confirmButton">Confirm</button>
 
         <!-- Photo Section -->
         <div class="photo-section">
             <label id="photoLabel">Upload or Take a Photo:</label>
             <input type="file" id="photoInput" accept="image/*" capture="environment" style="display: none;">
-            <button onclick="document.getElementById('photoInput').click()" id="photoButton">Choose Photo</button>
+            <button onclick="document.getElementById('photoInput').click()" id="photoButton">Take Photo</button>
+            <input type="file" id="libraryInput" accept="image/*" style="display: none;">
+            <button onclick="document.getElementById('libraryInput').click()" id="libraryButton">Choose from Library</button>
         </div>
 
         <!-- Loading Section -->
@@ -265,16 +187,14 @@
 
     <!-- Footer -->
     <footer>
-        &copy; 2025 CountToday All rights reserved.
-        <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/contact.html">Contact Us</a>
+        &copy; 2023 Nice? All rights reserved.
     </footer>
 
     <script>
         // Language translations
         const translations = {
             en: {
-                title: "Nice",
-                instructions: "This tool helps you analyze products based on your personal information. Please fill in the form and click \"Confirm\". After updating the URL, we recommend bookmarking it for future access.",
+                title: "Nice?",
                 languageLabel: "Select Language:",
                 ageLabel: "Age (optional):",
                 heightLabel: "Height (optional):",
@@ -282,22 +202,15 @@
                 weightLabel: "Weight (optional):",
                 weightUnitLabel: "Weight Unit:",
                 sexLabel: "Sex (optional):",
-                sexOptions: {
-                    male: "Male",
-                    female: "Female",
-                    other: "Other"
-                },
                 nationalityLabel: "Nationality (optional):",
-                notesLabel: "Notes (optional):",
-                notesPlaceholder: "Enter any additional information...",
                 confirmButton: "Confirm",
                 photoLabel: "Upload or Take a Photo:",
-                photoButton: "Choose Photo",
+                photoButton: "Take Photo",
+                libraryButton: "Choose from Library",
                 loadingText: "Analyzing photo, please wait..."
             },
             zh: {
-                title: "不错",
-                instructions: "本工具可根据个人信息分析产品是否合适且优质。填写表单并点击“确认”后本网址会更新，建议您收藏以便下次访问。",
+                title: "不错？",
                 languageLabel: "选择语言：",
                 ageLabel: "年龄（可选）：",
                 heightLabel: "身高（可选）：",
@@ -305,22 +218,15 @@
                 weightLabel: "体重（可选）：",
                 weightUnitLabel: "体重单位：",
                 sexLabel: "性别（可选）：",
-                sexOptions: {
-                    male: "男",
-                    female: "女",
-                    other: "其他"
-                },
                 nationalityLabel: "民族（可选）：",
-                notesLabel: "备注（可选）：",
-                notesPlaceholder: "输入任何附加信息...",
                 confirmButton: "确认",
                 photoLabel: "上传或拍摄照片：",
-                photoButton: "选择照片",
+                photoButton: "拍摄照片",
+                libraryButton: "从库中选择",
                 loadingText: "正在分析照片，请稍候..."
             },
             ja: {
-                title: "いいです",
-                instructions: "このツールは、あなたの個人情報に基づいて製品を分析します。フォームに記入して「確認」をクリックしてください。URL が更新されたら、次回のアクセス用にブックマークすることをお勧めします。",
+                title: "いいですか？",
                 languageLabel: "言語を選択：",
                 ageLabel: "年齢（任意）：",
                 heightLabel: "身長（任意）：",
@@ -328,22 +234,15 @@
                 weightLabel: "体重（任意）：",
                 weightUnitLabel: "体重単位：",
                 sexLabel: "性別（任意）：",
-                sexOptions: {
-                    male: "男性",
-                    female: "女性",
-                    other: "その他"
-                },
                 nationalityLabel: "国籍（任意）：",
-                notesLabel: "備考（任意）：",
-                notesPlaceholder: "追加情報を入力してください...",
                 confirmButton: "確認",
                 photoLabel: "写真をアップロードまたは撮影：",
-                photoButton: "写真を選択",
+                photoButton: "写真を撮る",
+                libraryButton: "ライブラリから選択",
                 loadingText: "写真を分析中、お待ちください..."
             },
             ko: {
-                title: "좋아요",
-                instructions: "이 도구는 귀하의 개인 정보를 기반으로 제품을 분석합니다. 양식을 작성하고 \"확인\"을 클릭하세요. URL이 업데이트된 후, 다음 접속을 위해 북마크하는 것을 추천합니다.",
+                title: "좋아요?",
                 languageLabel: "언어 선택:",
                 ageLabel: "나이 (선택 사항):",
                 heightLabel: "키 (선택 사항):",
@@ -351,22 +250,15 @@
                 weightLabel: "체중 (선택 사항):",
                 weightUnitLabel: "체중 단위:",
                 sexLabel: "성별 (선택 사항):",
-                sexOptions: {
-                    male: "남성",
-                    female: "여성",
-                    other: "기타"
-                },
                 nationalityLabel: "국적 (선택 사항):",
-                notesLabel: "참고 사항 (선택 사항):",
-                notesPlaceholder: "추가 정보를 입력하세요...",
                 confirmButton: "확인",
                 photoLabel: "사진 업로드 또는 촬영:",
-                photoButton: "사진 선택",
+                photoButton: "사진 찍기",
+                libraryButton: "라이브러리에서 선택",
                 loadingText: "사진을 분석 중입니다. 잠시만 기다려주세요..."
             },
             es: {
-                title: "Bien",
-                instructions: "Esta herramienta te ayuda a analizar productos basados en tu información personal. Por favor, completa el formulario y haz clic en \"Confirmar\". Después de actualizar la URL, te recomendamos guardarla en favoritos para futuros accesos.",
+                title: "¿Bien?",
                 languageLabel: "Seleccionar idioma:",
                 ageLabel: "Edad (opcional):",
                 heightLabel: "Altura (opcional):",
@@ -374,22 +266,15 @@
                 weightLabel: "Peso (opcional):",
                 weightUnitLabel: "Unidad de peso:",
                 sexLabel: "Sexo (opcional):",
-                sexOptions: {
-                    male: "Hombre",
-                    female: "Mujer",
-                    other: "Otro"
-                },
                 nationalityLabel: "Nacionalidad (opcional):",
-                notesLabel: "Notas (opcional):",
-                notesPlaceholder: "Ingrese cualquier información adicional...",
                 confirmButton: "Confirmar",
                 photoLabel: "Subir o tomar una foto:",
-                photoButton: "Elegir foto",
+                photoButton: "Tomar foto",
+                libraryButton: "Elegir de la biblioteca",
                 loadingText: "Analizando la foto, por favor espere..."
             },
             fr: {
-                title: "Sympa",
-                instructions: "Cet outil vous aide à analyser des produits en fonction de vos informations personnelles. Veuillez remplir le formulaire et cliquer sur \"Confirmer\". Après la mise à jour de l'URL, nous vous recommandons de l'ajouter à vos favoris pour un accès futur.",
+                title: "Sympa ?",
                 languageLabel: "Choisir la langue :",
                 ageLabel: "Âge (facultatif) :",
                 heightLabel: "Taille (facultatif) :",
@@ -397,22 +282,15 @@
                 weightLabel: "Poids (facultatif) :",
                 weightUnitLabel: "Unité de poids :",
                 sexLabel: "Sexe (facultatif) :",
-                sexOptions: {
-                    male: "Homme",
-                    female: "Femme",
-                    other: "Autre"
-                },
                 nationalityLabel: "Nationalité (facultatif) :",
-                notesLabel: "Remarques (facultatif) :",
-                notesPlaceholder: "Saisissez des informations supplémentaires...",
                 confirmButton: "Confirmer",
                 photoLabel: "Télécharger ou prendre une photo :",
-                photoButton: "Choisir une photo",
+                photoButton: "Prendre une photo",
+                libraryButton: "Choisir dans la bibliothèque",
                 loadingText: "Analyse de la photo en cours, veuillez patienter..."
             },
             de: {
-                title: "Schön",
-                instructions: "Dieses Tool hilft Ihnen, Produkte basierend auf Ihren persönlichen Informationen zu analysieren. Bitte füllen Sie das Formular aus und klicken Sie auf \"Bestätigen\". Nachdem die URL aktualisiert wurde, empfehlen wir, sie für den zukünftigen Zugriff zu speichern.",
+                title: "Schön?",
                 languageLabel: "Sprache auswählen:",
                 ageLabel: "Alter (optional):",
                 heightLabel: "Größe (optional):",
@@ -420,17 +298,11 @@
                 weightLabel: "Gewicht (optional):",
                 weightUnitLabel: "Gewichtseinheit:",
                 sexLabel: "Geschlecht (optional):",
-                sexOptions: {
-                    male: "Männlich",
-                    female: "Weiblich",
-                    other: "Andere"
-                },
                 nationalityLabel: "Nationalität (optional):",
-                notesLabel: "Notizen (optional):",
-                notesPlaceholder: "Geben Sie zusätzliche Informationen ein...",
                 confirmButton: "Bestätigen",
                 photoLabel: "Foto hochladen oder aufnehmen:",
-                photoButton: "Foto auswählen",
+                photoButton: "Foto aufnehmen",
+                libraryButton: "Aus Bibliothek auswählen",
                 loadingText: "Foto wird analysiert, bitte warten..."
             }
         };
@@ -439,7 +311,6 @@
         function updateLanguage(lang) {
             const translation = translations[lang];
             document.getElementById('title').textContent = translation.title;
-            document.getElementById('instructions').textContent = translation.instructions;
             document.getElementById('languageLabel').textContent = translation.languageLabel;
             document.getElementById('ageLabel').textContent = translation.ageLabel;
             document.getElementById('heightLabel').textContent = translation.heightLabel;
@@ -448,30 +319,17 @@
             document.getElementById('weightUnitLabel').textContent = translation.weightUnitLabel;
             document.getElementById('sexLabel').textContent = translation.sexLabel;
             document.getElementById('nationalityLabel').textContent = translation.nationalityLabel;
-            document.getElementById('notesLabel').textContent = translation.notesLabel;
-            document.getElementById('notes').placeholder = translation.notesPlaceholder;
             document.getElementById('confirmButton').textContent = translation.confirmButton;
             document.getElementById('photoLabel').textContent = translation.photoLabel;
             document.getElementById('photoButton').textContent = translation.photoButton;
+            document.getElementById('libraryButton').textContent = translation.libraryButton;
             document.getElementById('loading').querySelector('p').textContent = translation.loadingText;
-
-            // Update sex options
-            document.getElementById('sexMale').textContent = translation.sexOptions.male;
-            document.getElementById('sexFemale').textContent = translation.sexOptions.female;
-            document.getElementById('sexOther').textContent = translation.sexOptions.other;
 
             // Update placeholders based on selected units
             const heightUnit = document.getElementById('heightUnit').value;
             const weightUnit = document.getElementById('weightUnit').value;
             document.getElementById('height').placeholder = `in ${heightUnit}`;
             document.getElementById('weight').placeholder = `in ${weightUnit}`;
-
-            // Apply special font for Chinese title
-            if (lang === 'zh') {
-                document.getElementById('title').classList.add('chinese-title');
-            } else {
-                document.getElementById('title').classList.remove('chinese-title');
-            }
         }
 
         // Function to handle language change
@@ -479,7 +337,6 @@
             const lang = this.value;
             localStorage.setItem('selectedLanguage', lang); // Save language to localStorage
             updateLanguage(lang);
-            updateURL(); // Update URL with the new language
         });
 
         // Function to handle height unit change
@@ -503,8 +360,6 @@
             const weightUnit = document.getElementById('weightUnit').value;
             const sex = document.getElementById('sex').value;
             const nationality = document.getElementById('nationality').value;
-            const notes = document.getElementById('notes').value;
-            const language = document.getElementById('language').value;
 
             const params = new URLSearchParams();
             if (age) params.set('age', age);
@@ -512,8 +367,6 @@
             if (weight) params.set('weight', `${weight}${weightUnit}`);
             if (sex) params.set('sex', sex);
             if (nationality) params.set('nationality', nationality);
-            if (notes) params.set('notes', notes);
-            params.set('lang', language); // Add language to URL parameters
 
             const newURL = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
             window.history.pushState({}, '', newURL);
@@ -539,10 +392,6 @@
             }
             document.getElementById('sex').value = params.get('sex') || '';
             document.getElementById('nationality').value = params.get('nationality') || '';
-            document.getElementById('notes').value = params.get('notes') || '';
-            const lang = params.get('lang') || 'en';
-            document.getElementById('language').value = lang;
-            updateLanguage(lang);
         }
 
         // Function to analyze the photo using Google Gemini 1.5 Pro
@@ -559,10 +408,9 @@
                 const weightUnit = document.getElementById('weightUnit').value;
                 const sex = document.getElementById('sex').value;
                 const nationality = document.getElementById('nationality').value;
-                const notes = document.getElementById('notes').value;
                 const language = document.getElementById('language').value;
 
-                const prompt = `Analyze the product in this image. Provide a brief description, market evaluation, whether it is a high-quality product, and recommendations based on the following user information: Age: ${age}, Height: ${height}${heightUnit}, Weight: ${weight}${weightUnit}, Sex: ${sex}, Nationality: ${nationality}, Notes: ${notes}. Respond in ${language}. Use Markdown formatting for the response.`;
+                const prompt = `Analyze the product in this image. Provide a brief description, market evaluation, whether it is a high-quality product, and recommendations based on the following user information: Age: ${age}, Height: ${height}${heightUnit}, Weight: ${weight}${weightUnit}, Sex: ${sex}, Nationality: ${nationality}. Respond in ${language}. Use Markdown formatting for the response.`;
 
                 const requestBody = {
                     contents: [
@@ -609,8 +457,20 @@
             }
         });
 
+        // Handle library input change
+        document.getElementById('libraryInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById('loading').style.display = 'block'; // Show loading spinner
+                analyzePhoto(file);
+            }
+        });
+
         // Initialize the page
         function initializePage() {
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            document.getElementById('language').value = savedLanguage;
+            updateLanguage(savedLanguage);
             populateFieldsFromURL();
         }
 
