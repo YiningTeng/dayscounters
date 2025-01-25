@@ -139,3 +139,30 @@ footer p {
   margin-bottom: 10px;
   color: #00ffcc;
 }
+
+/* Game Title Link */
+h1 a.game-title {
+  color: inherit; /* Inherit the original color */
+  text-decoration: none; /* Remove underline */
+}
+
+h1 a.game-title:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
+/* Correct Groups Display */
+.group-container .category-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #00ffcc;
+}
+
+.group-container .word {
+  padding: 10px;
+  background-color: #2a2a2a;
+  border: 2px solid #444;
+  margin: 5px;
+  border-radius: 8px;
+  color: #ffffff;
+}
