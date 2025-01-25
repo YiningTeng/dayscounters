@@ -131,3 +131,11 @@ footer p {
   margin: 0;
   font-size: 0.9rem;
 }
+
+/* Category Name Styles */
+.group-container .category-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #00ffcc;
+}
