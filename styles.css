@@ -152,14 +152,12 @@ footer p {
   border-radius: 8px;
 }
 
-/* Game Title Link */
-h1 a.game-title {
-  color: #00ffcc; /* Original neon color */
-  text-decoration: none;
-  font-family: 'Orbitron', sans-serif;
-  text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+/* Title Link Styling */
+h1 a {
+  color: inherit; /* Inherit the title color (#00ffcc) */
+  text-decoration: none; /* Remove underline */
 }
 
-h1 a.game-title:hover {
-  text-decoration: underline;
+h1 a:hover {
+  text-decoration: underline; /* Add underline on hover */
 }
