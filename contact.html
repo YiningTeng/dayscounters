@@ -12,6 +12,28 @@
             background-color: #f4f4f9;
             color: #333;
         }
+        .site-nav {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 14px 18px;
+        }
+        .site-nav-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 12px;
+            justify-content: center;
+        }
+        .site-nav a {
+            color: #007BFF;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .site-nav a:hover {
+            text-decoration: underline;
+        }
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -37,6 +59,18 @@
     </style>
 </head>
 <body>
+    <nav class="site-nav" aria-label="Primary">
+        <div class="site-nav-inner">
+            <a href="/">US Days Counter</a>
+            <a href="/CanadaDays">Canada Days Counter</a>
+            <a href="/CanadaDaysByI94">Canada Days by I-94</a>
+            <a href="/mx">Espanol</a>
+            <a href="/us-residency-101.html">US Residency 101</a>
+            <a href="/canada-residency-101.html">Canada Residency 101</a>
+            <a href="/about.html">About</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+    </nav>
     <div class="container">
         <h1>Contact Us</h1>
         <p>If you have questions, feedback, or need help using a CountToday tool, please feel free to reach out. We review messages about calculator issues, content corrections, and general site feedback.</p>

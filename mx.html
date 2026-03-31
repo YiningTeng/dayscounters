@@ -91,23 +91,47 @@
             margin: 20px;
             padding: 0;
             background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .site-nav {
+            max-width: 920px;
+            margin: 0 auto 20px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            padding: 12px 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+            justify-content: center;
+            font-size: 14px;
+        }
+        .site-nav a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .site-nav a:hover {
+            text-decoration: underline;
         }
         .container {
-            max-width: 600px;
+            max-width: 920px;
             margin: 0 auto;
             background: #fff;
-            padding: 20px;
+            padding: 24px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         textarea {
             width: 100%;
-            height: 150px;
+            min-height: 150px;
             margin-bottom: 10px;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
+            box-sizing: border-box;
         }
         input[type="date"] {
             width: 100%;
@@ -116,6 +140,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
+            box-sizing: border-box;
         }
         button {
             display: inline-block;
@@ -139,7 +164,7 @@
         }
         .instructions {
             margin-bottom: 20px;
-            padding: 10px;
+            padding: 12px;
             background-color: #fff3cd;
             border: 1px solid #ffeeba;
             border-radius: 4px;
@@ -159,7 +184,15 @@
         .description {
             margin-bottom: 20px;
             font-size: 16px;
-            color: #333;
+        }
+        .info-panel,
+        .content-section {
+            margin-top: 24px;
+        }
+        .info-panel {
+            background: #f8f9fb;
+            border-left: 4px solid #007BFF;
+            padding: 14px 16px;
         }
         .disclaimer {
             margin-top: 20px;
@@ -176,10 +209,25 @@
     </style>
 </head>
 <body>
+    <div class="site-nav" aria-label="Navegación principal">
+        <a href="/">US Days Counter</a>
+        <a href="/CanadaDays">Canada Days Counter</a>
+        <a href="/CanadaDaysByI94">Canada Days by I-94</a>
+        <a href="/mx" aria-current="page">Español</a>
+        <a href="/us-residency-101.html">US Residency 101</a>
+        <a href="/canada-residency-101.html">Canada Residency 101</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+    </div>
     <div class="container">
         <h1>Contador de Días en EE. UU. basado en I-94</h1>
         <div class="description">
             Esta herramienta te ayuda a determinar el número de días que has pasado en EE. UU. basado en tu historial de viajes del I-94. Puede ayudarte a calcular tu elegibilidad para la residencia permanente, ciudadanía o estado fiscal en EE. UU.
+        </div>
+        <div class="info-panel">
+            <h2>Qué hace esta herramienta</h2>
+            <p>El contador está diseñado para ayudarte a revisar periodos de presencia física en EE. UU. usando el historial de entradas y salidas que aparece en el sistema I-94. Es útil para una revisión preliminar cuando estás organizando tus propios registros de viaje.</p>
+            <p>Si estás preparando documentación para impuestos, inmigración o residencia, conviene comparar los resultados con tus sellos, reservas, recibos y cualquier documento oficial adicional que tengas guardado.</p>
         </div>
         <div class="instructions">
             <p>Esta herramienta calcula el número de días pasados en EE. UU. basado en tu historial de viajes del I-94. Para usarla:</p>
@@ -208,6 +256,34 @@
         <div id="beforeApprovalResult" class="result-box" style="display: none;"></div>
         <div id="afterApprovalResult" class="result-box" style="display: none;"></div>
         <div id="result" class="result" style="display: none;"></div>
+        <div class="content-section">
+            <h2>Cómo interpretar el resultado</h2>
+            <p>El total mostrado refleja los periodos calculados a partir de los eventos de llegada y salida presentes en el texto pegado. Si la última fila indica una llegada sin salida posterior, la herramienta cuenta desde esa fecha hasta hoy.</p>
+            <p>Esto puede ser útil para revisar presencia física aproximada, pero no sustituye una determinación oficial. Los registros I-94 pueden tener omisiones o diferencias en viajes por frontera terrestre, correcciones posteriores o cambios en el historial mostrado por la autoridad.</p>
+
+            <h2>Cuándo revisar con más cuidado</h2>
+            <ul>
+                <li>Si una entrada o salida falta en el historial.</li>
+                <li>Si viajaste en fechas muy cercanas o cruzaste varias veces en poco tiempo.</li>
+                <li>Si usas el cálculo para ciudadanía, residencia, impuestos o una solicitud oficial.</li>
+                <li>Si tu fecha de aprobación de residencia permanente afecta el recuento que necesitas separar.</li>
+            </ul>
+
+            <h2>Buenas prácticas antes de confiar en el cálculo</h2>
+            <ul>
+                <li>Revisa que las filas copiadas del I-94 estén completas y en el orden esperado.</li>
+                <li>Compara con pasaportes, boletos y confirmaciones de viaje.</li>
+                <li>Guarda una copia de tu historial antes de hacer cualquier trámite importante.</li>
+                <li>Confirma reglas específicas con fuentes oficiales o con un profesional si tu caso es sensible.</li>
+            </ul>
+
+            <h2>Recursos oficiales</h2>
+            <ul>
+                <li><a href="https://i94.cbp.dhs.gov/search/history-search" target="_blank">CBP: Historial de viajes I-94</a></li>
+                <li><a href="https://www.uscis.gov/citizenship/learn-about-citizenship/continuous-residence-and-physical-presence-requirements-for-naturalization" target="_blank">USCIS: Presencia física y residencia continua</a></li>
+                <li><a href="https://www.irs.gov/individuals/international-taxpayers/substantial-presence-test" target="_blank">IRS: Substantial Presence Test</a></li>
+            </ul>
+        </div>
         <div class="disclaimer">
             Descargo de responsabilidad: Ninguna de la información ingresada será almacenada. Esto es solo una calculadora. La información proporcionada en este sitio no está garantizada para ser precisa. Se te recomienda verificar los datos.
         </div>
