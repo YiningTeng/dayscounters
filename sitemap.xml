@@ -3,63 +3,63 @@
     <!-- About CountToday -->
     <url>
         <loc>https://www.counttoday.com/about.html</loc>
-        <lastmod>2026-03-31</lastmod>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <!-- Contact page -->
     <url>
         <loc>https://www.counttoday.com/contact.html</loc>
-        <lastmod>2026-03-31</lastmod>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
     </url>
     <!-- Privacy policy -->
     <url>
         <loc>https://www.counttoday.com/privacy-policy.html</loc>
-        <lastmod>2026-03-31</lastmod>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.3</priority>
     </url>
     <!-- Canada Days Counter -->
     <url>
         <loc>https://www.counttoday.com/CanadaDays</loc>
-        <lastmod>2025-01-01</lastmod>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- Canada Days Counter based on I-94 -->
     <url>
         <loc>https://www.counttoday.com/CanadaDaysByI94</loc>
-        <lastmod>2025-01-01</lastmod>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- US Days Counter -->
     <url>
         <loc>https://www.counttoday.com</loc>
-        <lastmod>2025-01-01</lastmod>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <!-- US Days Counter in Spanish -->
     <url>
         <loc>https://www.counttoday.com/mx</loc>
-        <lastmod>2025-01-01</lastmod>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <!-- US Residency guide -->
     <url>
         <loc>https://www.counttoday.com/us-residency-101.html</loc>
-        <lastmod>2026-03-31</lastmod>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <!-- Canada Residency guide -->
     <url>
         <loc>https://www.counttoday.com/canada-residency-101.html</loc>
-        <lastmod>2026-03-31</lastmod>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
