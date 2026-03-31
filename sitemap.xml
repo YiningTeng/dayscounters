@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- About CountToday -->
+    <url>
+        <loc>https://www.counttoday.com/about.html</loc>
+        <lastmod>2026-03-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <!-- Contact page -->
+    <url>
+        <loc>https://www.counttoday.com/contact.html</loc>
+        <lastmod>2026-03-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    <!-- Privacy policy -->
+    <url>
+        <loc>https://www.counttoday.com/privacy-policy.html</loc>
+        <lastmod>2026-03-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.3</priority>
+    </url>
     <!-- Canada Days Counter -->
     <url>
         <loc>https://www.counttoday.com/CanadaDays</loc>
@@ -28,11 +49,18 @@
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
-    <!-- Product Evaluation -->
+    <!-- US Residency guide -->
     <url>
-        <loc>https://www.counttoday.com/nice</loc>
-        <lastmod>2025-01-02</lastmod>
+        <loc>https://www.counttoday.com/us-residency-101.html</loc>
+        <lastmod>2026-03-31</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.2</priority>
+        <priority>0.6</priority>
+    </url>
+    <!-- Canada Residency guide -->
+    <url>
+        <loc>https://www.counttoday.com/canada-residency-101.html</loc>
+        <lastmod>2026-03-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
     </url>
 </urlset>
