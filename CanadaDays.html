@@ -85,14 +85,45 @@
             margin: 20px;
             padding: 0;
             background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+        .site-nav {
+            max-width: 900px;
+            margin: 0 auto 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 14px 18px;
+        }
+        .site-nav .nav-title {
+            display: inline-block;
+            font-weight: bold;
+            color: #0056b3;
+            margin-right: 12px;
+        }
+        .site-nav a {
+            color: #007BFF;
+            text-decoration: none;
+            margin-right: 12px;
+            white-space: nowrap;
+        }
+        .site-nav a:hover {
+            text-decoration: underline;
         }
         .container {
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
             background: #fff;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 24px;
+            border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .tool-shell {
+            background: #f9fbff;
+            border: 1px solid #d8e6ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 24px 0;
         }
         textarea {
             width: 100%;
@@ -102,6 +133,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
+            box-sizing: border-box;
         }
         input[type="date"] {
             width: 100%;
@@ -110,6 +142,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
+            box-sizing: border-box;
         }
         button {
             display: inline-block;
@@ -133,7 +166,7 @@
         }
         .instructions {
             margin-bottom: 20px;
-            padding: 10px;
+            padding: 14px;
             background-color: #fff3cd;
             border: 1px solid #ffeeba;
             border-radius: 4px;
@@ -181,15 +214,51 @@
             color: #000;
             margin: 0 5px;
         }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 22px 0;
+        }
+        .info-card {
+            background: #f8f9fb;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        .info-card h2,
+        .info-card h3 {
+            margin-top: 0;
+        }
         .footer {
             margin-top: 20px;
             font-size: 12px;
             color: #666;
             text-align: center;
         }
+        @media (max-width: 640px) {
+            body {
+                margin: 12px;
+            }
+            .site-nav a {
+                display: inline-block;
+                margin-bottom: 8px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="site-nav">
+        <span class="nav-title">CountToday</span>
+        <a href="/">US Days Counter</a>
+        <a href="/CanadaDays">Canada Days Counter</a>
+        <a href="/CanadaDaysByI94">Canada by I-94</a>
+        <a href="/mx">Espanol</a>
+        <a href="/about.html">About</a>
+        <a href="/us-residency-101.html">US Residency 101</a>
+        <a href="/canada-residency-101.html">Canada Residency 101</a>
+        <a href="/contact.html">Contact</a>
+    </div>
     <div class="container">
         <h1>Canada Days Calculator</h1>
         <div class="subheading">
@@ -201,30 +270,81 @@
         <div class="description">
             This tool helps you determine the number of days you have spent in Canada based on your entry and exit dates. It can assist you in calculating your eligibility for permanent residency, citizenship, or tax status in Canada.
         </div>
-        <div class="instructions">
-            <p>This tool calculates the number of days spent in Canada based on your entry and exit dates. To use:</p>
-            <ol>
-                <li>Enter your entry and exit dates in the text box below in the format "startDate endDate" (e.g., "2024-11-29 2024-11-30"). Each line represents a separate period in Canada.</li>
-                <li>(Optional) Enter your Permanent Resident Approval Date in the field below.</li>
-                <li>Click "Confirm" to calculate the total days in Canada.</li>
-            </ol>
+        <p>This version of the Canada days calculator is intended for visitors who already know their travel dates and want a quick way to total time in Canada. It is especially useful when you are reviewing a personal timeline, preparing immigration paperwork, or checking whether your own spreadsheet agrees with the period totals shown by the calculator.</p>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h2>What this calculator counts</h2>
+                <p>The tool counts each date range you enter as an inclusive period, meaning both the start date and end date are counted in the result when the range is valid.</p>
+            </div>
+            <div class="info-card">
+                <h2>When to use it</h2>
+                <p>Use this page when you have clean entry and exit dates from passports, tickets, a spreadsheet, or your own travel records and do not need to derive the dates from I-94 history.</p>
+            </div>
+            <div class="info-card">
+                <h2>What to verify separately</h2>
+                <p>The calculator does not determine your legal status on its own. You should still compare the result with official guidance and the documents you plan to rely on.</p>
+            </div>
         </div>
-        <div class="label">Entry and Exit Dates (format "startDate endDate"):</div>
-        <textarea id="input" placeholder="Enter your entry and exit dates here... Example:
+
+        <div class="tool-shell">
+            <div class="instructions">
+                <p>This tool calculates the number of days spent in Canada based on your entry and exit dates. To use:</p>
+                <ol>
+                    <li>Enter your entry and exit dates in the text box below in the format "startDate endDate" (e.g., "2024-11-29 2024-11-30"). Each line represents a separate period in Canada.</li>
+                    <li>(Optional) Enter your Permanent Resident Approval Date in the field below.</li>
+                    <li>Click "Confirm" to calculate the total days in Canada.</li>
+                </ol>
+            </div>
+            <div class="label">Entry and Exit Dates (format "startDate endDate"):</div>
+            <textarea id="input" placeholder="Enter your entry and exit dates here... Example:
 2024-11-29 2024-11-30
 2024-12-12 2024-12-15"></textarea>
-        <div class="label">Permanent Resident Approval Date (optional):</div>
-        <input type="date" id="approvalDate" placeholder="Permanent Resident Approval Date (optional)">
-        <button onclick="calculateDays()">Confirm</button>
-        <div id="beforeApprovalResult" class="result-box" style="display: none;"></div>
-        <div id="afterApprovalResult" class="result-box" style="display: none;"></div>
-        <div id="result" class="result" style="display: none;"></div>
+            <div class="label">Permanent Resident Approval Date (optional):</div>
+            <input type="date" id="approvalDate" placeholder="Permanent Resident Approval Date (optional)">
+            <button onclick="calculateDays()">Confirm</button>
+            <div id="beforeApprovalResult" class="result-box" style="display: none;"></div>
+            <div id="afterApprovalResult" class="result-box" style="display: none;"></div>
+            <div id="result" class="result" style="display: none;"></div>
+        </div>
+
+        <h2>Tips for accurate date entry</h2>
+        <ul>
+            <li>Keep one period per line so the results stay easy to review.</li>
+            <li>Use the same date format everywhere: <code>YYYY-MM-DD</code>.</li>
+            <li>Double-check that each start date is earlier than or equal to its matching end date.</li>
+            <li>If you have overlapping date ranges in your own notes, merge or clean them before pasting to avoid double counting.</li>
+        </ul>
+
+        <h2>Why the optional PR approval date matters</h2>
+        <p>Some visitors want to separate days before and after a permanent resident approval date because the underlying rules they are checking may treat those periods differently. This page does not interpret those rules for you, but it gives you a cleaner breakdown so you can review your timeline more efficiently.</p>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Example input</h3>
+                <p>If you visited Canada from 2024-01-10 to 2024-01-20 and again from 2024-03-01 to 2024-03-05, enter those as two separate lines. The calculator will total both periods and list each one in the result details.</p>
+            </div>
+            <div class="info-card">
+                <h3>Good use case</h3>
+                <p>This page is a good fit when you maintain your own travel log and want to compare it with airline confirmations, border records, or immigration paperwork before filing.</p>
+            </div>
+        </div>
+
+        <h2>Related guidance and resources</h2>
+        <p>If you are using this calculator for Canadian residency planning, it helps to read the broader background as well. You can continue with our <a href="/canada-residency-101.html">Canada Residency 101</a> guide or review the official residency pages from the Government of Canada and the Canada Revenue Agency.</p>
+        <ul>
+            <li><a href="https://www.canada.ca/en/revenue-agency/services/tax/international-non-residents/individuals-leaving-entering-canada-non-residents.html" target="_blank">CRA residency guidance</a></li>
+            <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-citizenship/become-canadian-citizen/eligibility.html" target="_blank">IRCC citizenship eligibility overview</a></li>
+        </ul>
+
+        <h2>Important limitations</h2>
+        <p>This calculator is a convenience tool. It does not know whether a day should be counted under a specific legal program, whether an exception applies to your case, or whether your source records are complete. Always verify the final number against official instructions and your own documents.</p>
         <div class="disclaimer">
             Disclaimer: None of the information entered will be stored. This is just a calculator. The information provided on this site is not guaranteed to be accurate. You are encouraged to double-check the data.
         </div>
         <div class="footer">
             &copy; 2025 CountToday. All rights reserved.
-            <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/contact.html">Contact Us</a>
+            <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/contact.html">Contact Us</a> | <a href="/about.html">About Us</a>
         </div>
     </div>
 

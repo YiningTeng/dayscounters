@@ -12,6 +12,28 @@
             background-color: #f4f4f9;
             color: #333;
         }
+        .site-nav {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 14px 18px;
+        }
+        .site-nav-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 12px;
+            justify-content: center;
+        }
+        .site-nav a {
+            color: #007BFF;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .site-nav a:hover {
+            text-decoration: underline;
+        }
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -37,16 +59,38 @@
     </style>
 </head>
 <body>
+    <nav class="site-nav" aria-label="Primary">
+        <div class="site-nav-inner">
+            <a href="/">US Days Counter</a>
+            <a href="/CanadaDays">Canada Days Counter</a>
+            <a href="/CanadaDaysByI94">Canada Days by I-94</a>
+            <a href="/mx">Espanol</a>
+            <a href="/us-residency-101.html">US Residency 101</a>
+            <a href="/canada-residency-101.html">Canada Residency 101</a>
+            <a href="/about.html">About</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+    </nav>
     <div class="container">
         <h1>Contact Us</h1>
-        <p>If you have any questions, feedback, or need assistance, please feel free to reach out to us. We're here to help!</p>
+        <p>If you have questions, feedback, or need help using a CountToday tool, please feel free to reach out. We review messages about calculator issues, content corrections, and general site feedback.</p>
 
         <h2>Email</h2>
-        <p>You can contact us via email at <a href="mailto:vertical.tech.contact@gmail.com">vertical.tech.contact@gmail.com</a>. We strive to respond to all inquiries within 24-48 hours.</p>
+        <p>You can contact us via email at <a href="mailto:counttoday.contact@gmail.com">counttoday.contact@gmail.com</a>. We strive to respond to all inquiries within 24-48 hours.</p>
 
 
         <h2>Feedback</h2>
-        <p>We value your feedback! If you have suggestions for improving our tools or website, please let us know at <a href="mailto:vertical.tech.contact@gmail.com">vertical.tech.contact@gmail.com</a>.</p>
+        <p>We value feedback about usability, clarity, and missing edge cases in our calculators. If you have suggestions for improving our tools or reference pages, please let us know at <a href="mailto:counttoday.contact@gmail.com">counttoday.contact@gmail.com</a>.</p>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 CountToday. All rights reserved.
+        <a href="/">Home</a> |
+        <a href="/privacy-policy.html">Privacy Policy</a> |
+        <a href="/contact.html">Contact Us</a> |
+        <a href="/about.html">About Us</a> |
+        <a href="/us-residency-101.html">US Residency 101</a> |
+        <a href="/canada-residency-101.html">Canada Residency 101</a>
     </div>
 </body>
 </html>
