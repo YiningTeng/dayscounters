@@ -300,6 +300,17 @@
 
     <!-- JavaScript for Calculation -->
     <script>
+        const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+
+        function getTodayAsUtcDate() {
+            const now = new Date();
+            return new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+        }
+
+        function countInclusiveDays(startDate, endDate) {
+            return Math.floor((endDate - startDate) / MILLISECONDS_PER_DAY) + 1;
+        }
+
         function calculateDays() {
             const input = document.getElementById('input').value.trim();
             const approvalDateInput = document.getElementById('approvalDate').value;
@@ -307,7 +318,7 @@
 
             const rows = input.split('\n').filter(row => row.trim() !== ''); // Eliminar filas vacías
 
-            const today = new Date();
+            const today = getTodayAsUtcDate();
             let totalDays = 0;
             let periods = [];
             let daysBeforeApproval = 0;
@@ -338,7 +349,7 @@
                     lastArrivalDate = current.date;
                 } else if (current.type === 'Departure' && lastArrivalDate) {
                     if (current.date >= lastArrivalDate) {
-                        const days = Math.ceil((current.date - lastArrivalDate) / (1000 * 60 * 60 * 24)) + 1;
+                        const days = countInclusiveDays(lastArrivalDate, current.date);
                         periods.push({ start: lastArrivalDate, end: current.date, days });
 
                         // Dividir días según la fecha de aprobación
@@ -349,8 +360,8 @@
                                 daysAfterApproval += days;
                             } else {
                                 // El período abarca la fecha de aprobación
-                                const daysBefore = Math.ceil((approvalDate - lastArrivalDate) / (1000 * 60 * 60 * 24));
-                                const daysAfter = Math.ceil((current.date - approvalDate) / (1000 * 60 * 60 * 24)) + 1;
+                                const daysBefore = Math.floor((approvalDate - lastArrivalDate) / MILLISECONDS_PER_DAY);
+                                const daysAfter = countInclusiveDays(approvalDate, current.date);
                                 daysBeforeApproval += daysBefore;
                                 daysAfterApproval += daysAfter;
                             }
@@ -364,15 +375,20 @@
 
             // Manejar el caso donde el último evento es una llegada
             if (lastArrivalDate) {
-                const days = Math.ceil((today - lastArrivalDate) / (1000 * 60 * 60 * 24)) + 1;
+                const days = countInclusiveDays(lastArrivalDate, today);
                 periods.push({ start: lastArrivalDate, end: today, days });
 
                 // Dividir días según la fecha de aprobación
                 if (approvalDate) {
-                    if (lastArrivalDate < approvalDate) {
+                    if (today < approvalDate) {
                         daysBeforeApproval += days;
-                    } else {
+                    } else if (lastArrivalDate >= approvalDate) {
                         daysAfterApproval += days;
+                    } else {
+                        const daysBefore = Math.floor((approvalDate - lastArrivalDate) / MILLISECONDS_PER_DAY);
+                        const daysAfter = countInclusiveDays(approvalDate, today);
+                        daysBeforeApproval += daysBefore;
+                        daysAfterApproval += daysAfter;
                     }
                 }
 

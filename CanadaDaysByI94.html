@@ -186,6 +186,27 @@
 
     <!-- JavaScript for Calculation -->
     <script>
+        const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+
+        function getTodayAsUtcDate() {
+            const now = new Date();
+            return new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+        }
+
+        function countIncludedDays(startDate, endDate, excludedPeriods) {
+            let days = Math.floor((endDate - startDate) / MILLISECONDS_PER_DAY) + 1;
+
+            for (const period of excludedPeriods) {
+                const overlapStart = period.start > startDate ? period.start : startDate;
+                const overlapEnd = period.end < endDate ? period.end : endDate;
+                if (overlapStart <= overlapEnd) {
+                    days -= Math.floor((overlapEnd - overlapStart) / MILLISECONDS_PER_DAY) + 1;
+                }
+            }
+
+            return days;
+        }
+
         function calculateDays() {
             const input = document.getElementById('input').value.trim();
             const approvalDateInput = document.getElementById('approvalDate').value;
@@ -194,7 +215,7 @@
 
             const rows = input.split('\n').filter(row => row.trim() !== ''); // Remove empty rows
 
-            const today = new Date();
+            const today = getTodayAsUtcDate();
             let totalDays = 0;
             let periods = [];
             let daysBeforeApproval = 0;
@@ -240,17 +261,7 @@
                     lastDepartureDate = current.date;
                 } else if (current.type === 'Arrival' && lastDepartureDate) {
                     if (current.date >= lastDepartureDate) {
-                        let days = Math.ceil((current.date - lastDepartureDate) / (1000 * 60 * 60 * 24)) + 1;
-
-                        // Subtract excluded days
-                        for (const period of excludedPeriods) {
-                            const overlapStart = period.start > lastDepartureDate ? period.start : lastDepartureDate;
-                            const overlapEnd = period.end < current.date ? period.end : current.date;
-                            if (overlapStart <= overlapEnd) {
-                                const excludedDays = Math.ceil((overlapEnd - overlapStart) / (1000 * 60 * 60 * 24)) + 1;
-                                days -= excludedDays;
-                            }
-                        }
+                        const days = countIncludedDays(lastDepartureDate, current.date, excludedPeriods);
 
                         periods.push({ start: lastDepartureDate, end: current.date, days });
 
@@ -262,8 +273,9 @@
                                 daysAfterApproval += days;
                             } else {
                                 // Period spans the approval date
-                                const daysBefore = Math.ceil((approvalDate - lastDepartureDate) / (1000 * 60 * 60 * 24));
-                                const daysAfter = Math.ceil((current.date - approvalDate) / (1000 * 60 * 60 * 24)) + 1;
+                                const dayBeforeApproval = new Date(approvalDate.getTime() - MILLISECONDS_PER_DAY);
+                                const daysBefore = countIncludedDays(lastDepartureDate, dayBeforeApproval, excludedPeriods);
+                                const daysAfter = countIncludedDays(approvalDate, current.date, excludedPeriods);
                                 daysBeforeApproval += daysBefore;
                                 daysAfterApproval += daysAfter;
                             }
@@ -277,26 +289,22 @@
 
             // Handle the case where the last event is a Departure
             if (lastDepartureDate) {
-                let days = Math.ceil((today - lastDepartureDate) / (1000 * 60 * 60 * 24)) + 1;
-
-                // Subtract excluded days
-                for (const period of excludedPeriods) {
-                    const overlapStart = period.start > lastDepartureDate ? period.start : lastDepartureDate;
-                    const overlapEnd = period.end < today ? period.end : today;
-                    if (overlapStart <= overlapEnd) {
-                        const excludedDays = Math.ceil((overlapEnd - overlapStart) / (1000 * 60 * 60 * 24)) + 1;
-                        days -= excludedDays;
-                    }
-                }
+                const days = countIncludedDays(lastDepartureDate, today, excludedPeriods);
 
                 periods.push({ start: lastDepartureDate, end: today, days });
 
                 // Split days based on approval date
                 if (approvalDate) {
-                    if (lastDepartureDate < approvalDate) {
+                    if (today < approvalDate) {
                         daysBeforeApproval += days;
-                    } else {
+                    } else if (lastDepartureDate >= approvalDate) {
                         daysAfterApproval += days;
+                    } else {
+                        const dayBeforeApproval = new Date(approvalDate.getTime() - MILLISECONDS_PER_DAY);
+                        const daysBefore = countIncludedDays(lastDepartureDate, dayBeforeApproval, excludedPeriods);
+                        const daysAfter = countIncludedDays(approvalDate, today, excludedPeriods);
+                        daysBeforeApproval += daysBefore;
+                        daysAfterApproval += daysAfter;
                     }
                 }
 
