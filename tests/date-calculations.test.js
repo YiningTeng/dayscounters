@@ -3,9 +3,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 
-process.env.TZ = 'UTC';
-
-const FIXED_NOW = '2026-09-29T18:00:00.000Z';
+// The timestamp intentionally has no timezone suffix so every test process sees
+// the same local calendar date, regardless of its TZ environment variable.
+const FIXED_NOW = '2026-09-29T18:00:00.000';
 
 function loadCalculator(fileName, values = {}) {
     const html = fs.readFileSync(path.join(__dirname, '..', fileName), 'utf8');
@@ -62,38 +62,189 @@ function usResults(fileName, input, approvalDate = '') {
     };
 }
 
-for (const fileName of ['index.html', 'mx.html']) {
-    const closed = usResults(fileName, '1 2024-01-10 Departure 840\n2 2024-01-01 Arrival BLA');
-    assert.match(closed.total, /10$/);
-
-    const today = usResults(fileName, '1 2026-09-29 Arrival BLA');
-    assert.match(today.total, /1$/);
-
-    const yesterday = usResults(fileName, '1 2026-09-28 Arrival BLA');
-    assert.match(yesterday.total, /2$/);
-
-    const split = usResults(fileName, '1 2026-09-20 Arrival BLA', '2026-09-24');
-    assert.match(split.total, /10$/);
-    assert.match(split.before, /4$/);
-    assert.match(split.after, /6$/);
+function assertUsResult(fileName, input, expected, approvalDate = '') {
+    const result = usResults(fileName, input, approvalDate);
+    assert.match(result.total, new RegExp(`${expected.total}$`), `${fileName}: total`);
+    if (expected.before !== undefined) {
+        assert.match(result.before, new RegExp(`${expected.before}$`), `${fileName}: before approval`);
+        assert.match(result.after, new RegExp(`${expected.after}$`), `${fileName}: after approval`);
+        assert.equal(expected.before + expected.after, expected.total, `${fileName}: approval split must equal total`);
+    }
 }
 
-const canadaOpen = loadCalculator('CanadaDaysByI94.html', {
-    input: '1 2026-09-20 Departure 840',
-    approvalDate: '2026-09-24',
-    excludedDates: ''
-});
-assert.match(canadaOpen.result.textContent, /10$/);
-assert.match(canadaOpen.beforeApprovalResult.textContent, /4$/);
-assert.match(canadaOpen.afterApprovalResult.textContent, /6$/);
+const usCases = [
+    {
+        name: 'same-day closed trip',
+        input: '1 2024-01-01 Arrival BLA\n2 2024-01-01 Departure 840',
+        expected: { total: 1 }
+    },
+    {
+        name: 'same-month closed trip',
+        input: '1 2024-01-10 Departure 840\n2 2024-01-01 Arrival BLA',
+        expected: { total: 10 }
+    },
+    {
+        name: 'cross-month closed trip',
+        input: '1 2024-02-01 Departure 840\n2 2024-01-31 Arrival BLA',
+        expected: { total: 2 }
+    },
+    {
+        name: 'leap-day closed trip',
+        input: '1 2024-02-29 Departure 840\n2 2024-02-28 Arrival BLA',
+        expected: { total: 2 }
+    },
+    {
+        name: 'cross-year closed trip',
+        input: '1 2025-01-01 Departure 840\n2 2024-12-31 Arrival BLA',
+        expected: { total: 2 }
+    },
+    {
+        name: 'multiple closed trips',
+        input: '1 2024-01-12 Departure 840\n2 2024-01-10 Arrival BLA\n3 2024-01-03 Departure 840\n4 2024-01-01 Arrival BLA',
+        expected: { total: 6 }
+    },
+    {
+        name: 'ascending input order',
+        input: '1 2024-01-01 Arrival BLA\n2 2024-01-10 Departure 840',
+        expected: { total: 10 }
+    },
+    {
+        name: 'approval in closed trip',
+        input: '1 2024-01-10 Departure 840\n2 2024-01-01 Arrival BLA',
+        approvalDate: '2024-01-05',
+        expected: { total: 10, before: 4, after: 6 }
+    },
+    {
+        name: 'approval equals arrival',
+        input: '1 2024-01-10 Departure 840\n2 2024-01-01 Arrival BLA',
+        approvalDate: '2024-01-01',
+        expected: { total: 10, before: 0, after: 10 }
+    },
+    {
+        name: 'approval equals departure',
+        input: '1 2024-01-10 Departure 840\n2 2024-01-01 Arrival BLA',
+        approvalDate: '2024-01-10',
+        expected: { total: 10, before: 9, after: 1 }
+    },
+    {
+        name: 'approval before closed trip',
+        input: '1 2024-01-10 Departure 840\n2 2024-01-01 Arrival BLA',
+        approvalDate: '2023-12-31',
+        expected: { total: 10, before: 0, after: 10 }
+    },
+    {
+        name: 'approval after closed trip',
+        input: '1 2024-01-10 Departure 840\n2 2024-01-01 Arrival BLA',
+        approvalDate: '2024-01-11',
+        expected: { total: 10, before: 10, after: 0 }
+    },
+    {
+        name: 'open trip starting today',
+        input: '1 2026-09-29 Arrival BLA',
+        expected: { total: 1 }
+    },
+    {
+        name: 'open trip starting yesterday',
+        input: '1 2026-09-28 Arrival BLA',
+        expected: { total: 2 }
+    },
+    {
+        name: 'approval in open trip',
+        input: '1 2026-09-20 Arrival BLA',
+        approvalDate: '2026-09-24',
+        expected: { total: 10, before: 4, after: 6 }
+    },
+    {
+        name: 'approval before open trip',
+        input: '1 2026-09-20 Arrival BLA',
+        approvalDate: '2026-09-19',
+        expected: { total: 10, before: 0, after: 10 }
+    },
+    {
+        name: 'approval after open trip',
+        input: '1 2026-09-20 Arrival BLA',
+        approvalDate: '2026-09-30',
+        expected: { total: 10, before: 10, after: 0 }
+    }
+];
 
-const canadaExcluded = loadCalculator('CanadaDaysByI94.html', {
-    input: '1 2026-09-20 Departure 840',
-    approvalDate: '2026-09-24',
-    excludedDates: '2026-09-22 2026-09-23'
-});
-assert.match(canadaExcluded.result.textContent, /8$/);
-assert.match(canadaExcluded.beforeApprovalResult.textContent, /2$/);
-assert.match(canadaExcluded.afterApprovalResult.textContent, /6$/);
+for (const fileName of ['index.html', 'mx.html']) {
+    for (const testCase of usCases) {
+        assertUsResult(fileName, testCase.input, testCase.expected, testCase.approvalDate);
+    }
+}
 
-console.log('All date calculation tests passed.');
+function assertCanadaResult(values, expected, name) {
+    const elements = loadCalculator('CanadaDaysByI94.html', values);
+    assert.match(elements.result.textContent, new RegExp(`${expected.total}$`), `${name}: total`);
+    if (expected.before !== undefined) {
+        assert.match(elements.beforeApprovalResult.textContent, new RegExp(`${expected.before}$`), `${name}: before approval`);
+        assert.match(elements.afterApprovalResult.textContent, new RegExp(`${expected.after}$`), `${name}: after approval`);
+        assert.equal(expected.before + expected.after, expected.total, `${name}: approval split must equal total`);
+    }
+}
+
+const canadaCases = [
+    {
+        name: 'closed Canada period',
+        values: { input: '1 2026-09-29 Arrival 840\n2 2026-09-20 Departure BLA' },
+        expected: { total: 10 }
+    },
+    {
+        name: 'open Canada period starting today',
+        values: { input: '1 2026-09-29 Departure 840' },
+        expected: { total: 1 }
+    },
+    {
+        name: 'open Canada period starting yesterday',
+        values: { input: '1 2026-09-28 Departure 840' },
+        expected: { total: 2 }
+    },
+    {
+        name: 'approval in open Canada period',
+        values: { input: '1 2026-09-20 Departure 840', approvalDate: '2026-09-24' },
+        expected: { total: 10, before: 4, after: 6 }
+    },
+    {
+        name: 'excluded days before approval',
+        values: {
+            input: '1 2026-09-20 Departure 840',
+            approvalDate: '2026-09-24',
+            excludedDates: '2026-09-22 2026-09-23'
+        },
+        expected: { total: 8, before: 2, after: 6 }
+    },
+    {
+        name: 'excluded days after approval',
+        values: {
+            input: '1 2026-09-20 Departure 840',
+            approvalDate: '2026-09-24',
+            excludedDates: '2026-09-25 2026-09-26'
+        },
+        expected: { total: 8, before: 4, after: 4 }
+    },
+    {
+        name: 'excluded period outside trip',
+        values: {
+            input: '1 2026-09-20 Departure 840',
+            approvalDate: '2026-09-24',
+            excludedDates: '2026-09-01 2026-09-05'
+        },
+        expected: { total: 10, before: 4, after: 6 }
+    },
+    {
+        name: 'excluded day on approval date',
+        values: {
+            input: '1 2026-09-20 Departure 840',
+            approvalDate: '2026-09-24',
+            excludedDates: '2026-09-24 2026-09-24'
+        },
+        expected: { total: 9, before: 4, after: 5 }
+    }
+];
+
+for (const testCase of canadaCases) {
+    assertCanadaResult(testCase.values, testCase.expected, testCase.name);
+}
+
+console.log(`All 42 date calculation scenarios passed in ${process.env.TZ || 'system timezone'}.`);
