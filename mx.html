@@ -327,18 +327,25 @@
             let parsedRows = [];
 
             // Validar y analizar filas
-            for (const row of rows) {
+            for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
+                const row = rows[rowIndex];
                 const columns = row.split(/\s+/);
                 if (columns.length >= 3 && !isNaN(new Date(columns[1]).getTime())) {
+                    const sourceRow = Number.parseInt(columns[0], 10);
                     parsedRows.push({
                         date: new Date(columns[1]),
-                        type: columns[2]
+                        type: columns[2],
+                        sourceOrder: Number.isFinite(sourceRow) ? sourceRow : rowIndex
                     });
                 }
             }
 
-            // Ordenar filas por fecha en orden cronológico
-            parsedRows.sort((a, b) => a.date - b.date);
+            // I-94 muestra primero los registros más recientes. Si dos eventos
+            // comparten fecha, la fila mayor ocurrió antes y se procesa primero.
+            parsedRows.sort((a, b) => {
+                const dateOrder = a.date - b.date;
+                return dateOrder !== 0 ? dateOrder : b.sourceOrder - a.sourceOrder;
+            });
 
             // Procesar filas para calcular períodos
             let lastArrivalDate = null;
@@ -351,23 +358,6 @@
                     if (current.date >= lastArrivalDate) {
                         const days = countInclusiveDays(lastArrivalDate, current.date);
                         periods.push({ start: lastArrivalDate, end: current.date, days });
-
-                        // Dividir días según la fecha de aprobación
-                        if (approvalDate) {
-                            if (current.date < approvalDate) {
-                                daysBeforeApproval += days;
-                            } else if (lastArrivalDate >= approvalDate) {
-                                daysAfterApproval += days;
-                            } else {
-                                // El período abarca la fecha de aprobación
-                                const daysBefore = Math.floor((approvalDate - lastArrivalDate) / MILLISECONDS_PER_DAY);
-                                const daysAfter = countInclusiveDays(approvalDate, current.date);
-                                daysBeforeApproval += daysBefore;
-                                daysAfterApproval += daysAfter;
-                            }
-                        }
-
-                        totalDays += days;
                     }
                     lastArrivalDate = null; // Reiniciar después de procesar una salida
                 }
@@ -377,22 +367,39 @@
             if (lastArrivalDate) {
                 const days = countInclusiveDays(lastArrivalDate, today);
                 periods.push({ start: lastArrivalDate, end: today, days });
+            }
 
-                // Dividir días según la fecha de aprobación
+            // Los intervalos inclusivos se solapan cuando alguien sale y vuelve
+            // a entrar el mismo día. Unirlos evita contar esa fecha dos veces.
+            const mergedPeriods = [];
+            for (const period of periods) {
+                const previous = mergedPeriods[mergedPeriods.length - 1];
+                if (previous && period.start <= previous.end) {
+                    if (period.end > previous.end) {
+                        previous.end = period.end;
+                    }
+                    previous.days = countInclusiveDays(previous.start, previous.end);
+                } else {
+                    mergedPeriods.push({ ...period });
+                }
+            }
+            periods = mergedPeriods;
+
+            // Contar los períodos normalizados y dividirlos por aprobación.
+            for (const period of periods) {
+                totalDays += period.days;
                 if (approvalDate) {
-                    if (today < approvalDate) {
-                        daysBeforeApproval += days;
-                    } else if (lastArrivalDate >= approvalDate) {
-                        daysAfterApproval += days;
+                    if (period.end < approvalDate) {
+                        daysBeforeApproval += period.days;
+                    } else if (period.start >= approvalDate) {
+                        daysAfterApproval += period.days;
                     } else {
-                        const daysBefore = Math.floor((approvalDate - lastArrivalDate) / MILLISECONDS_PER_DAY);
-                        const daysAfter = countInclusiveDays(approvalDate, today);
+                        const daysBefore = Math.floor((approvalDate - period.start) / MILLISECONDS_PER_DAY);
+                        const daysAfter = countInclusiveDays(approvalDate, period.end);
                         daysBeforeApproval += daysBefore;
                         daysAfterApproval += daysAfter;
                     }
                 }
-
-                totalDays += days;
             }
 
             // Mostrar resultados antes y después de la aprobación si se proporciona la fecha

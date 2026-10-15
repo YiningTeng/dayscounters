@@ -7,7 +7,7 @@ const vm = require('node:vm');
 // the same local calendar date, regardless of its TZ environment variable.
 const FIXED_NOW = '2026-09-29T18:00:00.000';
 
-function loadCalculator(fileName, values = {}) {
+function loadCalculator(fileName, values = {}, fixedNow = FIXED_NOW) {
     const html = fs.readFileSync(path.join(__dirname, '..', fileName), 'utf8');
     const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)];
     const calculatorScript = scripts.map(match => match[1]).find(script => script.includes('function calculateDays'));
@@ -32,11 +32,11 @@ function loadCalculator(fileName, values = {}) {
     const NativeDate = Date;
     class FixedDate extends NativeDate {
         constructor(...args) {
-            super(...(args.length ? args : [FIXED_NOW]));
+            super(...(args.length ? args : [fixedNow]));
         }
 
         static now() {
-            return new NativeDate(FIXED_NOW).getTime();
+            return new NativeDate(fixedNow).getTime();
         }
     }
 
@@ -53,30 +53,51 @@ function loadCalculator(fileName, values = {}) {
     return elements;
 }
 
-function usResults(fileName, input, approvalDate = '') {
-    const elements = loadCalculator(fileName, { input, approvalDate });
+function usResults(fileName, input, approvalDate = '', fixedNow = FIXED_NOW) {
+    const elements = loadCalculator(fileName, { input, approvalDate }, fixedNow);
     return {
         total: elements.result.textContent,
         before: elements.beforeApprovalResult.textContent,
-        after: elements.afterApprovalResult.textContent
+        after: elements.afterApprovalResult.textContent,
+        details: elements.result.children[0]?.innerHTML || ''
     };
 }
 
-function assertUsResult(fileName, input, expected, approvalDate = '') {
-    const result = usResults(fileName, input, approvalDate);
+function assertUsResult(fileName, input, expected, approvalDate = '', fixedNow = FIXED_NOW) {
+    const result = usResults(fileName, input, approvalDate, fixedNow);
     assert.match(result.total, new RegExp(`${expected.total}$`), `${fileName}: total`);
     if (expected.before !== undefined) {
         assert.match(result.before, new RegExp(`${expected.before}$`), `${fileName}: before approval`);
         assert.match(result.after, new RegExp(`${expected.after}$`), `${fileName}: after approval`);
         assert.equal(expected.before + expected.after, expected.total, `${fileName}: approval split must equal total`);
     }
+    for (const detail of expected.details || []) {
+        const pattern = new RegExp(`${detail.start}.*${detail.end}: ${detail.days} `);
+        assert.match(result.details, pattern, `${fileName}: period ${detail.start} through ${detail.end}`);
+    }
 }
 
 const usCases = [
     {
         name: 'same-day closed trip',
-        input: '1 2024-01-01 Arrival BLA\n2 2024-01-01 Departure 840',
+        input: '1 2024-01-01 Departure 840\n2 2024-01-01 Arrival BLA',
         expected: { total: 1 }
+    },
+    {
+        name: 'same-day departure and reentry preserves both surrounding stays',
+        input: '1 2024-12-31 Arrival SFR\n2 2024-12-09 Departure SFR\n3 2024-08-12 Arrival CLG\n4 2024-08-11 Departure 709\n5 2024-08-07 Arrival PIE\n6 2024-08-07 Departure SFR\n7 2024-04-01 Arrival NYC\n8 2024-03-09 Departure SFR',
+        approvalDate: '2024-08-07',
+        fixedNow: '2025-01-21T18:00:00.000',
+        expected: {
+            total: 275,
+            before: 128,
+            after: 147,
+            details: [
+                { start: '2024-04-01', end: '2024-08-11', days: 133 },
+                { start: '2024-08-12', end: '2024-12-09', days: 120 },
+                { start: '2024-12-31', end: '2025-01-21', days: 22 }
+            ]
+        }
     },
     {
         name: 'same-month closed trip',
@@ -170,7 +191,7 @@ const usCases = [
 
 for (const fileName of ['index.html', 'mx.html']) {
     for (const testCase of usCases) {
-        assertUsResult(fileName, testCase.input, testCase.expected, testCase.approvalDate);
+        assertUsResult(fileName, testCase.input, testCase.expected, testCase.approvalDate, testCase.fixedNow);
     }
 }
 
@@ -247,4 +268,4 @@ for (const testCase of canadaCases) {
     assertCanadaResult(testCase.values, testCase.expected, testCase.name);
 }
 
-console.log(`All 42 date calculation scenarios passed in ${process.env.TZ || 'system timezone'}.`);
+console.log(`All 44 date calculation scenarios passed in ${process.env.TZ || 'system timezone'}.`);
