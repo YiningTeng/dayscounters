@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>ResiDays Support &amp; Contact</title>
+    <meta name="description" content="Contact ResiDays support for help with travel records, I-94 import, photo location suggestions, residency-day estimates, or app feedback.">
+    <link rel="canonical" href="https://www.counttoday.com/residays/contact">
+    <style>
+        :root {
+            color-scheme: light dark;
+            --page: #f4f6fb;
+            --card: #ffffff;
+            --text: #172033;
+            --muted: #5c667a;
+            --accent: #1769e0;
+            --accent-soft: #eaf2ff;
+            --border: #dfe5ef;
+            --shadow: 0 18px 55px rgba(31, 50, 81, 0.10);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--page);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.65;
+        }
+
+        a { color: var(--accent); }
+
+        .topbar {
+            border-bottom: 1px solid var(--border);
+            background: color-mix(in srgb, var(--card) 92%, transparent);
+        }
+
+        .topbar-inner {
+            width: min(880px, calc(100% - 40px));
+            min-height: 64px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            color: var(--text);
+            font-weight: 750;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .topnav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 0.94rem;
+        }
+
+        .topnav a { text-decoration: none; }
+        .topnav a:hover { text-decoration: underline; }
+        .topnav [aria-current="page"] { color: var(--text); font-weight: 650; }
+
+        main {
+            width: min(880px, calc(100% - 40px));
+            margin: 42px auto;
+            padding: clamp(26px, 5vw, 58px);
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 750;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            max-width: 680px;
+            font-size: clamp(2.1rem, 6vw, 3.8rem);
+            line-height: 1.04;
+            letter-spacing: -0.045em;
+        }
+
+        .intro {
+            max-width: 680px;
+            margin: 18px 0 0;
+            color: var(--muted);
+            font-size: 1.06rem;
+        }
+
+        .email-card {
+            margin: 30px 0 38px;
+            padding: 22px;
+            background: var(--accent-soft);
+            border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+            border-radius: 16px;
+        }
+
+        .email-card p { margin: 0 0 14px; }
+
+        .email-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 11px 18px;
+            border-radius: 12px;
+            background: var(--accent);
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .email-button:hover { filter: brightness(0.94); }
+        .email-address { margin-top: 12px !important; color: var(--muted); font-size: 0.94rem; }
+
+        h2 {
+            margin: 38px 0 10px;
+            font-size: 1.28rem;
+            letter-spacing: -0.015em;
+        }
+
+        p { margin: 0 0 14px; }
+        ul { margin: 8px 0 16px; padding-left: 1.35rem; }
+        li { margin: 8px 0; }
+
+        .privacy-note {
+            margin-top: 34px;
+            padding: 18px 20px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .privacy-note p { margin: 0; }
+
+        footer {
+            width: min(880px, calc(100% - 40px));
+            margin: -12px auto 38px;
+            color: var(--muted);
+            font-size: 0.88rem;
+            text-align: center;
+        }
+
+        footer a { margin-left: 8px; }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --page: #0d1119;
+                --card: #151b26;
+                --text: #f2f5fa;
+                --muted: #a9b2c2;
+                --accent: #79adff;
+                --accent-soft: #172a47;
+                --border: #2b3443;
+                --shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+            }
+
+            .email-button { color: #0c1b32; }
+        }
+
+        @media (max-width: 520px) {
+            .topbar-inner { width: min(100% - 28px, 880px); }
+            .topnav { gap: 12px; font-size: 0.9rem; }
+            .topnav .site-link { display: none; }
+            main { width: min(100% - 24px, 880px); margin: 20px auto; border-radius: 18px; }
+            footer { width: min(100% - 28px, 880px); margin-top: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="/residays/contact" aria-label="ResiDays support home">ResiDays</a>
+            <nav class="topnav" aria-label="ResiDays">
+                <a href="/residays/contact" aria-current="page">Support</a>
+                <a href="/residays/privacy">Privacy</a>
+                <a class="site-link" href="/">CountToday.com</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <p class="eyebrow">Support &amp; Contact</p>
+        <h1>How can we help?</h1>
+        <p class="intro">Contact us if you need help with ResiDays, found an issue, or have an idea that would make travel-day tracking clearer.</p>
+
+        <section class="email-card" aria-label="Email support">
+            <p><strong>Email ResiDays Support</strong></p>
+            <a class="email-button" href="mailto:counttoday.contact@gmail.com?subject=ResiDays%20Support">Send an email</a>
+            <p class="email-address">counttoday.contact@gmail.com</p>
+        </section>
+
+        <section>
+            <h2>What we can help with</h2>
+            <ul>
+                <li>Using the calendar, history, goals, and day-count features</li>
+                <li>Importing or reviewing I-94 travel history</li>
+                <li>Photo permission and photo-location suggestions</li>
+                <li>Reporting an incorrect result, display problem, or app crash</li>
+                <li>Feature requests and general feedback</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Helpful details to include</h2>
+            <p>To help us understand an issue, please include your iPhone model, iOS version, ResiDays version, what you expected to happen, and the steps that produced the problem. A screenshot is helpful when it does not contain sensitive information.</p>
+        </section>
+
+        <section>
+            <h2>Please protect your information</h2>
+            <p>Do not email passport numbers, immigration document numbers, account credentials, complete I-94 records, exact photo locations, or other sensitive personal information. A short description or a redacted screenshot is usually enough.</p>
+        </section>
+
+        <section>
+            <h2>About calculations</h2>
+            <p>ResiDays provides informational physical-presence estimates. Support can help explain how the app works, but cannot provide legal, tax, or immigration advice. Confirm important decisions with official sources or a qualified professional.</p>
+        </section>
+
+        <section class="privacy-note">
+            <p>ResiDays does not send your travel journal to us. Learn more in the <a href="/residays/privacy">ResiDays Privacy Policy</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 ResiDays &middot; Published by CountToday
+        <a href="/residays/privacy">Privacy</a>
+    </footer>
+</body>
+</html>

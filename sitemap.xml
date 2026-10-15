@@ -28,6 +28,13 @@
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
+    <!-- ResiDays iOS app support and contact -->
+    <url>
+        <loc>https://www.counttoday.com/residays/contact</loc>
+        <lastmod>2026-10-14</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
     <!-- Canada Days Counter -->
     <url>
         <loc>https://www.counttoday.com/CanadaDays</loc>

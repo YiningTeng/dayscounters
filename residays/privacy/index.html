@@ -54,8 +54,16 @@
             letter-spacing: -0.02em;
         }
 
-        .home-link { text-decoration: none; }
-        .home-link:hover { text-decoration: underline; }
+        .topnav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 0.94rem;
+        }
+
+        .topnav a { text-decoration: none; }
+        .topnav a:hover { text-decoration: underline; }
+        .topnav [aria-current="page"] { color: var(--text); font-weight: 650; }
 
         main {
             width: min(880px, calc(100% - 40px));
@@ -124,6 +132,8 @@
             text-align: center;
         }
 
+        footer a { margin-left: 8px; }
+
         @media (prefers-color-scheme: dark) {
             :root {
                 --page: #0d1119;
@@ -139,6 +149,8 @@
 
         @media (max-width: 520px) {
             .topbar-inner { width: min(100% - 28px, 880px); }
+            .topnav { gap: 12px; font-size: 0.9rem; }
+            .topnav .site-link { display: none; }
             main { width: min(100% - 24px, 880px); margin: 20px auto; border-radius: 18px; }
             footer { width: min(100% - 28px, 880px); margin-top: 24px; }
         }
@@ -148,7 +160,11 @@
     <header class="topbar">
         <div class="topbar-inner">
             <a class="brand" href="/residays/privacy" aria-label="ResiDays privacy policy">ResiDays</a>
-            <a class="home-link" href="/">CountToday.com</a>
+            <nav class="topnav" aria-label="ResiDays">
+                <a href="/residays/contact">Support</a>
+                <a href="/residays/privacy" aria-current="page">Privacy</a>
+                <a class="site-link" href="/">CountToday.com</a>
+            </nav>
         </div>
     </header>
 
@@ -236,6 +252,7 @@
 
     <footer>
         &copy; 2026 ResiDays &middot; Published by CountToday
+        <a href="/residays/contact">Support</a>
     </footer>
 </body>
 </html>
