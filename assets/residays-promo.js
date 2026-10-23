@@ -1,5 +1,5 @@
 (() => {
-    const IMAGE_PATH = "/assets/residays-app-promo.jpg";
+    const IMAGE_PATH = "/assets/residays-app-promo.svg";
 
     function mountPromo() {
         if (document.querySelector(".residays-promo-banner")) return;

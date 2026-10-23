@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="548" viewBox="0 0 1280 548" role="img" aria-labelledby="title desc">
+  <title id="title">ResiDays app promo banner</title>
+  <desc id="desc">A promotional banner introducing a new ResiDays iOS app with a large app headline and device mockups.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#dfeef8"/>
+      <stop offset="50%" stop-color="#edf8ff"/>
+      <stop offset="100%" stop-color="#dfeef8"/>
+    </linearGradient>
+    <linearGradient id="heading" x1="0" x2="1">
+      <stop offset="0%" stop-color="#1b5ecb"/>
+      <stop offset="100%" stop-color="#0d2d6d"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" x2="1">
+      <stop offset="0%" stop-color="#f0fbff"/>
+      <stop offset="100%" stop-color="#d0ebff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#1d3d70" flood-opacity="0.16"/>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f3b78" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="548" fill="url(#bg)"/>
+
+  <g opacity="0.7">
+    <path d="M-40 145 C160 85, 260 210, 420 145 S700 90, 870 150 S1150 220, 1320 132 L1320 548 L-40 548 Z" fill="url(#wave)"/>
+    <path d="M-40 170 C160 120, 260 220, 430 170 S700 115, 880 170 S1140 225, 1320 145" fill="none" stroke="#d7f2ff" stroke-width="3"/>
+    <path d="M-60 250 C100 170, 280 285, 470 240 S770 165, 930 220 S1180 300, 1320 235" fill="none" stroke="#d7f2ff" stroke-width="2.5"/>
+  </g>
+
+  <g>
+    <text x="68" y="118" font-family="Segoe UI, Arial, sans-serif" font-size="50" font-weight="800" fill="#0e2a67">Introducing CountToday’s New iOS App</text>
+    <text x="68" y="196" font-family="Segoe UI, Arial, sans-serif" font-size="76" font-weight="900" fill="url(#heading)">ResiDays: Canada &amp; U.S. Day Tracker</text>
+  </g>
+
+  <g transform="translate(670, 82)" filter="url(#soft)">
+    <circle cx="100" cy="58" r="54" fill="#ffffff"/>
+    <path d="M66 62l18-23 18 19 24-29 18 38 15-8 22 33-100 0z" fill="#f7f9ff"/>
+    <path d="M84 77h32v44h-32z" fill="#f5f8ff"/>
+    <path d="M68 109h64v12H68z" fill="#ffffff"/>
+    <path d="M84 72h33v7H84z" fill="#cde7ff"/>
+    <path d="M90 39c0-18 13-31 29-31 14 0 26 10 31 24h-16c-4-8-10-12-16-12-9 0-14 8-14 19v11H90V39z" fill="#e6f0ff"/>
+    <rect x="36" y="170" width="26" height="26" rx="13" fill="#ffffff"/>
+    <rect x="182" y="170" width="26" height="26" rx="13" fill="#ffffff"/>
+    <path d="M86 190h122v8H86z" fill="#dfeafe"/>
+  </g>
+
+  <g transform="translate(864, 40)" filter="url(#shadow)">
+    <g transform="translate(62, 0)">
+      <rect x="0" y="0" width="168" height="168" rx="20" fill="#f4f9ff"/>
+      <rect x="14" y="14" width="140" height="140" rx="18" fill="#ffffff"/>
+      <g fill="#0b0b0d">
+        <rect x="28" y="28" width="9" height="9"/>
+        <rect x="42" y="28" width="9" height="9"/>
+        <rect x="56" y="28" width="9" height="9"/>
+        <rect x="70" y="28" width="9" height="9"/>
+        <rect x="84" y="28" width="9" height="9"/>
+        <rect x="98" y="28" width="9" height="9"/>
+        <rect x="112" y="28" width="9" height="9"/>
+        <rect x="28" y="42" width="9" height="9"/>
+        <rect x="56" y="42" width="9" height="9"/>
+        <rect x="84" y="42" width="9" height="9"/>
+        <rect x="112" y="42" width="9" height="9"/>
+        <rect x="126" y="42" width="9" height="9"/>
+        <rect x="28" y="56" width="9" height="9"/>
+        <rect x="42" y="56" width="9" height="9"/>
+        <rect x="70" y="56" width="9" height="9"/>
+        <rect x="98" y="56" width="9" height="9"/>
+        <rect x="112" y="56" width="9" height="9"/>
+        <rect x="28" y="70" width="9" height="9"/>
+        <rect x="56" y="70" width="9" height="9"/>
+        <rect x="84" y="70" width="9" height="9"/>
+        <rect x="98" y="70" width="9" height="9"/>
+        <rect x="112" y="70" width="9" height="9"/>
+        <rect x="28" y="84" width="9" height="9"/>
+        <rect x="42" y="84" width="9" height="9"/>
+        <rect x="56" y="84" width="9" height="9"/>
+        <rect x="70" y="84" width="9" height="9"/>
+        <rect x="84" y="84" width="9" height="9"/>
+        <rect x="98" y="84" width="9" height="9"/>
+        <rect x="112" y="84" width="9" height="9"/>
+        <rect x="126" y="84" width="9" height="9"/>
+        <rect x="28" y="98" width="9" height="9"/>
+        <rect x="56" y="98" width="9" height="9"/>
+        <rect x="84" y="98" width="9" height="9"/>
+        <rect x="98" y="98" width="9" height="9"/>
+        <rect x="112" y="98" width="9" height="9"/>
+        <rect x="28" y="112" width="9" height="9"/>
+        <rect x="42" y="112" width="9" height="9"/>
+        <rect x="70" y="112" width="9" height="9"/>
+        <rect x="98" y="112" width="9" height="9"/>
+        <rect x="112" y="112" width="9" height="9"/>
+        <rect x="126" y="112" width="9" height="9"/>
+        <rect x="28" y="126" width="9" height="9"/>
+        <rect x="70" y="126" width="9" height="9"/>
+        <rect x="84" y="126" width="9" height="9"/>
+        <rect x="98" y="126" width="9" height="9"/>
+      </g>
+    </g>
+
+    <g transform="translate(0, 20)">
+      <rect x="0" y="0" width="42" height="42" rx="21" fill="#3a7ff3"/>
+      <path d="M18 12 L26 12 L26 18 L18 18 Z M12 18 L12 26 L18 26 L18 18 Z M25 18 L25 26 L31 26 L31 18 Z M18 25 L26 25 L26 31 L18 31 Z" fill="#fff"/>
+    </g>
+
+    <g transform="translate(200, 30)">
+      <circle cx="34" cy="34" r="34" fill="#f0f5fd" stroke="#dfe9f8" stroke-width="2"/>
+      <path d="M34 8 C57 8 72 26 72 42 C72 60 57 72 34 72 C11 72 -4 60 -4 42 C-4 26 11 8 34 8 Z" fill="#cfe6ff" opacity="0.5"/>
+      <path d="M34 8 C57 8 72 26 72 42 C72 60 57 72 34 72 C11 72 -4 60 -4 42 C-4 26 11 8 34 8 Z" fill="none" stroke="#5e8ef3" stroke-width="2"/>
+      <path d="M5 42 H63 M34 6 V78" stroke="#3d7af5" stroke-width="2" stroke-linecap="round"/>
+      <path d="M16 17 C24 28, 24 53, 16 63" fill="none" stroke="#3d7af5" stroke-width="2"/>
+      <path d="M52 17 C44 28, 44 53, 52 63" fill="none" stroke="#3d7af5" stroke-width="2"/>
+      <path d="M34 27 V57" stroke="#3d7af5" stroke-width="2"/>
+    </g>
+
+    <g transform="translate(188, 52)">
+      <text x="28" y="132" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#0f2c65">Try ResiDays Pro</text>
+      <text x="28" y="160" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" fill="#2d67d6">Free</text>
+    </g>
+  </g>
+
+  <g transform="translate(40, 255)" filter="url(#soft)">
+    <rect x="0" y="0" width="222" height="270" rx="28" fill="#0d162a" opacity="0.9"/>
+    <rect x="17" y="20" width="188" height="232" rx="20" fill="#f5f9ff"/>
+    <text x="38" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d295d">ResiDays</text>
+    <g>
+      <text x="38" y="96" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#0d2a62">Canada PR</text>
+      <text x="142" y="96" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#2c65d7">936 / 730 days</text>
+      <text x="38" y="120" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7aa6">Today: 936 • Through Oct 14, 2026: 936</text>
+      <line x1="38" y1="132" x2="180" y2="132" stroke="#d9e7ff"/>
+      <text x="38" y="160" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#0d2a62">Canada Citizenship</text>
+      <text x="147" y="160" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#2c65d7">936 / 1,095 days</text>
+      <text x="38" y="184" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7aa6">Today: 936 • Through Oct 14, 2026: 936</text>
+      <line x1="38" y1="196" x2="180" y2="196" stroke="#d9e7ff"/>
+      <text x="38" y="224" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#0d2a62">U.S. Physical Presence</text>
+      <text x="168" y="224" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#2c65d7">634 U.S. days</text>
+      <text x="38" y="246" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7aa6">Today: 934 • Through Oct 14, 2026: 934</text>
+    </g>
+  </g>
+
+  <g transform="translate(890, 225)" filter="url(#shadow)">
+    <rect x="0" y="0" width="220" height="258" rx="22" fill="#f7fbff"/>
+    <g transform="translate(18,22)">
+      <circle cx="92" cy="64" r="58" fill="#0c1a3f"/>
+      <circle cx="92" cy="64" r="52" fill="#1e2f60"/>
+      <path d="M36 64h112 M92 8v112" stroke="#9dc9ff" stroke-width="2" opacity="0.8"/>
+      <path d="M92 8c24 17 35 38 35 56s-11 39-35 56c-24-17-35-38-35-56s11-39 35-56Z" fill="none" stroke="#7cadff" stroke-width="2" opacity="0.7"/>
+      <path d="M18 46c36 8 72 9 148 0" fill="none" stroke="#7cadff" stroke-width="2" opacity="0.7"/>
+      <path d="M18 81c39-8 76-9 148 0" fill="none" stroke="#7cadff" stroke-width="2" opacity="0.7"/>
+      <circle cx="92" cy="64" r="9" fill="#ffffff" opacity="0.9"/>
+    </g>
+    <g transform="translate(24,180)">
+      <rect x="0" y="0" width="172" height="34" rx="17" fill="#ecf3ff"/>
+      <circle cx="17" cy="17" r="7" fill="#2d6be7"/>
+      <text x="34" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#1a2d55">Sep 10, 2026</text>
+    </g>
+  </g>
+
+  <g transform="translate(1080, 265)" filter="url(#soft)">
+    <rect x="0" y="0" width="165" height="210" rx="22" fill="#101b35"/>
+    <rect x="18" y="18" width="129" height="174" rx="16" fill="#f3f8ff"/>
+    <text x="41" y="56" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#1e2d5d">Replay Studio</text>
+    <g transform="translate(38,66)">
+      <circle cx="26" cy="26" r="26" fill="#ebf4ff"/>
+      <path d="M21 17l20 9-20 9V17z" fill="#2a71ef"/>
+    </g>
+    <g transform="translate(78,70)">
+      <rect x="0" y="0" width="34" height="34" rx="10" fill="#dfeeff"/>
+      <path d="M16 10h2v14h-2z M10 16h14v2H10z" fill="#2c6fe9"/>
+    </g>
+    <g transform="translate(38,116)">
+      <rect x="0" y="0" width="54" height="34" rx="12" fill="#dfeeff"/>
+      <text x="18" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1f3f85">1x</text>
+    </g>
+    <g transform="translate(100,118)">
+      <circle cx="12" cy="12" r="12" fill="#2e6ff2"/>
+      <path d="M9 7l9 5-9 5V7z" fill="#fff"/>
+    </g>
+  </g>
+
+  <g transform="translate(575, 210)" font-family="Segoe UI, Arial, sans-serif" font-weight="800">
+    <text x="0" y="0" font-size="28" fill="#0e2a67">Canada PR</text>
+    <text x="0" y="38" font-size="28" fill="#0e2a67">Citizenship</text>
+    <text x="0" y="76" font-size="28" fill="#0e2a67">U.S. days</text>
+  </g>
+</svg>
