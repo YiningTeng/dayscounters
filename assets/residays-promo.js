@@ -20,7 +20,7 @@
 
         const pageNavigation = document.body.querySelector(":scope > header, :scope > nav, :scope > .site-nav, :scope > .top-nav");
         if (pageNavigation) {
-            pageNavigation.insertAdjacentElement("afterend", banner);
+            document.body.insertBefore(banner, pageNavigation);
         } else {
             document.body.prepend(banner);
         }
