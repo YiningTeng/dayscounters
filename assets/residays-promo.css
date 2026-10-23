@@ -10,43 +10,53 @@
     box-shadow: 0 14px 34px rgba(4, 25, 67, 0.16), 0 3px 10px rgba(4, 25, 67, 0.1);
     box-sizing: border-box;
     line-height: 0;
+    transition: max-height 0.25s ease, opacity 0.25s ease, margin-top 0.25s ease;
 }
 
-.residays-promo-banner--hidden {
-    display: none !important;
+.residays-promo-banner--collapsed {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    border-width: 0;
+    box-shadow: none;
+    overflow: hidden;
 }
 
-.residays-promo-banner__close {
+.residays-promo-banner--collapsed .residays-promo-banner__image {
+    display: none;
+}
+
+.residays-promo-banner__toggle {
     position: absolute;
     top: 12px;
     right: 12px;
     z-index: 2;
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     border: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.92);
     color: var(--promo-navy);
-    box-shadow: 0 4px 12px rgba(8, 29, 71, 0.18);
+    box-shadow: 0 4px 12px rgba(8, 29, 71, 0.16);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
     line-height: 1;
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.residays-promo-banner__close:hover,
-.residays-promo-banner__close:focus-visible {
+.residays-promo-banner__toggle:hover,
+.residays-promo-banner__toggle:focus-visible {
     background: #ffffff;
     transform: scale(1.04);
     outline: none;
 }
 
-.residays-promo-banner__close span {
+.residays-promo-banner__toggle span {
     display: inline-block;
     transform: translateY(-1px);
 }
@@ -66,11 +76,11 @@
         box-shadow: 0 10px 24px rgba(4, 25, 67, 0.14);
     }
 
-    .residays-promo-banner__close {
+    .residays-promo-banner__toggle {
         top: 10px;
         right: 10px;
         width: 28px;
         height: 28px;
-        font-size: 22px;
+        font-size: 18px;
     }
 }
