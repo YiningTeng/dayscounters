@@ -1,5 +1,5 @@
 (() => {
-    const IMAGE_PATH = "/assets/residays-app-promo.png";
+    const IMAGE_PATH = "/assets/residays-app-promo.jpg";
     const NARROW_SCREEN = "(max-width: 720px)";
 
     function mountPromo() {
