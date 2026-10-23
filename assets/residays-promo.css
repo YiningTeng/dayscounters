@@ -1,0 +1,157 @@
+.residays-promo__spacer {
+    display: none;
+}
+
+.residays-promo-open body {
+    padding-right: calc(clamp(176px, 16vw, 238px) + 34px) !important;
+    box-sizing: border-box;
+}
+
+.residays-promo {
+    --promo-navy: #092b68;
+    position: fixed;
+    top: 76px;
+    right: max(14px, env(safe-area-inset-right));
+    z-index: 2147483000;
+    width: clamp(176px, 16vw, 238px);
+    border: 2px solid var(--promo-navy);
+    border-radius: 18px;
+    background: #f7fbff;
+    box-shadow: 0 20px 48px rgba(4, 25, 67, 0.24), 0 4px 14px rgba(4, 25, 67, 0.16);
+    box-sizing: border-box;
+    line-height: 1;
+    isolation: isolate;
+    transition: width 180ms ease, border-radius 180ms ease, box-shadow 180ms ease;
+}
+
+.residays-promo__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.residays-promo__toggle {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    border-radius: 999px;
+    background: rgba(5, 27, 73, 0.88);
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(2, 17, 50, 0.26);
+    cursor: pointer;
+    font: 700 19px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+}
+
+.residays-promo__toggle:hover,
+.residays-promo__toggle:focus-visible {
+    background: #0b3b91;
+    outline: 3px solid rgba(68, 139, 255, 0.42);
+    outline-offset: 2px;
+}
+
+.residays-promo__collapsed-label {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 14px 0 11px;
+    color: #fff;
+    font: 700 14px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+
+.residays-promo__mark {
+    display: grid;
+    place-items: center;
+    width: 23px;
+    height: 23px;
+    border-radius: 7px;
+    background: #fff;
+    color: #0d52e8;
+    font-size: 16px;
+}
+
+.residays-promo[data-state="collapsed"] {
+    width: auto;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #082a67, #0e55da);
+    box-shadow: 0 10px 26px rgba(4, 25, 67, 0.23);
+}
+
+.residays-promo[data-state="collapsed"] .residays-promo__image {
+    display: none;
+}
+
+.residays-promo[data-state="collapsed"] .residays-promo__collapsed-label {
+    display: flex;
+}
+
+.residays-promo[data-state="collapsed"] .residays-promo__toggle {
+    position: static;
+    display: flex;
+    width: auto;
+    height: 42px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+@media (max-width: 1100px) {
+    .residays-promo-open body {
+        padding-right: calc(clamp(150px, 18vw, 182px) + 28px) !important;
+    }
+
+    .residays-promo {
+        top: 68px;
+        width: clamp(150px, 18vw, 182px);
+    }
+}
+
+@media (max-width: 720px) {
+    .residays-promo__spacer {
+        display: block;
+        height: 260px;
+        pointer-events: none;
+    }
+
+    .residays-promo-open body {
+        padding-right: initial !important;
+    }
+
+    .residays-promo {
+        top: max(140px, calc(env(safe-area-inset-top) + 128px));
+        right: max(8px, env(safe-area-inset-right));
+        width: min(27vw, 104px);
+        border-width: 1.5px;
+        border-radius: 14px;
+        box-shadow: 0 13px 30px rgba(4, 25, 67, 0.22);
+    }
+
+    .residays-promo__image {
+        border-radius: 12px;
+    }
+
+    .residays-promo__toggle {
+        top: 6px;
+        left: 6px;
+        width: 28px;
+        height: 28px;
+        font-size: 17px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .residays-promo {
+        transition: none;
+    }
+}
