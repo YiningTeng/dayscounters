@@ -1,5 +1,6 @@
 .residays-promo-banner {
     --promo-navy: #092b68;
+    position: relative;
     width: min(calc(100% - 40px), 1000px);
     margin: 18px auto 0;
     overflow: hidden;
@@ -9,6 +10,45 @@
     box-shadow: 0 14px 34px rgba(4, 25, 67, 0.16), 0 3px 10px rgba(4, 25, 67, 0.1);
     box-sizing: border-box;
     line-height: 0;
+}
+
+.residays-promo-banner--hidden {
+    display: none !important;
+}
+
+.residays-promo-banner__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--promo-navy);
+    box-shadow: 0 4px 12px rgba(8, 29, 71, 0.18);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.residays-promo-banner__close:hover,
+.residays-promo-banner__close:focus-visible {
+    background: #ffffff;
+    transform: scale(1.04);
+    outline: none;
+}
+
+.residays-promo-banner__close span {
+    display: inline-block;
+    transform: translateY(-1px);
 }
 
 .residays-promo-banner__image {
@@ -24,5 +64,13 @@
         border-width: 1.5px;
         border-radius: 13px;
         box-shadow: 0 10px 24px rgba(4, 25, 67, 0.14);
+    }
+
+    .residays-promo-banner__close {
+        top: 10px;
+        right: 10px;
+        width: 28px;
+        height: 28px;
+        font-size: 22px;
     }
 }
