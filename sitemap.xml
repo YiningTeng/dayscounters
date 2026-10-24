@@ -35,6 +35,20 @@
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
+    <!-- Duo Muse iPhone app privacy policy -->
+    <url>
+        <loc>https://www.counttoday.com/duomuse/privacy/</loc>
+        <lastmod>2026-10-23</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    <!-- Duo Muse iPhone app support and contact -->
+    <url>
+        <loc>https://www.counttoday.com/duomuse/contact/</loc>
+        <lastmod>2026-10-23</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
     <!-- Canada Days Counter -->
     <url>
         <loc>https://www.counttoday.com/CanadaDays</loc>
