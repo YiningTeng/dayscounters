@@ -1,0 +1,75 @@
+:root {
+  color-scheme: light dark;
+  --page: #f7f5f1;
+  --card: #ffffff;
+  --text: #19243c;
+  --muted: #5b6579;
+  --accent: #4e4b9d;
+  --accent-soft: #f0effb;
+  --border: #e3e2eb;
+  --shadow: 0 18px 54px rgba(25, 36, 60, .08);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--text); background: var(--page);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+a { color: var(--accent); }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.topbar { border-bottom: 1px solid var(--border); background: var(--card); }
+.topbar-inner {
+  max-width: 880px; margin: 0 auto; padding: 0 20px; min-height: 66px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.brand { color: var(--text); text-decoration: none; font-weight: 780; letter-spacing: -.025em; font-size: 1.1rem; white-space: nowrap; }
+.topnav { display: flex; align-items: center; gap: 20px; font-size: .93rem; }
+.topnav a { text-decoration: none; white-space: nowrap; }
+.topnav a:hover { text-decoration: underline; }
+.topnav [aria-current="page"] { color: var(--text); font-weight: 700; }
+main {
+  max-width: 880px; margin: 42px auto 30px; padding: clamp(26px, 5vw, 54px);
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 24px; box-shadow: var(--shadow);
+}
+.eyebrow { margin: 0 0 10px; font-size: .81rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 750; color: var(--accent); }
+h1 { margin: 0; font-size: clamp(2.1rem, 6vw, 3.7rem); line-height: 1.08; letter-spacing: -.045em; }
+h2 { font-size: 1.28rem; line-height: 1.3; letter-spacing: -.012em; margin: 34px 0 10px; }
+p { margin: 0 0 15px; }
+ul { margin: 8px 0 16px; padding-left: 1.35rem; }
+li { margin: 8px 0; }
+.updated, .intro { margin-top: 15px; color: var(--muted); }
+.intro { max-width: 670px; font-size: 1.05rem; }
+.summary, .email-card {
+  margin: 28px 0 34px; padding: 20px 22px; background: var(--accent-soft);
+  border: 1px solid var(--border); border-radius: 16px;
+}
+.summary p, .email-card p { margin: 0; }
+.email-button {
+  display: inline-flex; padding: 11px 19px; min-height: 48px; align-items: center;
+  margin-top: 15px; border-radius: 12px; background: var(--accent);
+  color: white; text-decoration: none; font-weight: 720;
+}
+.email-button:hover { filter: brightness(.93); }
+.email-address { margin-top: 12px !important; color: var(--muted); overflow-wrap: anywhere; }
+.divider { margin-top: 34px; padding-top: 25px; border-top: 1px solid var(--border); }
+.footer {
+  max-width: 880px; margin: 0 auto 42px; padding: 0 20px;
+  color: var(--muted); text-align: center; font-size: .88rem;
+}
+.footer a { margin-left: 12px; }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #0e111a; --card: #171d2a; --text: #f4f2f9;
+    --muted: #b1bad0; --accent: #c6baff;
+    --accent-soft: #232443; --border: #33364b;
+    --shadow: 0 18px 54px rgba(0, 0, 0, .25);
+  }
+  .email-button { color: #17142a; }
+}
+@media (max-width: 550px) {
+  .topnav { gap: 12px; font-size: .88rem; }
+  .topnav .site-link { display: none; }
+  main { margin: 20px 12px 24px; border-radius: 18px; }
+  .footer { margin-bottom: 26px; }
+}
