@@ -91,4 +91,18 @@
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
+    <!-- Blog index -->
+    <url>
+        <loc>https://www.counttoday.com/blog/</loc>
+        <lastmod>2026-10-28</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Blog: 730-day rolling window -->
+    <url>
+        <loc>https://www.counttoday.com/blog/canada-pr-730-day-rule-rolling-window.html</loc>
+        <lastmod>2026-10-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
 </urlset>

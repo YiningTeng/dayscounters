@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Canada's 730-day rule is a moving window, not a countdown">
+  <rect width="1200" height="630" fill="#092b68"/>
+  <rect x="0" y="0" width="1200" height="10" fill="#007BFF"/>
+  <text x="72" y="108" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="4" fill="#7db4ff">RESIDAYS INSIGHTS · CANADA PR</text>
+  <text x="72" y="196" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" fill="#ffffff">The 730-Day Rule Is a</text>
+  <text x="72" y="264" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" fill="#ffffff">Moving Window,</text>
+  <text x="72" y="332" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" fill="#ffffff">Not a Countdown</text>
+  <text x="72" y="392" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#dbe8ff">730 days in Canada. Checked against the last 5 years —</text>
+  <text x="72" y="430" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#dbe8ff">and that window moves every single day.</text>
+  <g>
+    <rect x="72" y="478" width="640" height="34" rx="17" fill="#0e3d8f"/>
+    <rect x="72" y="478" width="258" height="34" rx="17" fill="#007BFF"/>
+    <text x="72" y="548" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#9db9e8">Jun 1, 2025: 730 days — just enough</text>
+    <text x="470" y="548" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#ffb3b3">Jun 2: 729 — short</text>
+  </g>
+  <g>
+    <rect x="800" y="120" width="328" height="390" rx="26" fill="#ffffff"/>
+    <rect x="800" y="120" width="328" height="72" rx="26" fill="#007BFF"/>
+    <text x="836" y="167" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#ffffff">Days in Canada</text>
+    <text x="836" y="282" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="700" fill="#092b68">730</text>
+    <text x="836" y="322" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#555555">needed in every 5 years</text>
+    <line x1="836" y1="352" x2="1092" y2="352" stroke="#e3e7eb" stroke-width="2"/>
+    <text x="836" y="402" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#555555">Old days drop off</text>
+    <text x="836" y="440" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#555555">the back of the window</text>
+    <text x="836" y="478" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#b3001b">one at a time.</text>
+  </g>
+  <text x="72" y="596" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#7d94bd">counttoday.com/blog · Not legal advice — check IRCC for your own case</text>
+</svg>
