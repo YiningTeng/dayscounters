@@ -94,7 +94,7 @@
     <!-- Blog index -->
     <url>
         <loc>https://www.counttoday.com/blog/</loc>
-        <lastmod>2026-10-29</lastmod>
+        <lastmod>2026-10-30</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
@@ -109,6 +109,13 @@
     <url>
         <loc>https://www.counttoday.com/blog/canada-pr-renewal-self-check.html</loc>
         <lastmod>2026-10-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Blog: Citizenship 1,095 days -->
+    <url>
+        <loc>https://www.counttoday.com/blog/canada-citizenship-1095-days-physical-presence.html</loc>
+        <lastmod>2026-10-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
