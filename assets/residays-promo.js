@@ -25,7 +25,7 @@
         toggle.textContent = "−";
         const appLink = document.createElement("a");
         appLink.className = "residays-promo__app-link";
-        appLink.href = "https://apps.apple.com/";
+        appLink.href = "https://apps.apple.com/us/app/residays-canada-us-days/id6822970319";
         appLink.target = "_blank";
         appLink.rel = "noopener noreferrer";
         appLink.textContent = "Open in App Store";

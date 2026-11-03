@@ -24,7 +24,7 @@
 .residays-promo-shell[data-state="collapsed"] .residays-promo__collapsed-label { display: flex; }
 .residays-promo-shell[data-state="collapsed"] .residays-promo__app-link { display: none; }
 .residays-promo-shell[data-state="collapsed"] .residays-promo__toggle { position: static; display: flex; width: auto; height: 42px; border: 0; background: transparent; box-shadow: none; }
-@media (max-width: 720px) { .residays-promo__toggle { top: 6px; right: 7px; width: 28px; height: 28px; font-size: 17px; } .residays-promo__app-link { top: 6px; right: 43px; min-height: 28px; padding: 0 8px; font-size: 11px; } .residays-promo-shell[data-state="collapsed"] { margin-top: 6px; margin-bottom: 6px; } }
+@media (max-width: 720px) { .residays-promo-shell { height: auto; } .residays-promo-shell .residays-promo-banner__image { height: auto; } .residays-promo__toggle { top: 6px; right: 7px; width: 28px; height: 28px; font-size: 17px; } .residays-promo__app-link { top: auto; right: auto; left: 8px; bottom: 6px; min-height: 28px; padding: 0 8px; font-size: 11px; } .residays-promo-shell[data-state="collapsed"] { margin-top: 6px; margin-bottom: 6px; } }
 @media (prefers-reduced-motion: reduce) { .residays-promo-shell { transition: none; } }
 
 /* Shared responsive polish for every CountToday page and calculator. */
