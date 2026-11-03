@@ -15,8 +15,8 @@ function htmlFiles(directory) {
 
 for (const file of htmlFiles(root)) {
     const html = fs.readFileSync(file, "utf8");
-    assert.match(html, /href="\/assets\/residays-promo\.css\?v=20261024-4"/, `${file} must load the versioned promo CSS`);
-    assert.match(html, /src="\/assets\/residays-promo\.js\?v=20261024-4" defer/, `${file} must load the versioned promo script`);
+    assert.match(html, /href="\/assets\/residays-promo\.css\?v=20261103-1"/, `${file} must load the versioned promo CSS`);
+    assert.match(html, /src="\/assets\/residays-promo\.js\?v=20261103-1" defer/, `${file} must load the versioned promo script`);
 }
 
 const script = fs.readFileSync(path.join(root, "assets/residays-promo.js"), "utf8");
