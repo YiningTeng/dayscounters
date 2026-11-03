@@ -23,6 +23,12 @@
         toggle.setAttribute("aria-expanded", "true");
         toggle.setAttribute("aria-label", "Collapse ResiDays banner");
         toggle.textContent = "−";
+        const appLink = document.createElement("a");
+        appLink.className = "residays-promo__app-link";
+        appLink.href = "https://apps.apple.com/";
+        appLink.target = "_blank";
+        appLink.rel = "noopener noreferrer";
+        appLink.textContent = "Open in App Store";
         function setExpanded(expanded) {
             shell.dataset.state = expanded ? "expanded" : "collapsed";
             toggle.setAttribute("aria-expanded", String(expanded));
@@ -31,7 +37,7 @@
             if (!expanded) toggle.append(collapsedLabel);
         }
         toggle.addEventListener("click", () => setExpanded(shell.dataset.state === "collapsed"));
-        shell.append(image, toggle, collapsedLabel);
+        shell.append(image, appLink, toggle, collapsedLabel);
         const pageNavigation = document.body.querySelector(":scope > header, :scope > nav, :scope > .site-nav, :scope > .top-nav");
         if (pageNavigation) pageNavigation.insertAdjacentElement("beforebegin", shell);
         else document.body.prepend(shell);
