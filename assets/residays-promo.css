@@ -1,1 +1,46 @@
-Œ»u∫yöµ»^
+.residays-promo-shell {
+    --promo-navy: #092b68;
+    position: relative;
+    width: 100%;
+    height: 15vw;
+    margin: 0;
+    overflow: hidden;
+    border-bottom: 2px solid var(--promo-navy);
+    background: #eef8ff;
+    box-shadow: 0 10px 28px rgba(4, 25, 67, 0.14);
+    box-sizing: border-box;
+    line-height: 0;
+    transition: background 180ms ease, border-radius 180ms ease;
+}
+.residays-promo-banner__image { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; background: #eef8ff; }
+.residays-promo__toggle { position: absolute; top: 10px; right: 12px; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 1px solid rgba(255,255,255,.9); border-radius: 999px; background: rgba(5,27,73,.88); color: #fff; box-shadow: 0 3px 10px rgba(2,17,50,.3); cursor: pointer; font: 700 19px/1 system-ui, sans-serif; }
+.residays-promo__toggle:hover, .residays-promo__toggle:focus-visible { background: #0b3b91; outline: 3px solid rgba(68,139,255,.42); outline-offset: 2px; }
+.residays-promo__app-link { position: absolute; right: 52px; top: 10px; display: inline-flex; align-items: center; min-height: 32px; padding: 0 11px; border: 1px solid rgba(255,255,255,.9); border-radius: 999px; background: rgba(5,27,73,.88); color: #fff; font: 700 12px/1 system-ui, sans-serif; text-decoration: none; box-shadow: 0 3px 10px rgba(2,17,50,.3); }
+.residays-promo__app-link:hover, .residays-promo__app-link:focus-visible { background: #0b3b91; color: #fff; text-decoration: none; outline: 3px solid rgba(68,139,255,.42); outline-offset: 2px; }
+.residays-promo__collapsed-label { display: none; align-items: center; gap: 8px; min-height: 42px; padding: 0 15px 0 12px; color: #fff; font: 700 14px/1 system-ui, sans-serif; white-space: nowrap; }
+.residays-promo__mark { display: block; width: 48px; height: 48px; border-radius: 11px; background: #fff; object-fit: cover; }
+.residays-promo-shell[data-state="collapsed"] { position: fixed; top: 16px; right: 16px; z-index: 1000; display: flex; align-items: center; width: fit-content; height: auto; margin: 0; border: 2px solid var(--promo-navy); border-radius: 999px; background: linear-gradient(135deg,#082a67,#0e55da); box-shadow: 0 8px 22px rgba(4,25,67,.2); }
+.residays-promo-shell[data-state="collapsed"] .residays-promo-banner__image { display: none; }
+.residays-promo-shell[data-state="collapsed"] .residays-promo__collapsed-label { display: flex; }
+.residays-promo-shell[data-state="collapsed"] .residays-promo__app-link { display: none; }
+.residays-promo-shell[data-state="collapsed"] .residays-promo__toggle { position: static; display: grid; flex: 0 0 42px; width: 42px; height: 42px; border: 0; background: transparent; box-shadow: none; }
+@media (max-width: 720px) { .residays-promo-shell { height: auto; } .residays-promo-shell .residays-promo-banner__image { height: auto; } .residays-promo-shell:not([data-state="collapsed"]) .residays-promo__toggle { top: 6px; right: 7px; width: 56px; height: 28px; font-size: 17px; } .residays-promo__app-link { top: auto; right: auto; left: 8px; bottom: 6px; min-height: 28px; padding: 0 8px; font-size: 11px; } .residays-promo-shell[data-state="collapsed"] { top: 8px; right: 8px; } .residays-promo-shell[data-state="collapsed"] .residays-promo__mark { width: 38px; height: 38px; border-radius: 9px; } .residays-promo-shell[data-state="collapsed"] .residays-promo__collapsed-label { min-height: 38px; padding-left: 6px; padding-right: 8px; } }
+@media (prefers-reduced-motion: reduce) { .residays-promo-shell { transition: none; } }
+
+/* Shared responsive polish for every CountToday page and calculator. */
+@media (max-width: 720px) {
+    body { padding: 10px !important; overflow-x: hidden; }
+    .residays-promo-shell { width: calc(100% + 20px); margin-left: -10px; }
+    .residays-promo-shell[data-state="collapsed"] { width: fit-content; margin-left: auto; }
+    .site-nav, .top-nav, .nav, .topnav { gap: 6px !important; margin: 0 auto 14px !important; padding: 8px !important; }
+    .site-nav a, .top-nav a, .nav a, .topnav a { padding: 8px 10px !important; font-size: .86rem !important; }
+    .container { width: 100% !important; max-width: none !important; box-sizing: border-box !important; margin: 0 auto !important; padding: 16px !important; border-radius: 12px !important; }
+    h1 { font-size: clamp(1.65rem, 8vw, 2.2rem) !important; line-height: 1.15 !important; }
+    h2 { font-size: 1.3rem !important; }
+    textarea, input[type="date"], input[type="text"], input[type="number"], select { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; font-size: 16px !important; }
+    textarea { min-height: 180px; }
+    button, .button { min-height: 44px; font-size: 16px !important; }
+    table { display: block; max-width: 100%; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+    pre, code { max-width: 100%; overflow-x: auto; }
+    footer { margin-left: -10px; margin-right: -10px; padding: 16px 10px; }
+}
