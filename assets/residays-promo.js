@@ -33,8 +33,7 @@
             shell.dataset.state = expanded ? "expanded" : "collapsed";
             toggle.setAttribute("aria-expanded", String(expanded));
             toggle.setAttribute("aria-label", expanded ? "Collapse ResiDays banner" : "Expand ResiDays banner");
-            toggle.textContent = expanded ? "−" : "";
-            if (!expanded) toggle.append(collapsedLabel);
+            toggle.textContent = expanded ? "−" : "+";
         }
         toggle.addEventListener("click", () => setExpanded(shell.dataset.state === "collapsed"));
         shell.append(image, appLink, toggle, collapsedLabel);

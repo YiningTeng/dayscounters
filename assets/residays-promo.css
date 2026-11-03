@@ -19,11 +19,11 @@
 .residays-promo__app-link:hover, .residays-promo__app-link:focus-visible { background: #0b3b91; color: #fff; text-decoration: none; outline: 3px solid rgba(68,139,255,.42); outline-offset: 2px; }
 .residays-promo__collapsed-label { display: none; align-items: center; gap: 8px; min-height: 42px; padding: 0 15px 0 12px; color: #fff; font: 700 14px/1 system-ui, sans-serif; white-space: nowrap; }
 .residays-promo__mark { display: grid; place-items: center; width: 23px; height: 23px; border-radius: 7px; background: #fff; color: #0d52e8; font-size: 16px; }
-.residays-promo-shell[data-state="collapsed"] { width: fit-content; height: auto; margin: 8px 12px 8px auto; border: 2px solid var(--promo-navy); border-radius: 999px; background: linear-gradient(135deg,#082a67,#0e55da); box-shadow: 0 8px 22px rgba(4,25,67,.2); }
+.residays-promo-shell[data-state="collapsed"] { display: flex; align-items: center; width: fit-content; height: auto; margin: 8px 12px 8px auto; border: 2px solid var(--promo-navy); border-radius: 999px; background: linear-gradient(135deg,#082a67,#0e55da); box-shadow: 0 8px 22px rgba(4,25,67,.2); }
 .residays-promo-shell[data-state="collapsed"] .residays-promo-banner__image { display: none; }
 .residays-promo-shell[data-state="collapsed"] .residays-promo__collapsed-label { display: flex; }
 .residays-promo-shell[data-state="collapsed"] .residays-promo__app-link { display: none; }
-.residays-promo-shell[data-state="collapsed"] .residays-promo__toggle { position: static; display: flex; width: auto; height: 42px; border: 0; background: transparent; box-shadow: none; }
+.residays-promo-shell[data-state="collapsed"] .residays-promo__toggle { position: static; display: grid; flex: 0 0 42px; width: 42px; height: 42px; border: 0; background: transparent; box-shadow: none; }
 @media (max-width: 720px) { .residays-promo-shell { height: auto; } .residays-promo-shell .residays-promo-banner__image { height: auto; } .residays-promo__toggle { top: 6px; right: 7px; width: 28px; height: 28px; font-size: 17px; } .residays-promo__app-link { top: auto; right: auto; left: 8px; bottom: 6px; min-height: 28px; padding: 0 8px; font-size: 11px; } .residays-promo-shell[data-state="collapsed"] { margin-top: 6px; margin-bottom: 6px; } }
 @media (prefers-reduced-motion: reduce) { .residays-promo-shell { transition: none; } }
 
